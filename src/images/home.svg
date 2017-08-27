@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/tab/首页-正常</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M17.0494872,10.9877335 L18.4046398,10.9877335 C20.0695569,10.9877335 20.4986832,10.0053259 19.3717952,8.79346468 L12.0396425,0.908429801 C10.9139104,-0.30218832 9.08570809,-0.303431388 7.95882009,0.908429801 L0.626667471,8.79346468 C-0.499064624,10.0040828 -0.0672103355,10.9877335 1.59382281,10.9877335 L3.04948716,10.9877335 L3.04948716,18.0026149 C3.04948716,19.1135563 3.94754068,20 5.05534582,20 L15.0436285,20 C16.152427,20 17.0494872,19.1057402 17.0494872,18.0026149 L17.0494872,10.9877335 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="20" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/tab/首页-正常">
+            <use id="Combined-Shape" stroke="#2E3236" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+            <circle id="Oval" fill="#2E3236" cx="10" cy="11" r="2"></circle>
+        </g>
+    </g>
+</svg>

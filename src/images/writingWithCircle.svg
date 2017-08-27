@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="16" cy="16" r="16"></circle>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="32" height="32" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="斩托福" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-0-0-首页" transform="translate(-218.000000, -450.000000)">
+            <g id="练习" transform="translate(0.000000, 357.000000)">
+                <g id="1" transform="translate(218.000000, 90.000000)">
+                    <g id="icon" transform="translate(0.000000, 3.000000)">
+                        <use id="Oval" stroke="#58676F" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                        <path d="M16.8762654,10.3106559 L17.7696848,9.42376461 C18.3311029,8.86700949 19.231983,8.85768361 19.7817437,9.40278137 L22.5683171,12.16604 C23.1180778,12.7116041 23.1082856,13.6050235 22.5464012,14.1617786 L21.6525155,15.0482037 L16.8762654,10.3106559 Z M21.0794401,15.6170824 L14.4119012,22.2305312 C14.291131,22.3499025 14.1540406,22.4431613 14.0094894,22.5121728 C13.7464996,22.7900841 13.3781273,22.9686747 12.9682548,22.9728714 L10.4069015,22.9999164 C9.62166224,23.0083097 8.99123266,22.3834757 9.00009225,21.6047646 L9.03040136,18.7818203 C9.03413171,18.46101 9.14930635,18.167711 9.3339588,17.9285021 C9.4043692,17.7708947 9.50415614,17.6226132 9.63518477,17.4925172 L16.30319,10.8790684 L21.0794401,15.6170824 Z" id="Fill-1" fill=""></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

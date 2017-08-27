@@ -1,0 +1,27 @@
+{
+  "presets": [
+    "latest",
+    "react",
+    "stage-0"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ],
+      "plugins": [
+        [
+          "styled-components", {
+            "displayName": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}

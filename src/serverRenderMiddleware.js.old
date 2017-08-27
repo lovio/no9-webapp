@@ -1,0 +1,61 @@
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import serialize from 'serialize-javascript';
+import { match, createMemoryHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import configureStore from './store/configureStore';
+// import Root from './containers/Root';
+import rootSaga from './sagas';
+import getRoutes from './routes';
+
+// 传给下层两个变量
+// <div id="app">${renderedContent}</div>
+// <script>
+//   window.__INITIAL_STATE__ = ${serialize(initialState)};
+// </script>
+// 1. renderedContent
+// 2. serialize(initialState)
+
+module.exports = (req, res, next) => {
+  const store = configureStore();
+  const memoryHistory = createMemoryHistory(req.originalUrl);
+  const history = syncHistoryWithStore(memoryHistory, store, {
+    selectLocationState(state) {
+      return state.get('routing').toJS();
+    },
+  });
+
+  const sagaTask = store.runSaga(rootSaga);
+
+  match({
+    history,
+    routes: getRoutes(store),
+    location: req.originalUrl,
+  }, (error, redirectLocation, renderProps) => { // eslint-disable-line
+    if (error) {
+      // 不作处理，转给客户端渲染
+      return next();
+    } else if (redirectLocation) {
+      return res.redirect(302, encodeURI(redirectLocation.pathname + redirectLocation.search));
+    } else if (renderProps && renderProps.components) {
+      const rootComp = <Root store={store} renderProps={renderProps} type="server" />;
+      renderToString(rootComp);
+
+      // match saga done
+      sagaTask.done.then(() => {
+        req.serverRenderData = { // eslint-disable-line
+          content: renderToString(rootComp),
+          initialState: serialize(store.getState()),
+        };
+        next();
+      }).catch((e) => {
+        console.log('e', e);
+        next();
+      });
+      // dispatch END
+      store.close();
+    } else {
+      next();
+    }
+  });
+};
