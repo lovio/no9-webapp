@@ -42,7 +42,7 @@ const Tab = styled.div`
     text-decoration: none;
     // 还有border-top的0.01rem
     margin: 0.07rem 0 0.04rem;
-    border-right: 0.01rem solid #DBDCDD;
+    border-right: 1px solid #dbdcdd;
 
     img {
       height: 0.14rem;

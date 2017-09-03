@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const bgColor = 'backgroundColor: #F4F3F3;';
+const bgColor = 'background-color: #F4F3F3;';
 const footerHeight = '0.5rem';
 
 export { Button } from './button';
@@ -30,5 +30,5 @@ export const Footer = styled.div`
 
   display: flex;
   justify-content: space-around;
-  border-top: 0.01rem solid #EAEFF2;
+  border-top: 0.01rem solid #eaeff2;
 `;
