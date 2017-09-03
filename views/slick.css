@@ -210,7 +210,7 @@
 }
 
 .slick-dots {
-  bottom: -25px;
+  bottom: 0.1rem;
   width: 100%;
   margin: 0;
   list-style: none;
@@ -260,9 +260,9 @@
   height: 20px;
   content: '•';
   text-align: center;
-  color: #8F9DA5
+  color: white;
 }
 
 .slick-dots li.slick-active button:before {
-  color: #FE663B
+  color: #F4F3F3;
 }

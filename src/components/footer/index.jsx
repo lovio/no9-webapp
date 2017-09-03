@@ -22,7 +22,7 @@ const LINKS = [
     title: '车位',
   },
   {
-    url: '/cart',
+    url: '/product',
     img: imgCart,
     title: '购买',
   },
