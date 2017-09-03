@@ -1,12 +1,8 @@
 import { put, call, select } from 'redux-saga/effects';
-import { Cookies } from 'react-cookie';
 import isObject from 'lodash-es/isObject';
 import assign from 'lodash-es/assign';
 import get from 'lodash-es/get';
-import { inApp } from 'helpers/ua';
 
-import { setUserId } from 'helpers/logger';
-import { COOKIE_DOMAIN } from 'constants/constants.json';
 
 // resuable fetch Subroutine
 // entity :  user | repo | starred | stargazers
@@ -68,33 +64,4 @@ export function* formRequest(params, action) {
     yield put(actions.success(response));
   }
   return resolve(response);
-}
-
-export function* saveCookie(payload) {
-  if (inApp || !payload) {
-    return;
-  }
-  const { nickname, token, userId, unionId } = payload;
-  const user = yield select(state => state.getIn(['user', 'info']));
-  // id is for user sign in
-  const data = {
-    id: userId || user.get('userId'),
-    name: nickname || user.get('nickname'),
-    token: token || user.get('token'),
-    unionId: unionId || user.get('unionId'),
-  };
-  // 这里需要调整一下，接口这边有些问题
-  if (data.id) {
-    setUserId(data.id);
-  }
-  const cookies = new Cookies();
-  cookies.set('ss_user', JSON.stringify(data), { path: '/', domain: COOKIE_DOMAIN });
-}
-
-export function removeCookie() {
-  if (inApp) {
-    return;
-  }
-  const cookies = new Cookies();
-  cookies.set('ss_user', '', { path: '/', domain: COOKIE_DOMAIN });
 }

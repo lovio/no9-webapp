@@ -8,12 +8,11 @@ import { change } from 'redux-form';
 import { HOME_PATH } from 'constants/constants.json';
 import * as actions from 'actions/auth';
 import * as apis from 'helpers/api';
-import { setUserId } from 'helpers/logger';
 import { transferCode, initWechat } from 'actions/wx';
 import { userInfoLoaded, clearUserInfo, loadUserInfo } from 'actions/user';
 import { showToastItem, showConfirm } from '../actions/common';
 import { getFormValuesByName } from './selector';
-import { fetchEntity, formRequest, saveCookie, removeCookie } from './utils';
+import { fetchEntity, formRequest } from './utils';
 
 const requestWechatBindStatus =
   fetchEntity.bind(null, actions.wechatBindStatus, apis.checkWechatBindStatus);
@@ -111,9 +110,9 @@ export function* watchBindAccount() {
 
 export function* watchBindAccountSuccess() {
   for (; ;) {
-    const { payload } = yield take(actions.bindAccountSuccess);
+    // const { payload } = yield take(actions.bindAccountSuccess);
     const bindType = yield select(state => state.getIn(['user', 'bind', 'bindType']));
-    yield call(saveCookie, payload);
+    // yield call(saveCookie, payload);
     yield call(redirect, HOME_PATH, bindType !== 'account');
     yield put(showToastItem({
       type: 'success',
@@ -139,7 +138,7 @@ export function* watchAuthSuccess() {
   for (;;) {
     const { payload } = yield take(actions.authSuccess);
     if (payload) {
-      yield call(saveCookie, payload);
+      // yield call(saveCookie, payload);
       yield call(redirect, HOME_PATH);
       yield put(userInfoLoaded());
     }
@@ -158,7 +157,7 @@ export function* watchCheckWechatBindStatusSuccess() {
   for (;;) {
     const { payload, meta } = yield take(actions.wechatBindStatus.success);
     if (payload.isAuthorized || get(meta, 'type') === 'userinfo') {
-      yield call(saveCookie, payload);
+      // yield call(saveCookie, payload);
       yield call(redirect, HOME_PATH);
       yield put(userInfoLoaded());
       history.replace(getSafePath());
@@ -182,8 +181,8 @@ export function* watchCheckWechatBindStatusFailure() {
 export function* watchSignOut() {
   for (; ;) {
     yield take(actions.signOut);
-    yield call(removeCookie);
-    yield call(setUserId);
+    // yield call(removeCookie);
+    // yield call(setUserId);
     yield put(clearUserInfo());
     // todo 这里要登录是不是在微信中跳转不同的地方
     history.push('/');

@@ -3,7 +3,6 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 // import 'helpers/fixHistoryBack';
-import 'helpers/statics';
 
 // initialize redux store
 import configureStore from './store/configureStore';

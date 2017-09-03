@@ -2,23 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import map from 'lodash/map';
 
-import IconAsk from 'images/ask.svg';
-import IconHome from 'images/home.svg';
-import IconMine from 'images/mine.svg';
-import IconHomeActive from 'images/homeActive.svg';
-import IconMineActive from 'images/mineActive.svg';
 import { Footer } from 'ui';
-import { showPanel } from 'helpers/meiqia';
+import imgProperty from './property.png';
+import imgCarport from './carport.png';
+import imgCart from './cart.png';
+import imgMine from './mine.png';
 
-import { log } from 'helpers/logger';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  box-sizing: border-box;
-  border-top: 0.01rem solid #EAEFF2;
-`;
+const LINKS = [
+  {
+    url: '/',
+    img: imgProperty,
+    title: '资产',
+  },
+  {
+    url: '/carport',
+    img: imgCarport,
+    title: '车位',
+  },
+  {
+    url: '/cart',
+    img: imgCart,
+    title: '购买',
+  },
+  {
+    url: '/mine',
+    img: imgMine,
+    title: '账户',
+  },
+];
 
 const Tab = styled.div`
   width: 100%;
@@ -27,64 +40,46 @@ const Tab = styled.div`
   a {
     display: block;
     text-decoration: none;
-    padding-top: 0.08rem;
+    // 还有border-top的0.01rem
+    margin: 0.07rem 0 0.04rem;
+    border-right: 0.01rem solid #DBDCDD;
 
-    svg {
-      width: 0.2rem;
-      height: 0.2rem;
+    img {
+      height: 0.14rem;
     }
 
     p {
+      /* 资产: */
+      line-height: 0.2rem;
+      font-size: 0.14rem;
       margin: 0;
+      letter-spacing: 0;
       /* 首页: */
-      font-size: 0.1rem;
       color: ${(props) => {
         if (props.isActive) {
-          return '#FE663B';
+          return '#E01053';
         }
-        return '#2E3236';
+        return '#4A4A4A';
       }};
-      letter-spacing: 0;
     }
+  }
+
+  &:last-of-type > a {
+    border-right: none;
   }
 `;
 
 export default function FooterView({ location: { pathname } }) {
   return (
     <Footer>
-      <Container>
-        <Tab
-          isActive={pathname === '/'}
-          onClick={() => log({ eventDetail: 'BOTTOM_HOME' })}
-        >
-          <Link to="/">
-            { pathname === '/' && <IconHomeActive /> }
-            { pathname !== '/' && <IconHome /> }
-            <p>首页</p>
+      {map(LINKS, link => (
+        <Tab key={link.url} isActive={pathname === link.url}>
+          <Link to={link.url}>
+            <img src={link.img} alt="property" />
+            <p>{link.title}</p>
           </Link>
         </Tab>
-        <Tab
-          onClick={() => {
-            log({ eventDetail: 'BOTTOM_CS' });
-            showPanel();
-          }}
-        >
-          <a>
-            <IconAsk />
-            <p>问问老师</p>
-          </a>
-        </Tab>
-        <Tab
-          isActive={pathname === '/mine'}
-          onClick={() => log({ eventDetail: 'BOTTOM_PERSONAL' })}
-        >
-          <Link to="/mine">
-            {pathname === '/mine' && <IconMineActive /> }
-            {pathname !== '/mine' && <IconMine /> }
-            <p>我的</p>
-          </Link>
-        </Tab>
-      </Container>
+      ))}
     </Footer>
   );
 }

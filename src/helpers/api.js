@@ -1,8 +1,8 @@
 import axios from 'axios';
 import assign from 'lodash-es/assign';
-import { api } from '../../config.json';
+import { API_SERVER } from '../../config.json';
 
-axios.defaults.baseURL = `${api.zhanToefl}/mobile`;
+axios.defaults.baseURL = `${API_SERVER}/mobile`;
 
 function checkStatus(response) {
   let errMsg;

@@ -5,14 +5,17 @@ import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import history from 'helpers/history';
 import Routes from './Routes';
+import ErrorBoundary from '../components/common/errorBoundary';
 
 export default function App({ store }) {
   return (
-    <Provider store={store}>
-      <Router history={history}>
-        <Routes />
-      </Router>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Router history={history}>
+          <Routes />
+        </Router>
+      </Provider>
+    </ErrorBoundary>
   );
 }
 

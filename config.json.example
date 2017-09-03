@@ -1,8 +1,8 @@
 {
-  "STATIC_PREFIX": "//localhost:20000/",
+  "API_SERVER": "http://localhost:20000",
+  "STATIC_PREFIX": "//localhost:8080/",
   "disableSSR": true,
-  "uploadDir": "/zhan-toefl-fe",
-  "port": 20000,
+  "port": 8080,
   "WX_APPID": "wxf63b92e88ecf68d0",
   "WX_VERIFY_ID": "iVBCyJJHsVLrs54Z",
   "sentry": "https://064278f7f30946c0a77aab7013358a98@sentry.io/145981"

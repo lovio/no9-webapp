@@ -46,14 +46,6 @@ docker-compose部署：
 3. `npm run build`生成assets
 4. 通过`pm2 start server.js`来启动程序，或者使用`node server.js`
 
-## Storybook
-
-[React-Storybook](https://getstorybook.io)
-
-我们使用storybook来可视化UI组件
-
-启动storybook: `npm run storybook`
-
 ## Roadmap
 
 <!-- 1. 使用CSS MODULES重构CSS代码，更好的模块化 -->

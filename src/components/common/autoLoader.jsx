@@ -10,7 +10,6 @@ const LoadMore = styled.div`
   text-align: center;
 `;
 
-
 // hasNoMoreComponent is optional
 class AutoLoader extends Component {
 
