@@ -5,6 +5,7 @@ import { Container, Overflow } from 'ui';
 import FooterView from 'components/footer';
 
 import Home from './home';
+import Mine from './mine';
 import Product from './product';
 
 export default function Routes() {
@@ -13,10 +14,12 @@ export default function Routes() {
       <Overflow>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/mine" component={Mine} />
           <Route exact path="/product" component={Product} />
         </Switch>
       </Overflow>
       <Route exact path="/" component={FooterView} />
+      <Route exact path="/mine" component={FooterView} />
       <Route exact path="/product" component={FooterView} />
     </Container>
   );

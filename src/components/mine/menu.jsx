@@ -1,70 +1,103 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import IconRecord from 'images/record.svg';
-import IconCredits from 'images/credits.svg';
-import IconMedal from 'images/medal.svg';
-// import IconSeat from 'images/seat.svg';
-import IconProfile from 'images/id-card.svg';
-
-import imgArrow from 'images/arrow.png';
-
-import { log } from 'helpers/logger';
+import imgCar from './car.png';
+import imgRelation from './relation.png';
 
 const Container = styled.div`
-  margin-top: 0.1rem;
-  background-color: #FFF;
+  background-color: white;
+  padding: 0.03rem 0 0.03rem 0.2rem;
+  font-size: 0.18rem;
+  color: #4a4a4a;
+  margin-bottom: 0.1rem;
+`;
 
-  a {
-    display: flex;
-    text-decoration: none;
-    padding-left: 0.15rem;
-    align-items: center;
-    border-bottom: 0.01rem solid #EAEFF2;
-    background-image: url('${imgArrow}');
-    background-position: right 0.15rem center;
-    background-repeat: no-repeat;
-    background-size: 0.06rem 0.09rem;
+const Item = styled.div`
+  padding: 0.14rem 0;
+  overflow: auto;
+  line-height: 0.25rem;
+  border-bottom: 1px solid #dbdcdd;
 
-    svg {
-      width: 0.16rem;
-      height: 100%;
-    }
-
-    span {
-      padding-left: 0.15rem;
-      line-height: 0.44rem;
-      font-size: 0.14rem;
-      color: #2E3236;
-      flex: 1;
-    }
+  &:last-of-type {
+    border-bottom: none;
   }
 `;
 
-export default function Menu() {
-  return (
+const Icon = styled.span`
+  display: inline-block;
+  width: 0.46rem;
+  text-align: center;
+  img {
+    display: inline-block;
+    margin-top: 0.06rem;
+    height: 0.14rem;
+  }
+`;
+
+const Menu = () => (
+  <div>
     <Container>
-      <Link to="/study/records" onClick={() => log({ eventDetail: 'PERSONAL_EXCERCISERECORD' })} >
-        <IconRecord />
-        <span>我的练习记录</span>
-      </Link>
-      <Link to="/credit" onClick={() => log({ eventDetail: 'PERSONAL_CREDIT' })} >
-        <IconCredits />
-        <span>我的积分</span>
-      </Link>
-      <Link to="/medal" onClick={() => log({ eventDetail: 'PERSONAL_MEDAL' })} >
-        <IconMedal />
-        <span>我的成就</span>
-      </Link>
-      {/* <Link to="/" onClick={() => log({ eventDetail: 'PERSONAL_PLACE' })} >
-        <IconSeat />
-        <span>我的考位</span>
-      </Link> */}
-      <Link to="/user" onClick={() => log({ eventDetail: 'PERSONAL_INFORMATION' })} >
-        <IconProfile />
-        <span>我的资料</span>
-      </Link>
+      <Item>
+        <Icon>
+          <img src={imgCar} alt="" />
+        </Icon>
+        车位电子所有权证书
+      </Item>
+      <Item>
+        <Icon>
+          <img src={imgCar} alt="" />
+        </Icon>
+        账户设置
+      </Item>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        实名信息
+      </Item>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        我的客户关系
+      </Item>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        生成我的邀请码
+      </Item>
     </Container>
-  );
-}
+
+    <Container>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        收支明细
+      </Item>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        提现记录
+      </Item>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        提现设置
+      </Item>
+    </Container>
+    <Container>
+      <Item>
+        <Icon>
+          <img src={imgRelation} alt="" />
+        </Icon>
+        关于九路泊车
+      </Item>
+    </Container>
+  </div>
+);
+
+export default Menu;

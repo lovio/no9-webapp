@@ -2,32 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
+import Menu from './menu';
+import Exit from './exit';
 // import * as uaHelper from 'helpers/ua';
 // import imgAdBanner from 'images/adBanner.jpg';
 // import { AdBanner } from 'ui';
 
-import BookActivity from 'components/common/bookActivity';
-// import { universalLink } from '../../../config.json';
-import ProfileView from '../common/profile';
-import Menu from './menu';
-
 // const iosLink = `${universalLink}?from=weixin`;
 
-export default function HomeView({ user }) {
+export default function HomeView({ signOut }) {
   return (
     <div>
       <Helmet>
-        <title>我的</title>
+        <title>账户</title>
       </Helmet>
-      <ProfileView white user={user} loggerEventDetailPrefix="PERSONAL" />
-      <BookActivity />
       <Menu />
+      <Exit signOut={signOut} />
     </div>
   );
 }
 
 HomeView.propTypes = {
-  user: PropTypes.object.isRequired,
+  signOut: PropTypes.func.isRequired,
 };
 
 // {

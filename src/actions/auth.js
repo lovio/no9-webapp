@@ -1,6 +1,10 @@
 import { createAction } from 'redux-actions';
 import { createFetchActions } from './utils';
 
+export const signOut = createAction('SIGN_OUT');
+
+// ++++++++++++++++++++++++++++++++++++++++++++++
+
 // 这个action是统领所有获取token的行为
 // TODO: 把token的检查行为放在saga里面会不会有性能的问题？
 export const checkAuth = createAction('CHECK_AUTH');
@@ -33,9 +37,7 @@ export const setBindInfo = createAction('SET_BIND_INFO');
 export const unbindAccount = createAction('UNBIND_ACCOUNT');
 export const accountUnbind = createFetchActions('ACCOUNT_UNBIND');
 
-
 // 正式环境是没有的，仅仅测试使用
-export const signOut = createAction('SIGN_OUT');
 
 // 微信检查是否绑定
 export const checkWechatBindStatus = createAction('CHEACK_WECHAT_BIND_STATUS');
