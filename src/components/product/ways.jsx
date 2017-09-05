@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Button from 'ui/button';
 import map from 'lodash/map';
-import payments from 'constants/payments.json';
+import products from 'constants/products.json';
 
 const Container = styled.div`padding: 0.1rem 0.2rem;`;
 
@@ -68,19 +69,21 @@ const Time = styled.p`
 const Intro = () => (
   <Container>
     <Title>订购方式</Title>
-    {map(payments, payment => (
-      <Card key={payment.price}>
+    {map(products, product => (
+      <Card key={product.id}>
         <Head>
-          <Right>{payment.right}</Right>
-          <Price>￥ {payment.price}</Price>
-          {!!payment.payment && <PaymentDesc>{payment.payment}</PaymentDesc>}
+          <Right>{product.right}</Right>
+          <Price>￥ {product.price}</Price>
+          {!!product.payment && <PaymentDesc>{product.payment}</PaymentDesc>}
         </Head>
         <Content>
-          {payment.desc}
+          {product.desc}
           <Time>
-            <span>开始收益时间</span> {payment.time}
+            <span>开始收益时间</span> {product.time}
           </Time>
-          <Button>确认购买</Button>
+          <Link to={`/orders/new?paymentId=${product.id}`}>
+            <Button>确认购买</Button>
+          </Link>
         </Content>
       </Card>
     ))}

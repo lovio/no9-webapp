@@ -7,6 +7,7 @@ import FooterView from 'components/footer';
 import Home from './home';
 import Mine from './mine';
 import Product from './product';
+import Order from './order';
 
 export default function Routes() {
   return (
@@ -16,6 +17,7 @@ export default function Routes() {
           <Route exact path="/" component={Home} />
           <Route exact path="/mine" component={Mine} />
           <Route exact path="/product" component={Product} />
+          <Route exact path="/orders/new" component={Order} />
         </Switch>
       </Overflow>
       <Route exact path="/" component={FooterView} />

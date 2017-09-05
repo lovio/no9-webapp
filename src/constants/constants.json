@@ -6,5 +6,6 @@
   "DEFAULT_SORT": {
     "sortType": "name",
     "sortRule": "down"
-  }
+  },
+  "DEFAULT_PRODUCT_ID": 4
 }
