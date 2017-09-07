@@ -2,11 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 export default function HomeView() {
-  return (
-    <div>
-      123123
-    </div>
-  );
+  return <div>123123 123</div>;
 }
 
 HomeView.propTypes = {

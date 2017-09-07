@@ -7,16 +7,12 @@ import React, { Component } from 'react';
 // import HomeView from 'components/home';
 
 class Home extends Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
-  componentDidMount() {
-
-  }
-
+  componentDidMount() {}
 
   render() {
-    return <div>123</div>;
+    return <div>12312asd</div>;
   }
 }
 

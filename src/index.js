@@ -2,7 +2,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-// import 'helpers/fixHistoryBack';
+import { AppContainer } from 'react-hot-loader';
 
 // initialize redux store
 import configureStore from './store/configureStore';
@@ -17,6 +17,20 @@ const store = configureStore();
 store.runSaga(rootSaga);
 
 render(
-  <App store={store} />,
+  <AppContainer>
+    <App store={store} />
+  </AppContainer>,
   container,
 );
+
+if (module.hot) {
+  module.hot.accept('./containers/App', () => {
+    const NewApp = require('./containers/App').default; // eslint-disable-line
+    render(
+      <AppContainer>
+        <NewApp store={store} />
+      </AppContainer>,
+      container,
+    );
+  });
+}
