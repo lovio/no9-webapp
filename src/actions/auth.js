@@ -1,9 +1,17 @@
 import { createAction } from 'redux-actions';
 import { createFetchActions } from './utils';
 
+export const signIn = createAction('SIGN_IN');
 export const signOut = createAction('SIGN_OUT');
 
-// ++++++++++++++++++++++++++++++++++++++++++++++
+// 登陆成功
+export const authSuccess = createAction('AUTH_SUCCESS');
+
+// 发送短信验证码
+export const sendCaptcha = createAction('SEND_CAPTCHA');
+export const sendCaptchaError = createAction('SEND_CAPTCHA_ERROR');
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 这个action是统领所有获取token的行为
 // TODO: 把token的检查行为放在saga里面会不会有性能的问题？
@@ -13,12 +21,6 @@ export const registerToken = createAction('REGISTER_TOKEN');
 
 // 添加一个新的ACTION来统领所有的登录成功操作
 // 替代原来的signInSuccess
-export const authSuccess = createAction('AUTH_SUCCESS');
-
-// 发送邮件验证码，可以考虑和发送短信验证码合并
-export const sendCaptcha = createAction('SEND_CAPTCHA');
-
-export const sendCaptchaError = createAction('SEND_CAPTCHA_ERROR');
 
 export const sendPhoneCaptcha = createAction('SEND_PHONE_CAPTCHA');
 export const sendPhoneCaptchaError = createAction('SEND_PHONE_CAPTCHA_ERROR');

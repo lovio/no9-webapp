@@ -25,23 +25,3 @@ export default function HomeView({ signOut }) {
 HomeView.propTypes = {
   signOut: PropTypes.func.isRequired,
 };
-
-// {
-//   !user.getIn(['capabilityTest', 'data']).size && (
-//     <AdBanner
-//       onClick={
-//         () => {
-//           let url;
-//           if (uaHelper.inAndroid) {
-//             url = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.smartstudy.zhantoefl';
-//           } else {
-//             url = iosLink;
-//           }
-//           location.href = url;
-//         }
-//       }
-//     >
-//       <img src={imgAdBanner} alt="ad" />
-//     </AdBanner>
-//   )
-// }
