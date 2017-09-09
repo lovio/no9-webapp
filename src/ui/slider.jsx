@@ -12,17 +12,20 @@ const settings = {
 };
 
 export default class Slider extends Component {
+  static defaultProps = {
+    disableAutoPlay: false,
+  };
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.instanceOf(List),
-    ]).isRequired,
-  }
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.instanceOf(List)]).isRequired,
+    disableAutoPlay: PropTypes.bool,
+  };
 
   // react-slick有个bug,不能自动播放。。。貌似这个库目前也没有人维护
   // 担心
   componentDidMount() {
-    this.timeoutId = setInterval(this.slider.innerSlider.play, 3000);
+    if (!this.props.disableAutoPlay) {
+      this.timeoutId = setInterval(this.slider.innerSlider.play, 3000);
+    }
   }
 
   componentWillUnmount() {
@@ -31,7 +34,12 @@ export default class Slider extends Component {
 
   render() {
     return (
-      <Slick ref={(slider) => { this.slider = slider; }} {...settings}>
+      <Slick
+        ref={(slider) => {
+          this.slider = slider;
+        }}
+        {...settings}
+      >
         {this.props.children}
       </Slick>
     );

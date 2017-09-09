@@ -7,5 +7,12 @@
     "sortType": "name",
     "sortRule": "down"
   },
-  "DEFAULT_PRODUCT_ID": 4
+  "DEFAULT_PRODUCT_ID": 4,
+  "GRADE_MAPPING": {
+    "l1": ["分销商"],
+    "l2": ["经销商"],
+    "l3": ["代理人"],
+    "l4": ["初级", "合伙人"],
+    "l5": ["高级", "合伙人"]
+  }
 }

@@ -1,26 +1,18 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { signOut } from 'actions/auth';
-// import { loadUserData, loadCapabilityTest } from 'actions/user';
 
 import MineView from 'components/mine';
 
-class Mine extends Component {
-  static propTypes = {
-    // loadUserData: PropTypes.func.isRequired,
-    // loadCapabilityTest: PropTypes.func.isRequired,
-  };
+// class Mine extends Component {
+//   static propTypes = {};
+//   componentDidMount() {}
 
-  componentDidMount() {
-    // this.props.loadUserData();
-    // this.props.loadCapabilityTest();
-  }
-
-  render() {
-    return <MineView {...this.props} />;
-  }
-}
+//   render() {
+//     return <MineView {...this.props} />;
+//   }
+// }
 
 function mapStateToProps(state) {
   return {
@@ -30,6 +22,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   signOut,
-  // loadUserData,
-  // loadCapabilityTest,
-})(Mine);
+})(MineView);
