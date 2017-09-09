@@ -4,6 +4,7 @@ import { Container, Overflow } from 'ui';
 
 import FooterView from 'components/footer';
 
+import AuthenticatedHOC from './auth/AuthenticatedHOC';
 import Tips from './common/tips';
 import Home from './home';
 import SignIn from './auth/SignIn';
@@ -19,7 +20,7 @@ export default function Routes() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={SignIn} />
-          <Route exact path="/mine" component={Mine} />
+          <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
           <Route exact path="/product" component={Product} />
           <Route exact path="/orders/new" component={Order} />
         </Switch>

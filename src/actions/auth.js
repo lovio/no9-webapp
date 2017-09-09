@@ -7,16 +7,15 @@ export const signOut = createAction('SIGN_OUT');
 // 登陆成功
 export const authSuccess = createAction('AUTH_SUCCESS');
 
+// 这个action是统领所有获取token的行为
+// TODO: 把token的检查行为放在saga里面会不会有性能的问题？
+export const checkAuth = createAction('CHECK_AUTH');
+
 // 发送短信验证码
 export const sendCaptcha = createAction('SEND_CAPTCHA');
 export const sendCaptchaError = createAction('SEND_CAPTCHA_ERROR');
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// 这个action是统领所有获取token的行为
-// TODO: 把token的检查行为放在saga里面会不会有性能的问题？
-export const checkAuth = createAction('CHECK_AUTH');
-
 export const registerToken = createAction('REGISTER_TOKEN');
 
 // 添加一个新的ACTION来统领所有的登录成功操作

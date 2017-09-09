@@ -7,12 +7,12 @@ export default function requireAuthentication(Component) {
   class AuthenticatedComponent extends React.Component {
     static defaultProps = {
       token: '',
-    }
+    };
 
     static propTypes = {
       token: PropTypes.string,
       checkAuth: PropTypes.func.isRequired,
-    }
+    };
 
     componentWillMount() {
       this.props.checkAuth();
@@ -23,22 +23,17 @@ export default function requireAuthentication(Component) {
     }
 
     render() {
-      const {
-        token,
-        ...rest
-      } = this.props;
+      const { token, ...rest } = this.props;
       if (!token) {
         return null;
       }
-      return (
-        <Component {...rest} />
-      );
+      return <Component {...rest} />;
     }
   }
 
   function mapStateToProps(state) {
     return {
-      token: state.getIn(['user', 'info', 'token']),
+      token: state.getIn(['user', 'token']),
     };
   }
   return connect(mapStateToProps, { checkAuth })(AuthenticatedComponent);

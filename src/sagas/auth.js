@@ -1,6 +1,8 @@
 import { take, put, call, select, takeEvery } from 'redux-saga/effects';
+import history, { redirect } from 'helpers/history';
 import { isPhone } from 'helpers/validators';
 
+import { HOME_PATH } from 'constants/constants.json';
 import * as actions from 'actions/auth';
 import * as apis from 'helpers/api';
 import { getFormValuesByName } from './selector';
@@ -65,8 +67,30 @@ function* signIn({ payload }) {
   );
 }
 
-export function* watchBindAccount() {
+export function* watchSignIn() {
   yield takeEvery(actions.signIn, signIn);
+}
+
+export function* watchAuthSuccess() {
+  for (;;) {
+    const { payload } = yield take(actions.authSuccess);
+    if (payload) {
+      yield call(redirect, HOME_PATH);
+    }
+  }
+}
+
+// checkAuth 要支持外地跳转进来的，以及跳转到oauth
+export function* watchCheckAuth() {
+  for (;;) {
+    yield take(actions.checkAuth);
+    const token = yield select(state => state.getIn(['user', 'token']));
+    if (!token) {
+      const { pathname, search } = history.location;
+      const redirectUrl = encodeURIComponent(`${pathname}${search}`);
+      history.replace(`/login?redirectUrl=${redirectUrl}`);
+    }
+  }
 }
 
 // export function* watchBindAccountSuccess() {
@@ -94,17 +118,6 @@ export function* watchBindAccount() {
 //     const userId = msg.pop();
 //     yield put(actions.setUnbindInfo({ bindType: 'account', ...data, userId }));
 //     yield put(showConfirm({ code, name }));
-//   }
-// }
-
-// export function* watchAuthSuccess() {
-//   for (;;) {
-//     const { payload } = yield take(actions.authSuccess);
-//     if (payload) {
-//       // yield call(saveCookie, payload);
-//       yield call(redirect, HOME_PATH);
-//       yield put(userInfoLoaded());
-//     }
 //   }
 // }
 
@@ -154,19 +167,6 @@ export function* watchBindAccount() {
 //     yield put(clearUserInfo());
 //     // todo 这里要登录是不是在微信中跳转不同的地方
 //     history.push('/');
-//   }
-// }
-
-// // checkAuth 要支持外地跳转进来的，以及跳转到oauth
-// export function* watchCheckAuth() {
-//   for (;;) {
-//     yield take(actions.checkAuth);
-//     const token = yield select(state => state.getIn(['user', 'info', 'token']));
-//     if (!token) {
-//       const { pathname, search } = history.location;
-//       const redirectUrl = encodeURIComponent(`${pathname}${search}`);
-//       history.replace(`/bind?redirectUrl=${redirectUrl}`);
-//     }
 //   }
 // }
 
