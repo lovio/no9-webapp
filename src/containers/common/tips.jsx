@@ -10,9 +10,9 @@ class Tips extends Component {
     toasts: PropTypes.object.isRequired,
     modal: PropTypes.object.isRequired,
     hideModal: PropTypes.func.isRequired,
-  }
+  };
 
-  renderToasts = toasts => <ToastsView toasts={toasts} />
+  renderToasts = toasts => <ToastsView toasts={toasts} />;
 
   render() {
     const { modal, toasts } = this.props;

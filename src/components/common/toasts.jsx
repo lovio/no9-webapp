@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Image } from 'ui';
 import imgError from 'images/error.png';
 import imgSuccess from 'images/success.png';
 
@@ -19,10 +18,10 @@ const Container = styled.div`
 `;
 
 const Toast = styled.div`
-  background: rgba(52,61,72,0.9);
-  box-shadow: 0 0.03rem 0.15rem 0 rgba(52,61,72,0.40);
+  background: rgba(52, 61, 72, 0.9);
+  box-shadow: 0 0.03rem 0.15rem 0 rgba(52, 61, 72, 0.3);
   border-radius: 9999px;
-  padding: 0.12rem 0.25rem;
+  padding: 0.1rem 0.2rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -39,7 +38,7 @@ const Toast = styled.div`
     margin: 0;
     font-size: 0.12rem;
     line-height: 0.2rem;
-    color: #FFFFFF;
+    color: #ffffff;
     letter-spacing: 0;
     max-width: 2rem;
     word-wrap: break-word;
@@ -50,9 +49,9 @@ const Toast = styled.div`
 export default function Toasts({ toasts }) {
   return (
     <Container>
-      { toasts.toList().map(toast => (
+      {toasts.toList().map(toast => (
         <Toast key={toast.get('id')}>
-          <Image src={toast.get('type') === 'error' ? imgError : imgSuccess} alt="error or success" />
+          <img src={toast.get('type') === 'error' ? imgError : imgSuccess} alt="error or success" />
           <p>{toast.get('msg')}</p>
         </Toast>
       ))}

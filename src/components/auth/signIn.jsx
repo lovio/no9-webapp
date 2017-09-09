@@ -54,7 +54,7 @@ const SignInView = (props) => {
             type="number"
           />
           <Field
-            name="captcha"
+            name="verifyCode"
             validate={[required('请输入短信验证码')]}
             label="验证码"
             id="captchaPhone"

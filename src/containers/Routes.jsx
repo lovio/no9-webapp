@@ -4,17 +4,17 @@ import { Container, Overflow } from 'ui';
 
 import FooterView from 'components/footer';
 
+import Tips from './common/tips';
 import Home from './home';
 import SignIn from './auth/SignIn';
 import Mine from './mine';
 import Product from './product';
 import Order from './order';
 
-console.log(SignIn);
-
 export default function Routes() {
   return (
     <Container>
+      <Tips />
       <Overflow>
         <Switch>
           <Route exact path="/" component={Home} />

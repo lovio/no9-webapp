@@ -2,20 +2,14 @@ import axios from 'axios';
 import assign from 'lodash-es/assign';
 import { API_SERVER } from '../../config.json';
 
-axios.defaults.baseURL = `${API_SERVER}/mobile`;
+axios.defaults.baseURL = `${API_SERVER}/usr`;
 
 function checkStatus(response) {
-  let errMsg;
-  if (response.status >= 200 && response.status < 300) {
-    if (response.data.code === 0) {
-      return response.data;
-    }
-    errMsg = response.data.msg;
-  } else {
-    errMsg = response.statusText;
+  if (response.status < 400) {
+    return response;
   }
 
-  const error = new Error(errMsg);
+  const error = new Error(response.data.message);
   error.response = response;
   throw error;
 }
@@ -24,7 +18,9 @@ function checkStatus(response) {
 // 返回{ response, error }
 // 非200同一输出failureCause
 function callApi(config) {
-  return axios(config).then(checkStatus).then(response => ({ response: response.data }))
+  return axios(config)
+    .then(checkStatus)
+    .then(response => ({ response: response.data }))
     .catch(error => ({
       error: error.response,
     }));
@@ -69,12 +65,15 @@ function post(url, data) {
 //   return callApi(config);
 // }
 
+export const signIn = data => post('/users', data);
+export const sendPhoneCaptcha = data => post('/users/sendVerifyCode', data);
+// ****************************************************************************************8
+
 // auth
 export const checkAccount = data => post('/common/user/signup/check', data);
 export const changePhone = data => post('/wechat/phone', data);
 
 // 获取短信验证码
-export const sendPhoneCaptcha = data => post('/common/user/mobile/captchaPhone', data);
 export const sendEmailCaptcha = data => post('/common/user/captcha/email', data);
 
 export const bindAccount = data => post('/wechat/user-info', data);

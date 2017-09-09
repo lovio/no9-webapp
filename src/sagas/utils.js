@@ -3,7 +3,6 @@ import isObject from 'lodash-es/isObject';
 import assign from 'lodash-es/assign';
 import get from 'lodash-es/get';
 
-
 // resuable fetch Subroutine
 // entity :  user | repo | starred | stargazers
 // apiFn  : api.fetchUser | api.fetchRepo | ...
@@ -12,24 +11,17 @@ import get from 'lodash-es/get';
 // 用法，知道bind的用法，就懂了
 export function* fetchEntity(entity, apiFn, params, needToken) {
   let token;
-  const callback =
-    (params && (params instanceof Object) && (params.callback instanceof Function))
-      ? params.callback
-      : function callback() {};
-
   // 是不是有更好的保存token的地方？
   if (needToken) {
-    token = yield select(state => state.getIn(['user', 'info', 'token']));
+    token = yield select(state => state.getIn(['user', 'token']));
   }
   yield put(entity.request(params));
   const { response, error } = yield call(apiFn, token ? assign({}, params, { token }) : params);
   // response可以是0， 但是error一定不是
   if (error) {
     yield put(entity.failure({ error, params }));
-    callback(error);
   } else {
     yield put(entity.success({ response, params }));
-    callback(null, response);
   }
 }
 
@@ -50,14 +42,16 @@ export function* formRequest(params, action) {
     const { data } = error;
     const errorMsg = (isObject(data) && (data.message || data.msg)) || '出错了！';
     if (get(actions, 'failure')) {
-      yield put(actions.failure({
-        msg: errorMsg,
-        data,
-      }));
+      yield put(
+        actions.failure({
+          msg: errorMsg,
+          data,
+        }),
+      );
       return reject();
     }
     // 通用错误提示
-    return reject({ _error: errorMsg, code: get(data, 'code') });
+    return reject({ _error: errorMsg });
   }
   if (get(actions, 'success')) {
     // provide values

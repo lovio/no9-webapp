@@ -39,9 +39,6 @@ export default Immutable.fromJS({
     toasts: {},
     modal: {},
     confirm: {},
-    config: {},
-    user: {},
-    medal: {},
   },
   pagination: {
     credits: DEFAULT_PAGINATION,
