@@ -1,8 +1,19 @@
 {
-  "presets": [["env", { "es2015": { "modules": false } }], "react", "stage-0"],
+  "presets": [
+    [
+      "env",
+      {
+        "es2015": { "modules": false },
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7"]
+        }
+      }
+    ],
+    "react",
+    "stage-0"
+  ],
   "env": {
     "development": {
-      // "presets": ["react-hmre"],
       "plugins": [
         [
           "babel-plugin-styled-components",
