@@ -42,6 +42,7 @@
     "morgan": "^1.8.2",
     "prop-types": "^15.5.10",
     "pug": "^2.0.0-rc.4",
+    "qrcode.react": "^0.7.1",
     "qs": "^6.5.0",
     "react": "next",
     "react-dom": "next",

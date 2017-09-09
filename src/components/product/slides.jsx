@@ -7,6 +7,7 @@ import imgCarport from './carport.jpg';
 const Container = styled.div`
   img {
     width: 100%;
+    height: 2.2rem;
   }
 `;
 

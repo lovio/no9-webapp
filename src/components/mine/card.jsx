@@ -7,6 +7,7 @@ import { GRADE_MAPPING } from '../../constants/constants.json';
 
 import imgCardBg from './card-bg.jpg';
 import imgCrown from './crown.png';
+import imgMemberIntro from './member-intro.jpg';
 
 const Container = styled.div`padding: 0.35rem 0.25rem;`;
 
@@ -18,6 +19,11 @@ const Info = styled.div`
   background-size: cover;
   background-position: center;
 `;
+
+const MemberIntro = styled(Info)`
+  background-image: url("${imgMemberIntro}");
+`;
+
 const TitleContainer = styled.div`position: relative;`;
 
 const Title = styled.div`
@@ -71,7 +77,9 @@ const Card = ({ user }) => (
       <Info>
         <TitleContainer>
           <Title>
-            {map(GRADE_MAPPING[user.get('grade')], title => <TitleName>{title}</TitleName>)}
+            {map(GRADE_MAPPING[user.get('grade')], title => (
+              <TitleName key={title}>{title}</TitleName>
+            ))}
           </Title>
         </TitleContainer>
         <Name>{user.get('name')}</Name>
@@ -80,7 +88,7 @@ const Card = ({ user }) => (
       </Info>
     </Container>
     <Container>
-      <Info />
+      <MemberIntro />
     </Container>
   </Slider>
 );
