@@ -38,6 +38,7 @@ const productSelector = createSelector(
 function mapStateToProps(state, props) {
   return {
     product: productSelector(state, props),
+    user: state.getIn(['user']),
   };
 }
 

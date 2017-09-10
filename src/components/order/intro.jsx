@@ -1,86 +1,98 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// import imgCarport2 from './carport2.jpg';
-// import imgCarport3 from './carport3.jpg';
-// import imgCarport4 from './carport4.jpg';
+import { PRODUCT_NAME } from 'constants/constants.json';
+
+import imgCarport from '../product/carport4.jpg';
+
+function cents2Yuan(cents) {
+  return cents / 100;
+}
+
+function getPaidPrice(cents) {
+  const yuan = cents2Yuan(cents);
+  if (yuan <= 10000) {
+    return yuan;
+  }
+  return 10000;
+}
+
+function getRemainningPriceTips(cents) {
+  const yuan = cents2Yuan(cents) - 10000;
+  const tips = yuan < 0 ? '' : `剩余款项 ${yuan}元，`;
+  return tips;
+}
 
 const Container = styled.div`
-  overflow: auto;
-  padding-top: 0.2rem;
   background-color: white;
-  line-height: 0.2rem;
-  font-size: 0.14rem;
+  padding: 0.2rem 0 0.3rem 0.25rem;
+  border-bottom: 1px solid #dbdcdd;
 `;
 
-const Title = styled.p`
-  text-align: center;
+const Title = styled.div`
+  overflow: auto;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid #dbdcdd;
+  img {
+    width: 0.72rem;
+    height: 0.72rem;
+    float: left;
+  }
+
+  p {
+    font-size: 0.14rem;
+    line-height: 0.2rem;
+    color: #4a4a4a;
+    margin-left: 0.9rem;
+    margin-bottom: 0.1rem;
+  }
+
+  p:last-of-type {
+    color: #9b9b9b;
+  }
+`;
+
+const Detail = styled.div`
+  padding: 0.18rem 0.2rem 0 0;
+  font-size: 0.14rem;
+  color: #9b9b9b;
+  line-height: 0.2rem;
+`;
+
+const Item = styled.p`
+  margin-bottom: 0.1rem;
+  span {
+    float: right;
+  }
+`;
+
+const ThisPrice = styled.span`
+  font-size: 0.18rem;
   color: #e01053;
 `;
 
-const Desc1 = styled.p`
-  color: #9b9b9b;
-  padding: 0.1rem 0.2rem;
-`;
-
-const Feature = styled.div`border-bottom: 1px solid #f4f3f3;`;
-
-const BlueSpan = styled.span`
-  display: inline-block;
-  width: 0.08rem;
-  height: 0.25rem;
-  float: left;
-  background-color: #57d3f2;
-  margin: 0.1rem 0;
-`;
-
-const FeatureTitle = styled.p`
-  float: left;
-  margin: 0.1rem 0;
-  padding-left: 0.2rem;
-  font-size: 0.18rem;
-  line-height: 0.25rem;
-  color: #4a4a4a;
-`;
-
-// const Image = styled.img`width: 100%;`;
-
-const FeatureDesc = styled.p`
-  padding: 0.12rem 0.2rem 0.06rem;
-  font-size: 0.14rem;
-  line-height: 0.2rem;
-  color: #4a4a4a;
-`;
-
-const Desc = () => (
+const Intro = ({ product }) => (
   <Container>
-    <Title>订购方式</Title>
-    <Desc1>这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介</Desc1>
-    <Feature>
-      <BlueSpan />
-      <FeatureTitle>产品特性</FeatureTitle>
-      {/* <Image src={imgCarport2} alt="carport" /> */}
-      <FeatureDesc>
-        这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介
-      </FeatureDesc>
-    </Feature>
-    <Feature>
-      <BlueSpan />
-      <FeatureTitle>产品特性</FeatureTitle>
-      {/* <Image src={imgCarport3} alt="carport" /> */}
-      <FeatureDesc>
-        这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介
-      </FeatureDesc>
-    </Feature>
-    <Feature>
-      <BlueSpan />
-      <FeatureTitle>产品特性</FeatureTitle>
-      {/* <Image src={imgCarport4} alt="carport" /> */}
-      <FeatureDesc>
-        这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介这个停车位的简介
-      </FeatureDesc>
-    </Feature>
+    <Title>
+      <img src={imgCarport} alt="" />
+      <p>{PRODUCT_NAME}</p>
+      <p>{product.right}</p>
+    </Title>
+    <Detail>
+      <Item>
+        商品总价<span>￥ {cents2Yuan(product.cents)}</span>
+      </Item>
+      <Item>
+        本次支付<ThisPrice>￥ {getPaidPrice(product.cents)}</ThisPrice>
+      </Item>
+      <p>{getRemainningPriceTips(product.cents)}将有人工客服与您联系，并签署认购协议。</p>
+    </Detail>
   </Container>
 );
 
-export default Desc;
+Intro.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
+export default Intro;

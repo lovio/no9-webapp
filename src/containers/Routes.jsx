@@ -24,7 +24,7 @@ export default function Routes() {
           <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
           <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
           <Route exact path="/product" component={Product} />
-          <Route exact path="/orders/new" component={Order} />
+          <Route exact path="/orders/new" component={AuthenticatedHOC(Order)} />
         </Switch>
       </Overflow>
       <Route exact path="/" component={FooterView} />

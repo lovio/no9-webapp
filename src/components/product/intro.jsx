@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PRODUCT_NAME } from 'constants/constants.json';
 
 const Container = styled.div`
   overflow: auto;
@@ -41,7 +42,7 @@ const ReadMore = styled.span`
 
 const Intro = () => (
   <Container>
-    <Title>垂直循环智能立体停车位</Title>
+    <Title>{PRODUCT_NAME}</Title>
     <Company>运营商：九路泊车云商（北京）科技有限公司</Company>
     <Desc>此车位性质为预售性质的委托管理式垂直循环智能立体停车位。持有人购买停车位后，委托九路云商进行管理，收取停车费，并向持有人进行分配。</Desc>
     <ReadMore>更多介绍</ReadMore>
