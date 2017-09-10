@@ -9,6 +9,7 @@ import Tips from './common/tips';
 import Home from './home';
 import SignIn from './auth/SignIn';
 import Mine from './mine';
+import Invite from './mine/invite';
 import Product from './product';
 import Order from './order';
 
@@ -21,6 +22,7 @@ export default function Routes() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
+          <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
           <Route exact path="/product" component={Product} />
           <Route exact path="/orders/new" component={Order} />
         </Switch>

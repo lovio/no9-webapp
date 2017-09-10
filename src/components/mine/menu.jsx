@@ -1,4 +1,5 @@
 import React from 'react';
+import history from 'helpers/history';
 import styled from 'styled-components';
 
 import imgCar from './car.png';
@@ -61,7 +62,7 @@ const Menu = () => (
         </Icon>
         我的客户关系
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/invite')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>
