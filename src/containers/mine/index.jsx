@@ -1,18 +1,22 @@
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { signOut } from 'actions/auth';
+import { signOut, getUserInfo } from 'actions/auth';
 
 import MineView from 'components/mine';
 
-// class Mine extends Component {
-//   static propTypes = {};
-//   componentDidMount() {}
+class Mine extends Component {
+  static propTypes = {
+    getUserInfo: PropTypes.func.isRequired,
+  };
+  componentDidMount() {
+    this.props.getUserInfo();
+  }
 
-//   render() {
-//     return <MineView {...this.props} />;
-//   }
-// }
+  render() {
+    return <MineView {...this.props} />;
+  }
+}
 
 function mapStateToProps(state) {
   return {
@@ -22,4 +26,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   signOut,
-})(MineView);
+  getUserInfo,
+})(Mine);

@@ -8,6 +8,8 @@ export default handleActions(
   {
     [actions.authSuccess]: (state, { payload }) => fromJS(payload),
     [actions.signOut]: () => Immutable.Map(),
+    [actions.userInfo.success]: (state, { payload }) => state.merge(fromJS(payload)),
+    [actions.userInfo.failure]: () => Immutable.Map(),
   },
   initialState.getIn(['user']),
 );

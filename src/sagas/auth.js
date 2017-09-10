@@ -7,7 +7,9 @@ import * as actions from 'actions/auth';
 import * as apis from 'helpers/api';
 import { getFormValuesByName } from './selector';
 import { showToastItem } from '../actions/common';
-import { formRequest } from './utils';
+import { formRequest, fetchEntity } from './utils';
+
+const requestUserInfo = fetchEntity.bind(null, actions.userInfo, apis.getUserInfo);
 
 function* sendCaptcha({ payload }) {
   // 1 从表单中获取手机号
@@ -91,6 +93,15 @@ export function* watchCheckAuth() {
       history.replace(`/login?redirectUrl=${redirectUrl}`);
     }
   }
+}
+
+// 获取用户信息
+function* loadUserInfo({ payload }) {
+  yield call(requestUserInfo, payload || {}, true);
+}
+
+export function* watchGetUserInfo() {
+  yield takeEvery(actions.getUserInfo, loadUserInfo);
 }
 
 // export function* watchBindAccountSuccess() {

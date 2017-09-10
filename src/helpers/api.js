@@ -1,5 +1,4 @@
 import axios from 'axios';
-import assign from 'lodash-es/assign';
 import { API_SERVER } from '../../config.json';
 
 axios.defaults.baseURL = `${API_SERVER}/usr`;
@@ -28,27 +27,32 @@ function callApi(config) {
 
 // for GET data is params
 function get(url, data) {
-  let config = assign({
+  const { token, ...rest } = data;
+  const config = {
     url,
     method: 'GET',
-    // headers: {
-    //   Authorization: 'Bearer ${window.token}',
-    // },
-  });
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   if (data) {
-    config = assign(config, { params: data });
+    config.params = rest;
   }
   return callApi(config);
 }
 
 // for POST data is params
 function post(url, data) {
-  let config = assign({
+  const { token, ...rest } = data;
+  const config = {
     url,
     method: 'POST',
-  });
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   if (data) {
-    config = assign(config, { data });
+    config.data = rest;
   }
   return callApi(config);
 }
@@ -67,6 +71,8 @@ function post(url, data) {
 
 export const signIn = data => post('/users', data);
 export const sendPhoneCaptcha = data => post('/users/sendVerifyCode', data);
+
+export const getUserInfo = data => get('/sessions', data);
 // ****************************************************************************************8
 
 // auth

@@ -15,6 +15,10 @@ export const checkAuth = createAction('CHECK_AUTH');
 export const sendCaptcha = createAction('SEND_CAPTCHA');
 export const sendCaptchaError = createAction('SEND_CAPTCHA_ERROR');
 
+// 获取用户信息
+export const getUserInfo = createAction('GET_USER_INFO');
+export const userInfo = createFetchActions('USER_INFO');
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export const registerToken = createAction('REGISTER_TOKEN');
 
