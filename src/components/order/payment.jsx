@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from 'ui/button';
+
+import imgChecked from './checked.png';
+import imgUnchecked from './unchecked.png';
 
 const Container = styled.div`
   background-color: white;
   font-size: 0.14rem;
   color: #9b9b9b;
   line-height: 0.2rem;
-  margin-bottom: 0.1rem;
+  padding: 0.15rem 0.25rem 0.25rem;
 `;
 
+const Agreement = styled.p`
+  margin-bottom: 0.1rem;
+  padding-left: 0.25rem;
+  background-image: url(${props => (props.checked ? imgChecked : imgUnchecked)});
+  background-repeat: no-repeat;
+  background-size: 0.14rem 0.14rem;
+  background-position: left;
+  a {
+    color: #57d3f2;
+  }
+`;
 class Payment extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
@@ -26,7 +41,18 @@ class Payment extends Component {
     const { triggerWechatPay, product } = this.props;
     return (
       <Container>
-        <Button onClick={() => triggerWechatPay(product)}>微信支付</Button>
+        <Agreement
+          checked={this.state.checked}
+          onClick={() =>
+            this.setState(prevState => ({
+              checked: !prevState.checked,
+            }))}
+        >
+          我同意<Link to="/agreement">《停车设施委托建设及委托管理协议》</Link>
+        </Agreement>
+        <Button disabled={!this.state.checked} onClick={() => triggerWechatPay(product)}>
+          微信支付
+        </Button>
       </Container>
     );
   }
