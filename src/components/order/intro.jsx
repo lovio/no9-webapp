@@ -77,16 +77,16 @@ const Intro = ({ product }) => (
     <Title>
       <img src={imgCarport} alt="" />
       <p>{PRODUCT_NAME}</p>
-      <p>{product.right}</p>
+      <p>{product.get('right')}</p>
     </Title>
     <Detail>
       <Item>
-        商品总价<span>￥ {cents2Yuan(product.cents)}</span>
+        商品总价<span>￥ {cents2Yuan(product.get('cents'))}</span>
       </Item>
       <Item>
-        本次支付<ThisPrice>￥ {getPaidPrice(product.cents)}</ThisPrice>
+        本次支付<ThisPrice>￥ {getPaidPrice(product.get('cents'))}</ThisPrice>
       </Item>
-      <p>{getRemainningPriceTips(product.cents)}将有人工客服与您联系，并签署认购协议。</p>
+      <p>{getRemainningPriceTips(product.get('cents'))}将有人工客服与您联系，并签署认购协议。</p>
     </Detail>
   </Container>
 );

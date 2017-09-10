@@ -2,18 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+
 import QRCode from 'qrcode.react';
 
+import imgInviteBg from './invite-bg.jpg';
+
+function getInviteUrl(referrerCode) {
+  return `${location.origin}/#/login?referrerCode=${referrerCode}`;
+}
+
 const Container = styled.div`
-  padding: 0.5rem 0.45rem;
-  text-align: center;
+  width: 100%;
+  img {
+    width: 100%;
+  }
 `;
 
-const Desc = styled.p`
-  margin-top: 0.4rem;
+const QRCodeContainer = styled.div`
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  padding-top: 0.85rem;
   text-align: center;
-  line-height: 0.2rem;
-  font-size: 0.14rem;
+  canvas {
+    width: 1.26rem !important;
+    height: 1.26rem !important;
+  }
 `;
 
 export default function MineView({ referrerCode }) {
@@ -23,11 +38,10 @@ export default function MineView({ referrerCode }) {
         <title>账户</title>
       </Helmet>
       <Container>
-        <QRCode value={referrerCode} />
-        <Desc>
-          <p>您的邀请码为{referrerCode}</p>
-          <p>请截图后转发</p>
-        </Desc>
+        <img src={imgInviteBg} alt="" />
+        <QRCodeContainer>
+          <QRCode value={getInviteUrl(referrerCode)} />
+        </QRCodeContainer>
       </Container>
     </div>
   );

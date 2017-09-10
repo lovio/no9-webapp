@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { getSearch } from 'helpers/history';
 import includes from 'lodash/includes';
+import Immutable from 'immutable';
 // import { loadUserData, loadCapabilityTest, loadUserInfo } from 'actions/user';
 // import { authorizedRedirect } from 'actions/common';
 import { triggerWechatPay } from 'actions/order';
@@ -32,7 +33,7 @@ const productSelector = createSelector(
     const id = +search.paymentId;
     return includes([1, 2, 3, 4], id) ? id : DEFAULT_PRODUCT_ID;
   },
-  id => find(products, { id }),
+  id => Immutable.fromJS(find(products, { id })),
 );
 
 function mapStateToProps(state, props) {

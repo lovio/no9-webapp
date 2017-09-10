@@ -53,8 +53,6 @@ const TitleName = styled.p`
 const Item = styled.p`
   margin-top: 0.05rem;
   text-align: center;
-  /* 韩韩韩: */
-  font-weight: bolder;
   font-size: 0.14rem;
   line-height: 0.2rem;
   color: rgba(255, 255, 255, 0.8);
