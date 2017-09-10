@@ -34,7 +34,7 @@ const StyledInput = styled.input`
   border: none;
   font-size: 0.14rem;
   line-height: 0.2rem;
-  color: #8f9da5;
+  color: #4a4a4a;
   text-align: right;
   &:focus {
     outline: none;
