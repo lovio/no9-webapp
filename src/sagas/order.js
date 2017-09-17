@@ -1,4 +1,4 @@
-import { take, call, select, takeEvery } from 'redux-saga/effects';
+import { take, call, select } from 'redux-saga/effects';
 // import history, { redirect } from 'helpers/history';
 // import { isPhone } from 'helpers/validators';
 
@@ -11,7 +11,6 @@ import { fetchEntity } from './utils';
 
 const requestNewOrder = fetchEntity.bind(null, actions.newOrder, apis.postNewOrders);
 const requestPayment = fetchEntity.bind(null, actions.payment, apis.getPaymentPkg);
-const requestCities = fetchEntity.bind(null, actions.cities, apis.getCities);
 
 export function* watchCreateNewOrder() {
   for (;;) {
@@ -47,8 +46,4 @@ export function* watchTriggerWechatPay() {
     );
     console.log(payment);
   }
-}
-
-export function* watchLoadCities() {
-  yield takeEvery(actions.loadCities, requestCities);
 }

@@ -17,12 +17,12 @@ const LINKS = [
     title: '资产',
   },
   {
-    url: '/carport',
+    url: '/zones',
     img: imgCarport,
     title: '车位',
   },
   {
-    url: '/product',
+    url: '/products',
     img: imgCart,
     title: '购买',
   },

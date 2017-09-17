@@ -79,6 +79,7 @@ export const postNewOrders = data => post('/orders', data);
 export const getPaymentPkg = data => get('/orders/payment', data);
 
 export const getCities = data => get('/cities', data);
+export const getZones = data => get('/zones', data);
 // ****************************************************************************************8
 
 // auth

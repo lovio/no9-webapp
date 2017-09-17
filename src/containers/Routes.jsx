@@ -10,6 +10,7 @@ import Home from './home';
 import SignIn from './auth/SignIn';
 import Mine from './mine';
 import Invite from './mine/invite';
+import Zone from './zone';
 import Product from './product';
 import Order from './order';
 
@@ -23,13 +24,15 @@ export default function Routes() {
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
           <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
-          <Route exact path="/product" component={Product} />
+          <Route exact path="/products" component={Product} />
+          <Route exact path="/zones" component={Zone} />
           <Route exact path="/orders/new" component={AuthenticatedHOC(Order)} />
         </Switch>
       </Overflow>
       <Route exact path="/" component={FooterView} />
       <Route exact path="/mine" component={FooterView} />
-      <Route exact path="/product" component={FooterView} />
+      <Route exact path="/products" component={FooterView} />
+      <Route exact path="/zones" component={FooterView} />
     </Container>
   );
 }

@@ -23,5 +23,6 @@ export default Immutable.fromJS({
   },
   extra: {
     cities: [],
+    zones: [],
   },
 });
