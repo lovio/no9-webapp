@@ -7,7 +7,7 @@ import includes from 'lodash/includes';
 import Immutable from 'immutable';
 // import { loadUserData, loadCapabilityTest, loadUserInfo } from 'actions/user';
 // import { authorizedRedirect } from 'actions/common';
-import { triggerWechatPay, loadCities } from 'actions/order';
+import { createNewOrder, loadCities } from 'actions/order';
 import find from 'lodash/find';
 import products from 'constants/products.json';
 import { DEFAULT_PRODUCT_ID } from 'constants/constants.json';
@@ -32,6 +32,6 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(mapStateToProps, {
-  triggerWechatPay,
+  createNewOrder,
   loadCities,
 })(OrderView);

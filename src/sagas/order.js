@@ -9,18 +9,42 @@ import * as apis from 'helpers/api';
 // import { showToastItem } from '../actions/common';
 import { fetchEntity } from './utils';
 
+const requestNewOrder = fetchEntity.bind(null, actions.newOrder, apis.postNewOrders);
 const requestPayment = fetchEntity.bind(null, actions.payment, apis.getPaymentPkg);
 const requestCities = fetchEntity.bind(null, actions.cities, apis.getCities);
 
-export function* watchTriggerWechatPay() {
+export function* watchCreateNewOrder() {
   for (;;) {
-    const { payload } = yield take(actions.triggerWechatPay);
+    const { payload: { cityId, product } } = yield take(actions.createNewOrder);
     const openid =
       (yield select(state => state.getIn(['user', 'openid']))) || 'oDCCVuIQeIug7Gx4OHIOsjrUWFFY';
-    const payment = yield call(requestPayment, {
-      openid,
-      productId: payload.get('id'),
-    });
+    const order = yield call(
+      requestNewOrder,
+      {
+        openid,
+        cityId,
+        productId: product.get('id'),
+      },
+      true,
+    );
+    // here now we should trigger payment
+    console.log(order);
+  }
+}
+
+export function* watchTriggerWechatPay() {
+  for (;;) {
+    const { payload: { orderId } } = yield take(actions.triggerWechatPay);
+    const openid =
+      (yield select(state => state.getIn(['user', 'openid']))) || 'oDCCVuIQeIug7Gx4OHIOsjrUWFFY';
+    const payment = yield call(
+      requestPayment,
+      {
+        orderId,
+        openid,
+      },
+      true,
+    );
     console.log(payment);
   }
 }

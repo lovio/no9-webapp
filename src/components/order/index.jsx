@@ -9,7 +9,7 @@ class OrderView extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    triggerWechatPay: PropTypes.func.isRequired,
+    createNewOrder: PropTypes.func.isRequired,
     loadCities: PropTypes.func.isRequired,
     cities: PropTypes.object.isRequired,
   };
@@ -25,7 +25,7 @@ class OrderView extends Component {
   chooseCity = cityId => this.setState({ cityId });
 
   render() {
-    const { user, product, cities, triggerWechatPay } = this.props;
+    const { user, product, cities, createNewOrder } = this.props;
     return (
       <div>
         <UserInfo user={user} />
@@ -33,7 +33,7 @@ class OrderView extends Component {
           <Cities cities={cities} cityId={this.state.cityId} chooseCity={this.chooseCity} />
         )}
         <Intro product={product} />
-        <Payment product={product} triggerWechatPay={triggerWechatPay} />
+        <Payment product={product} cityId={this.state.cityId} createNewOrder={createNewOrder} />
       </div>
     );
   }

@@ -29,7 +29,8 @@ const Agreement = styled.p`
 class Payment extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
-    triggerWechatPay: PropTypes.func.isRequired,
+    cityId: PropTypes.number.isRequired,
+    createNewOrder: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -42,7 +43,7 @@ class Payment extends Component {
   renderCities = () => {};
 
   render() {
-    const { triggerWechatPay, product } = this.props;
+    const { createNewOrder, product, cityId } = this.props;
     return (
       <Container>
         <Agreement
@@ -54,7 +55,14 @@ class Payment extends Component {
         >
           我同意<Link to="/agreement">《停车设施委托建设及委托管理协议》</Link>
         </Agreement>
-        <Button disabled={!this.state.checked} onClick={() => triggerWechatPay(product)}>
+        <Button
+          disabled={!this.state.checked}
+          onClick={() =>
+            createNewOrder({
+              product,
+              cityId,
+            })}
+        >
           微信支付
         </Button>
       </Container>
