@@ -31,12 +31,16 @@ class Payment extends Component {
     product: PropTypes.object.isRequired,
     triggerWechatPay: PropTypes.func.isRequired,
   };
+
   constructor(props) {
     super(props);
     this.state = {
       checked: true,
     };
   }
+
+  renderCities = () => {};
+
   render() {
     const { triggerWechatPay, product } = this.props;
     return (

@@ -73,6 +73,11 @@ export const signIn = data => post('/users', data);
 export const sendPhoneCaptcha = data => post('/users/sendVerifyCode', data);
 
 export const getUserInfo = data => get('/sessions', data);
+
+// 获取支付pkg
+export const getPaymentPkg = data => get('/orders/payment', data);
+
+export const getCities = data => get('/cities', data);
 // ****************************************************************************************8
 
 // auth

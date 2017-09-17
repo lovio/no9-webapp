@@ -7,6 +7,7 @@ import flatMap from 'lodash-es/flatMap';
 // import * as userSagas from './user';
 import * as authSagas from './auth';
 import * as commonSagas from './common';
+import * as orderSagas from './order';
 // import * as wxSagas from './wx';
 // import * as mittSagas from './mitt';
 // import * as startupSagas from './startup';
@@ -18,6 +19,7 @@ export default function* root() {
     authSagas,
     // userSagas,
     commonSagas,
+    orderSagas,
     // wxSagas,
     // mittSagas,
     // 顺序是很重要的

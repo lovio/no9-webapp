@@ -36,7 +36,7 @@ export function* watchFailure() {
   for (;;) {
     const { type, payload } = yield take(action => includes(action.type, 'FAILURE'));
     if (!some(TOAST_BLACK_LIST, entity => includes(type, entity))) {
-      const msg = payload ? get(payload, 'data.message') : '出错啦';
+      const msg = (payload && get(payload, 'data.message')) || get(payload, 'data') || '出错啦';
       yield put(commonActions.showToastItem({ type: 'error', msg }));
     }
   }

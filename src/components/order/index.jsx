@@ -3,21 +3,37 @@ import PropTypes from 'prop-types';
 import UserInfo from './userInfo';
 import Intro from './intro';
 import Payment from './payment';
+import Cities from './cities';
 
 class OrderView extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     triggerWechatPay: PropTypes.func.isRequired,
+    loadCities: PropTypes.func.isRequired,
+    cities: PropTypes.object.isRequired,
   };
-  componentDidMount() {}
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      cityId: 1,
+    };
+    this.props.loadCities();
+  }
+
+  chooseCity = cityId => this.setState({ cityId });
 
   render() {
+    const { user, product, cities, triggerWechatPay } = this.props;
     return (
       <div>
-        <UserInfo user={this.props.user} />
-        <Intro product={this.props.product} />
-        <Payment product={this.props.product} triggerWechatPay={this.props.triggerWechatPay} />
+        <UserInfo user={user} />
+        {!!cities.size && (
+          <Cities cities={cities} cityId={this.state.cityId} chooseCity={this.chooseCity} />
+        )}
+        <Intro product={product} />
+        <Payment product={product} triggerWechatPay={triggerWechatPay} />
       </div>
     );
   }

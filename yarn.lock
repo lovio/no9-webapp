@@ -2980,6 +2980,10 @@ fresh@0.5.0:
   version "0.5.0"
   resolved "http://registry.npm.taobao.org/fresh/download/fresh-0.5.0.tgz#f474ca5e6a9246d6fd8e0953cfa9b9c805afa78e"
 
+fresh@0.5.1:
+  version "0.5.1"
+  resolved "http://registry.npm.taobao.org/fresh/download/fresh-0.5.1.tgz#c3a08bcec0fcdcc223edf3b23eb327f1f9fcbf5c"
+
 fresh@^0.3.0:
   version "0.3.0"
   resolved "http://registry.npm.taobao.org/fresh/download/fresh-0.3.0.tgz#651f838e22424e7566de161d8358caa199f83d4f"
@@ -3166,8 +3170,8 @@ hammerjs@^2.0.8:
   resolved "http://registry.npm.taobao.org/hammerjs/download/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
 
 happypack@^4.0.0-beta.5:
-  version "4.0.0-beta.5"
-  resolved "http://registry.npm.taobao.org/happypack/download/happypack-4.0.0-beta.5.tgz#dbedb5c5dce86ebfc1acc8804e8abc61f773091d"
+  version "4.0.0"
+  resolved "http://registry.npm.taobao.org/happypack/download/happypack-4.0.0.tgz#de1770d472dab33e3f31782a3edb4e77cc658631"
   dependencies:
     async "1.5.0"
     json-stringify-safe "5.0.1"
@@ -3981,8 +3985,8 @@ limiter@^1.0.5:
   resolved "http://registry.npm.taobao.org/limiter/download/limiter-1.1.0.tgz#6e2bd12ca3fcdaa11f224e2e53c896df3f08d913"
 
 lint-staged@^4.1.3:
-  version "4.1.3"
-  resolved "http://registry.npm.taobao.org/lint-staged/download/lint-staged-4.1.3.tgz#07c592e4b8dee914450a183c761187dc53d079e2"
+  version "4.2.1"
+  resolved "http://registry.npm.taobao.org/lint-staged/download/lint-staged-4.2.1.tgz#5c79818c500d9b24248dccad4ac9609c01951522"
   dependencies:
     app-root-path "^2.0.0"
     chalk "^2.1.0"
@@ -4925,6 +4929,10 @@ parseurl@~1.3.1:
   version "1.3.1"
   resolved "http://registry.npm.taobao.org/parseurl/download/parseurl-1.3.1.tgz#c8ab8c9223ba34888aa64a297b28853bec18da56"
 
+parseurl@~1.3.2:
+  version "1.3.2"
+  resolved "http://registry.npm.taobao.org/parseurl/download/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
+
 path-browserify@0.0.0:
   version "0.0.0"
   resolved "http://registry.npm.taobao.org/path-browserify/download/path-browserify-0.0.0.tgz#a0b870729aae214005b7d5032ec2cbbb0fb4451a"
@@ -5277,9 +5285,13 @@ qs@6.4.0, "qs@>= 0.4.0", qs@~6.4.0:
   version "6.4.0"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-qs@6.5.0, qs@^6.5.0:
+qs@6.5.0:
   version "6.5.0"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.0.tgz#8d04954d364def3efc55b5a0793e1e2c8b1e6e49"
+
+qs@^6.5.0:
+  version "6.5.1"
+  resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
 qs@~6.3.0:
   version "6.3.1"
@@ -5325,9 +5337,9 @@ react-deep-force-update@^2.0.1:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/react-deep-force-update/download/react-deep-force-update-2.1.1.tgz#8ea4263cd6455a050b37445b3f08fd839d86e909"
 
-react-dom@next:
-  version "16.0.0-beta.5"
-  resolved "http://registry.npm.taobao.org/react-dom/download/react-dom-16.0.0-beta.5.tgz#c9c2e5c059576f77b55e8c3959535d63cb1227e5"
+react-dom@^16.0.0-rc.3:
+  version "16.0.0-rc.3"
+  resolved "http://registry.npm.taobao.org/react-dom/download/react-dom-16.0.0-rc.3.tgz#bd4e4d2abd464df5149a062b45fe796bbb804c2c"
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.1.0"
@@ -5426,9 +5438,9 @@ react-waypoint@^7.1.0:
     consolidated-events "^1.1.0"
     prop-types "^15.0.0"
 
-react@next:
-  version "16.0.0-beta.5"
-  resolved "http://registry.npm.taobao.org/react/download/react-16.0.0-beta.5.tgz#b4abba9bce7db72c30633db54a148614b6574e79"
+react@^16.0.0-rc.3:
+  version "16.0.0-rc.3"
+  resolved "http://registry.npm.taobao.org/react/download/react-16.0.0-rc.3.tgz#4a9df996326ba7185903d9fbed3149765e237e26"
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.1.0"
@@ -5781,9 +5793,15 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.6.0, rimraf@^2.6.1:
+rimraf@2, rimraf@^2.2.8, rimraf@^2.6.1:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/rimraf/download/rimraf-2.6.1.tgz#c2338ec643df7a1b7fe5c54fa86f57428a55f33d"
+  dependencies:
+    glob "^7.0.5"
+
+rimraf@^2.6.0:
+  version "2.6.2"
+  resolved "http://registry.npm.taobao.org/rimraf/download/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
     glob "^7.0.5"
 
@@ -5817,13 +5835,13 @@ rxjs@^5.0.0-beta.11:
   dependencies:
     symbol-observable "^1.0.1"
 
-safe-buffer@5.0.1, safe-buffer@~5.0.1:
-  version "5.0.1"
-  resolved "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
-
 safe-buffer@5.1.1, safe-buffer@^5.0.1:
   version "5.1.1"
   resolved "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
+
+safe-buffer@~5.0.1:
+  version "5.0.1"
+  resolved "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
 
 sax@>=0.6.0:
   version "1.2.2"
@@ -5900,14 +5918,14 @@ serialize-javascript@^1.4.0:
   resolved "http://registry.npm.taobao.org/serialize-javascript/download/serialize-javascript-1.4.0.tgz#7c958514db6ac2443a8abc062dc9f7886a7f6005"
 
 serve-favicon@^2.4.3:
-  version "2.4.3"
-  resolved "http://registry.npm.taobao.org/serve-favicon/download/serve-favicon-2.4.3.tgz#5986b17b0502642b641c21f818b1acce32025d23"
+  version "2.4.4"
+  resolved "http://registry.npm.taobao.org/serve-favicon/download/serve-favicon-2.4.4.tgz#412ddd74965151c9f74c0828f35d50c5250210de"
   dependencies:
     etag "~1.8.0"
-    fresh "0.5.0"
+    fresh "0.5.1"
     ms "2.0.0"
-    parseurl "~1.3.1"
-    safe-buffer "5.0.1"
+    parseurl "~1.3.2"
+    safe-buffer "5.1.1"
 
 serve-index@1.8.0:
   version "1.8.0"
@@ -6641,8 +6659,8 @@ validate-npm-package-license@^3.0.1:
     spdx-expression-parse "~1.0.0"
 
 validator@^8.1.0:
-  version "8.1.0"
-  resolved "http://registry.npm.taobao.org/validator/download/validator-8.1.0.tgz#89cf6b512ff71eba886afd8d10d47f8dc800eac0"
+  version "8.2.0"
+  resolved "http://registry.npm.taobao.org/validator/download/validator-8.2.0.tgz#3c1237290e37092355344fef78c231249dab77b9"
 
 value-equal@^0.4.0:
   version "0.4.0"
@@ -6743,8 +6761,8 @@ webpack-sources@^1.0.1:
     source-map "~0.5.3"
 
 webpack@^3.5.6:
-  version "3.5.6"
-  resolved "http://registry.npm.taobao.org/webpack/download/webpack-3.5.6.tgz#a492fb6c1ed7f573816f90e00c8fbb5a20cc5c36"
+  version "3.6.0"
+  resolved "http://registry.npm.taobao.org/webpack/download/webpack-3.6.0.tgz#a89a929fbee205d35a4fa2cc487be9cbec8898bc"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"

@@ -21,10 +21,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.{js,jsx}": ["eslint --fix", "git add"]
   },
   "author": "Qi Liu",
   "dependencies": {
@@ -44,8 +41,8 @@
     "pug": "^2.0.0-rc.4",
     "qrcode.react": "^0.7.1",
     "qs": "^6.5.0",
-    "react": "next",
-    "react-dom": "next",
+    "react": "^16.0.0-rc.3",
+    "react-dom": "^16.0.0-rc.3",
     "react-hammerjs": "^0.5.0",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "3.0.0-beta.7",
