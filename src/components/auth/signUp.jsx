@@ -87,15 +87,7 @@ const SignInView = (props) => {
           <Button type="submit" disabled={pristine || submitting}>
             登录
           </Button>
-          <ResetPwd
-            onClick={() =>
-              history.push({
-                pathname: '/resetpwd',
-                search: history.location.search,
-              })}
-          >
-            忘记密码?
-          </ResetPwd>
+          <ResetPwd onClick={() => history.push('/resetpwd')}>忘记密码?</ResetPwd>
           <p>
             登录即表示同意九路泊车<Link to="/agreement">《用户使用协议》</Link>
           </p>

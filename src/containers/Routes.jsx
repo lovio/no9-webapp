@@ -7,7 +7,8 @@ import FooterView from 'components/footer';
 import AuthenticatedHOC from './auth/AuthenticatedHOC';
 import Tips from './common/tips';
 import Home from './home';
-import SignIn from './auth/SignIn';
+import Auth from './auth';
+import ResetPwd from './auth/ResetPwd';
 import Mine from './mine';
 import Invite from './mine/invite';
 import Zone from './zone';
@@ -21,7 +22,9 @@ export default function Routes() {
       <Overflow>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={SignIn} />
+          <Route exact path="/login" component={Auth} />
+          <Route exact path="/signup" component={Auth} />
+          <Route exact path="/resetpwd" component={ResetPwd} />
           <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
           <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
           <Route exact path="/products" component={Product} />
