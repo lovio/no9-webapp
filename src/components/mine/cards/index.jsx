@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+import history from 'helpers/history';
 
 import imgAdd from './add.png';
 
@@ -35,7 +36,7 @@ class Cards extends Component {
           <title>提现账户</title>
         </Helmet>
         123
-        <AddCard>
+        <AddCard onClick={() => history.push('/mine/cards/new')}>
           <img src={imgAdd} alt="" />
           添加银行卡
         </AddCard>

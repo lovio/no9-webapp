@@ -33,7 +33,7 @@ export function* formRequest(params, action) {
   let token;
   // 是不是有更好的保存token的地方？
   if (needToken) {
-    token = yield select(state => state.getIn(['user', 'info', 'token']));
+    token = yield select(state => state.getIn(['user', 'token']));
   }
   const formData = token ? assign({}, values, { [tokenKey || 'token']: token }) : values;
   const { response, error } = yield call(api, formData);

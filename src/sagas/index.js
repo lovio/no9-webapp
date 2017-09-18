@@ -9,6 +9,7 @@ import * as authSagas from './auth';
 import * as commonSagas from './common';
 import * as orderSagas from './order';
 import * as extraSagas from './extra';
+import * as userSagas from './user';
 // import * as wxSagas from './wx';
 // import * as mittSagas from './mitt';
 // import * as startupSagas from './startup';
@@ -18,7 +19,7 @@ const composeSagas = sagasArr => all(map(flatMap(sagasArr, values), fork));
 export default function* root() {
   yield composeSagas([
     authSagas,
-    // userSagas,
+    userSagas,
     commonSagas,
     orderSagas,
     extraSagas,
