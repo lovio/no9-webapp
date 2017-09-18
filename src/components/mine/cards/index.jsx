@@ -6,6 +6,7 @@ import history from 'helpers/history';
 
 import imgAdd from './add.png';
 
+const BANK_IMG_PREFIX = 'https://apimg.alipay.com/combo.png?d=cashier&t=';
 const Container = styled.div`padding: 0.2rem;`;
 
 const AddCard = styled.div`
@@ -24,6 +25,29 @@ const AddCard = styled.div`
   }
 `;
 
+const Card = styled.div`
+  margin-bottom: 0.12rem;
+  border-radius: 0.04rem;
+  border: 1px solid #4a4a4a;
+  background: #ffffff;
+  height: 0.8rem;
+
+  img {
+    float: left;
+    margin-top: 0.15rem;
+    margin-left: 0.1rem;
+    width: 1.75rem;
+    height: 0.5rem;
+  }
+
+  p {
+    margin-top: 0.25rem;
+    font-size: 0.15rem;
+    line-height: 0.3rem;
+    color: #4a4a4a;
+  }
+`;
+
 class Cards extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +59,17 @@ class Cards extends Component {
         <Helmet>
           <title>提现账户</title>
         </Helmet>
-        123
+        {this.props.cards.map((card) => {
+          const cardNo = card.get('cardNo');
+          return (
+            <Card>
+              <img src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
+              <p>
+                {card.get('name')} | 尾号{cardNo.substr(cardNo.length - 4)}
+              </p>
+            </Card>
+          );
+        })}
         <AddCard onClick={() => history.push('/mine/cards/new')}>
           <img src={imgAdd} alt="" />
           添加银行卡
@@ -47,6 +81,7 @@ class Cards extends Component {
 
 Cards.propTypes = {
   loadCards: PropTypes.func.isRequired,
+  cards: PropTypes.object.isRequired,
 };
 
 export default Cards;
