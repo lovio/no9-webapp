@@ -11,8 +11,6 @@ const Container = styled.div`
   border-bottom: 1px solid #f6f6f6;
   display: flex;
 
-  /* 注册: */
-  font-family: .AppleSystemUIFont;
   font-size: 0.14rem;
   line-height: 0.4rem;
 `;
