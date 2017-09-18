@@ -49,11 +49,11 @@ export function* watchSendCaptchaError() {
 
 function* signIn({ payload }) {
   const { resolve, reject } = payload;
-  const openid = yield select(state => state.getIn(['user', 'openid']));
+  // const openid = yield select(state => state.getIn(['user', 'openid']));
   // yield put(actions.setBindInfo({ bindType }));
   const values = {
     ...payload.values,
-    openid,
+    // openid,
   };
   yield call(
     formRequest,
@@ -73,12 +73,84 @@ export function* watchSignIn() {
   yield takeEvery(actions.signIn, signIn);
 }
 
+function* signUp({ payload }) {
+  const { resolve, reject } = payload;
+  // const openid = yield select(state => state.getIn(['user', 'openid']));
+  // yield put(actions.setBindInfo({ bindType }));
+  const values = {
+    ...payload.values,
+    // openid,
+  };
+  yield call(
+    formRequest,
+    {
+      api: apis.signUp,
+      actions: {
+        success: actions.signUpSuccess,
+      },
+    },
+    {
+      payload: { values, resolve, reject },
+    },
+  );
+}
+
+export function* watchSignUp() {
+  yield takeEvery(actions.signUp, signUp);
+}
+
+function* resetPwd({ payload }) {
+  const { resolve, reject } = payload;
+  // const openid = yield select(state => state.getIn(['user', 'openid']));
+  // yield put(actions.setBindInfo({ bindType }));
+  const values = {
+    ...payload.values,
+    // openid,
+  };
+  yield call(
+    formRequest,
+    {
+      api: apis.resetPwd,
+      actions: {
+        success: actions.resetPwdSuccess,
+      },
+    },
+    {
+      payload: { values, resolve, reject },
+    },
+  );
+}
+
+export function* watchResetPwd() {
+  yield takeEvery(actions.resetPwd, resetPwd);
+}
+
 export function* watchAuthSuccess() {
   for (;;) {
     const { payload } = yield take(actions.authSuccess);
     if (payload) {
       yield call(redirect, HOME_PATH);
     }
+  }
+}
+
+export function* watchSignUpSuccess() {
+  for (;;) {
+    yield take(actions.signUpSuccess);
+    history.push({
+      pathname: '/login',
+      search: history.location.search,
+    });
+  }
+}
+
+export function* watchResetPwdSuccess() {
+  for (;;) {
+    yield take(actions.resetPwdSuccess);
+    history.push({
+      pathname: '/login',
+      search: history.location.search,
+    });
   }
 }
 

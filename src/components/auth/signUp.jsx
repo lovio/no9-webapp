@@ -44,13 +44,13 @@ const ResetPwd = styled.span`
 `;
 
 const SignInView = (props) => {
-  const { handleSubmit, submitting, pristine, signIn, sendCaptcha } = props;
+  const { handleSubmit, submitting, pristine, signUp, sendCaptcha } = props;
   return (
     <div>
       <Helmet>
         <title>登录</title>
       </Helmet>
-      <Form onSubmit={handleSubmit(submit(signIn))}>
+      <Form onSubmit={handleSubmit(submit(signUp))}>
         <FieldContainer>
           <Field
             name="phone"
@@ -72,6 +72,16 @@ const SignInView = (props) => {
             placeholder="请输入短信验证码"
             type="number"
             sendCaptcha={sendCaptcha}
+          />
+          <Field
+            name="password"
+            validate={[required('请输入登录密码')]}
+            label="登录密码"
+            id="password"
+            inputType="password"
+            component={Input}
+            placeholder="请输入登录密码"
+            type="password"
           />
           <Field
             name="referrerCode"
@@ -99,11 +109,11 @@ const SignInView = (props) => {
 
 SignInView.propTypes = {
   ...propTypes,
-  signIn: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired,
   sendCaptcha: PropTypes.func.isRequired,
 };
 
 export default reduxForm({
-  form: 'signIn',
+  form: 'signUp',
   onSubmitFail,
 })(SignInView);

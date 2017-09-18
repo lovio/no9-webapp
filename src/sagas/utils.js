@@ -51,7 +51,7 @@ export function* formRequest(params, action) {
       return reject();
     }
     // 通用错误提示
-    return reject({ _error: errorMsg });
+    return reject({ _error: errorMsg, error: data });
   }
   if (get(actions, 'success')) {
     // provide values

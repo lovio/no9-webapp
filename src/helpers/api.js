@@ -69,7 +69,9 @@ function post(url, data) {
 //   return callApi(config);
 // }
 
-export const signIn = data => post('/users', data);
+export const signIn = data => post('/users/login', data);
+export const signUp = data => post('/users', data);
+export const resetPwd = data => post('/users/resetpwd', data);
 export const sendPhoneCaptcha = data => post('/users/sendVerifyCode', data);
 
 export const getUserInfo = data => get('/sessions', data);
