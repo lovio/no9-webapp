@@ -10,8 +10,8 @@ export default combineReducers({
     {
       [actions.loadCards]: () => Immutable.List(),
       [actions.cards.success]: (state, { payload }) => fromJS(payload),
-      // [actions.removeCardSuccess]: ()
-      // [actions.addNewCardSuccess]: ()
+      [actions.cardRemove.success]: (state, { meta: { id } }) =>
+        state.filterNot(item => item.get('id') === id),
     },
     initialState.getIn(['mine', 'cards']),
   ),

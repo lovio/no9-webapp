@@ -68,7 +68,7 @@ function del(url, data) {
     },
   };
   if (data) {
-    config.data = rest;
+    config.params = rest;
   }
   return callApi(config);
 }
@@ -89,7 +89,7 @@ export const getZones = data => get('/zones', data);
 
 export const getCards = data => get('/users/cards', data);
 export const addNewCard = data => post('/users/cards', data);
-export const removeCard = data => del('/users/cards/:cardId', data);
+export const removeCard = ({ id, ...rest }) => del(`/users/cards/${id}`, rest);
 // ****************************************************************************************8
 
 // auth

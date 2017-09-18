@@ -8,4 +8,4 @@ export const addNewCard = createAction('ADD_NEW_CARD');
 export const addNewCardSuccess = createAction('ADD_NEW_CARD_SUCCESS');
 
 export const removeCard = createAction('REMOVE_CARD');
-export const removeCardSuccess = createAction('REMOVE_CARD_SUCCESS');
+export const cardRemove = createFetchActions('CARD_REMOVE');

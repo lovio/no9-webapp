@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import history from 'helpers/history';
+import Button from 'ui/button';
 
 import imgAdd from './add.png';
+import imgDel from './del.png';
 
 const BANK_IMG_PREFIX = 'https://apimg.alipay.com/combo.png?d=cashier&t=';
 const Container = styled.div`padding: 0.2rem;`;
@@ -32,40 +34,67 @@ const Card = styled.div`
   background: #ffffff;
   height: 0.8rem;
 
-  img {
-    float: left;
-    margin-top: 0.15rem;
-    margin-left: 0.1rem;
-    width: 1.75rem;
-    height: 0.5rem;
-  }
-
   p {
-    margin-top: 0.25rem;
     font-size: 0.15rem;
-    line-height: 0.3rem;
+    line-height: 0.8rem;
     color: #4a4a4a;
   }
+`;
+
+const BankIcon = styled.img`
+  float: left;
+  margin-top: 0.15rem;
+  margin-left: 0.1rem;
+  width: 1.75rem;
+  height: 0.5rem;
+`;
+
+const Toggle = styled.div`margin-top: 0.2rem;`;
+
+const Manage = styled.p`
+  text-align: center;
+  line-height: 0.5rem;
+  font-size: 0.18rem;
+  color: #57d3f2;
+`;
+
+const DelButton = styled.img`
+  padding: 0.3rem 0.05rem;
+  float: right;
+  width: 0.3rem;
 `;
 
 class Cards extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      inManagement: false,
+    };
     this.props.loadCards();
   }
+
+  toggleManagement = () =>
+    this.setState(prevState => ({
+      inManagement: !prevState.inManagement,
+    }));
+
   render() {
+    const { cards, removeCard } = this.props;
     return (
       <Container>
         <Helmet>
           <title>提现账户</title>
         </Helmet>
-        {this.props.cards.map((card) => {
+        {cards.map((card) => {
           const cardNo = card.get('cardNo');
           return (
-            <Card>
-              <img src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
+            <Card key={card.get('id')}>
+              <BankIcon src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
               <p>
                 {card.get('name')} | 尾号{cardNo.substr(cardNo.length - 4)}
+                {this.state.inManagement && (
+                  <DelButton src={imgDel} alt="" onClick={() => removeCard(card.get('id'))} />
+                )}
               </p>
             </Card>
           );
@@ -74,6 +103,11 @@ class Cards extends Component {
           <img src={imgAdd} alt="" />
           添加银行卡
         </AddCard>
+        {!!cards.size && (
+          <Toggle onClick={() => this.toggleManagement()}>
+            {this.state.inManagement ? <Button>确定</Button> : <Manage>管理取现账户</Manage>}
+          </Toggle>
+        )}
       </Container>
     );
   }
@@ -82,6 +116,7 @@ class Cards extends Component {
 Cards.propTypes = {
   loadCards: PropTypes.func.isRequired,
   cards: PropTypes.object.isRequired,
+  removeCard: PropTypes.func.isRequired,
 };
 
 export default Cards;

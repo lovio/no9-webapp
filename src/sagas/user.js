@@ -7,6 +7,7 @@ import { showToastItem } from '../actions/common';
 import { formRequest, fetchEntity } from './utils';
 
 const requestCards = fetchEntity.bind(null, actions.cards, apis.getCards);
+const requestRemoveCard = fetchEntity.bind(null, actions.cardRemove, apis.removeCard);
 
 // 获取用户信息
 function* loadCards({ payload }) {
@@ -54,5 +55,12 @@ export function* watchAddNewCardSuccess() {
       }),
     );
     history.push('/mine/cards');
+  }
+}
+
+export function* watchRemoveCard() {
+  for (;;) {
+    const { payload } = yield take(actions.removeCard);
+    yield call(requestRemoveCard, { id: payload }, true);
   }
 }
