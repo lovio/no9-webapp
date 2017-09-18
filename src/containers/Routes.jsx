@@ -15,6 +15,9 @@ import Zone from './zone';
 import Product from './product';
 import Order from './order';
 
+// mine
+import Cards from './mine/cards';
+
 export default function Routes() {
   return (
     <Container>
@@ -27,6 +30,7 @@ export default function Routes() {
           <Route exact path="/resetpwd" component={ResetPwd} />
           <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
           <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
+          <Route exact path="/mine/cards" component={AuthenticatedHOC(Cards)} />
           <Route exact path="/products" component={Product} />
           <Route exact path="/zones" component={Zone} />
           <Route exact path="/orders/new" component={AuthenticatedHOC(Order)} />

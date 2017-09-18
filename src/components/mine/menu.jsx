@@ -83,7 +83,7 @@ const Menu = () => (
         </Icon>
         提现记录
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/cards')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>

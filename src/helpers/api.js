@@ -58,16 +58,20 @@ function post(url, data) {
 }
 
 // fro PUT data is params
-// function put(url, data) {
-//   let config = assign({
-//     url,
-//     method: 'PUT',
-//   });
-//   if (data) {
-//     config = assign(config, { data });
-//   }
-//   return callApi(config);
-// }
+function del(url, data) {
+  const { token, ...rest } = data;
+  const config = {
+    url,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  if (data) {
+    config.data = rest;
+  }
+  return callApi(config);
+}
 
 export const signIn = data => post('/users/login', data);
 export const signUp = data => post('/users', data);
@@ -82,6 +86,10 @@ export const getPaymentPkg = data => get('/orders/payment', data);
 
 export const getCities = data => get('/cities', data);
 export const getZones = data => get('/zones', data);
+
+export const getCards = data => get('/users/cards', data);
+export const addNewCard = data => post('/users/cards', data);
+export const removeCard = data => del('/users/cards/:cardId', data);
 // ****************************************************************************************8
 
 // auth
