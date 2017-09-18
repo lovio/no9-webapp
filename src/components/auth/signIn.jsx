@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import history from 'helpers/history';
-import { Link } from 'react-router-dom';
 import { reduxForm, propTypes, Form, Field } from 'redux-form/immutable';
 import Helmet from 'react-helmet';
 
@@ -26,13 +25,6 @@ const SubmitContainer = styled.div`
     line-height: 0.18rem;
     margin-bottom: 0.1rem;
   }
-
-  p:last-of-type {
-    margin-top: 0.5rem;
-    a {
-      color: #57d3f2;
-    }
-  }
 `;
 
 const ResetPwd = styled.span`
@@ -44,7 +36,7 @@ const ResetPwd = styled.span`
 `;
 
 const SignInView = (props) => {
-  const { handleSubmit, submitting, pristine, signIn, sendCaptcha } = props;
+  const { handleSubmit, submitting, pristine, signIn } = props;
   return (
     <div>
       <Helmet>
@@ -55,7 +47,7 @@ const SignInView = (props) => {
           <Field
             name="phone"
             validate={[required('请输入手机号'), isPhone('请输入正确的手机号')]}
-            label="+86"
+            label="手机号"
             id="phone"
             inputType="cellphone"
             component={Input}
@@ -63,27 +55,17 @@ const SignInView = (props) => {
             type="number"
           />
           <Field
-            name="verifyCode"
-            validate={[required('请输入短信验证码')]}
-            label="验证码"
-            id="captchaPhone"
-            inputType="captcha"
+            name="password"
+            validate={[required('请输入登录密码')]}
+            label="登录密码"
+            id="password"
+            inputType="password"
             component={Input}
-            placeholder="请输入短信验证码"
-            type="number"
-            sendCaptcha={sendCaptcha}
-          />
-          <Field
-            name="referrerCode"
-            label="邀请码"
-            id="captchaPhone"
-            inputType="referrerCode"
-            component={Input}
-            placeholder="请输入邀请码"
+            placeholder="请输入登录密码"
+            type="password"
           />
         </FieldContainer>
         <SubmitContainer>
-          <p>未注册的手机号码将自动创建账户</p>
           <Button type="submit" disabled={pristine || submitting}>
             登录
           </Button>
@@ -96,9 +78,6 @@ const SignInView = (props) => {
           >
             忘记密码?
           </ResetPwd>
-          <p>
-            登录即表示同意九路泊车<Link to="/agreement">《用户使用协议》</Link>
-          </p>
         </SubmitContainer>
       </Form>
     </div>
@@ -108,7 +87,6 @@ const SignInView = (props) => {
 SignInView.propTypes = {
   ...propTypes,
   signIn: PropTypes.func.isRequired,
-  sendCaptcha: PropTypes.func.isRequired,
 };
 
 export default reduxForm({

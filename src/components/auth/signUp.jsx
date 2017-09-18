@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import history from 'helpers/history';
 import { Link } from 'react-router-dom';
 import { reduxForm, propTypes, Form, Field } from 'redux-form/immutable';
 import Helmet from 'react-helmet';
@@ -28,19 +27,11 @@ const SubmitContainer = styled.div`
   }
 
   p:last-of-type {
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     a {
       color: #57d3f2;
     }
   }
-`;
-
-const ResetPwd = styled.span`
-  margin-top: 0.1rem;
-  float: right;
-  line-height: 0.2rem;
-  font-size: 0.14rem;
-  color: #4ab3e2;
 `;
 
 const SignInView = (props) => {
@@ -93,13 +84,11 @@ const SignInView = (props) => {
           />
         </FieldContainer>
         <SubmitContainer>
-          <p>未注册的手机号码将自动创建账户</p>
           <Button type="submit" disabled={pristine || submitting}>
-            登录
+            注册
           </Button>
-          <ResetPwd onClick={() => history.push('/resetpwd')}>忘记密码?</ResetPwd>
           <p>
-            登录即表示同意九路泊车<Link to="/agreement">《用户使用协议》</Link>
+            注册即表示同意九路泊车<Link to="/agreement">《用户使用协议》</Link>
           </p>
         </SubmitContainer>
       </Form>

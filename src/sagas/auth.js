@@ -14,7 +14,8 @@ const requestUserInfo = fetchEntity.bind(null, actions.userInfo, apis.getUserInf
 function* sendCaptcha({ payload }) {
   // 1 从表单中获取手机号
   const { resolve, reject } = payload;
-  const phone = yield select(getFormValuesByName('signIn', 'phone'));
+  const formName = history.location.pathname === '/signup' ? 'signUp' : 'resetPwd';
+  const phone = yield select(getFormValuesByName(formName, 'phone'));
   const tip = !phone ? '请输入手机号' : isPhone('请输入正确的手机号')(phone);
   if (tip) {
     yield put(showToastItem(tip));
