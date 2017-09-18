@@ -9,3 +9,6 @@ export const addNewCardSuccess = createAction('ADD_NEW_CARD_SUCCESS');
 
 export const removeCard = createAction('REMOVE_CARD');
 export const cardRemove = createFetchActions('CARD_REMOVE');
+
+export const updateProfile = createAction('UPDATE_PROFILE');
+export const updateProfileSuccess = createAction('UPDATE_PROFILE_SUCCESS');

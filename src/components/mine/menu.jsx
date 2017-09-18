@@ -44,7 +44,7 @@ const Menu = () => (
         </Icon>
         车位电子所有权证书
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/profile')}>
         <Icon>
           <img src={imgCar} alt="" />
         </Icon>
