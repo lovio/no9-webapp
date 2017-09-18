@@ -64,3 +64,57 @@ export function* watchRemoveCard() {
     yield call(requestRemoveCard, { id: payload }, true);
   }
 }
+
+const fieldMappings = {
+  name: '姓名',
+  IDCardNo: '身份证号',
+  email: '邮箱',
+  address: '快递地址',
+};
+
+export function* watchUpdateProfile() {
+  for (;;) {
+    const { payload: { values, resolve, reject } } = yield take(actions.updateProfile);
+    const { field, value } = values;
+    if (!value) {
+      yield put(showToastItem({ type: 'error', msg: `${fieldMappings[field]}不能为空` }));
+      reject();
+    }
+
+    yield call(
+      formRequest,
+      {
+        api: apis.updateProfile,
+        actions: {
+          success: actions.updateProfileSuccess,
+          failure: actions.updateProfileFailure,
+        },
+        needToken: true,
+      },
+      {
+        payload: {
+          values: {
+            [field]: value,
+          },
+          resolve,
+          reject,
+        },
+      },
+    );
+  }
+}
+
+export function* watchUpdateProfileSuccess() {
+  for (;;) {
+    yield take(actions.updateProfileSuccess);
+    yield put(showToastItem({ type: 'success', msg: '修改成功' }));
+  }
+}
+
+export function* watchUpdateProfileFailure() {
+  for (;;) {
+    const { payload } = yield take(actions.updateProfileFailure);
+    console.log(payload);
+    yield put(showToastItem({ type: 'error', msg: `${payload.msg}` }));
+  }
+}

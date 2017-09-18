@@ -55,7 +55,7 @@ export function* formRequest(params, action) {
   }
   if (get(actions, 'success')) {
     // provide values
-    yield put(actions.success(response));
+    yield put(actions.success({ response, params: values }));
   }
   return resolve(response);
 }

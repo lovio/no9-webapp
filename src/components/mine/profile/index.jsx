@@ -25,6 +25,10 @@ const Item = styled.div`
   p {
     width: 0.65rem;
   }
+
+  span:first-of-type {
+    flex: 1;
+  }
 `;
 
 const Input = styled.input`
@@ -55,11 +59,19 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 
-const Save = styled.span`
+const Save = styled.div`
   padding-right: 0.2rem;
   display: inline-block;
   font-size: 0.12rem !important;
   color: #31b9da;
+`;
+
+const Help = styled.p`
+  text-align: center;
+  margin-top: 0.4rem;
+  font-size: 0.14rem;
+  color: #31b9da;
+  line-height: 0.2rem;
 `;
 
 const isChanging = {
@@ -79,11 +91,23 @@ export default class Profile extends Component {
     super(props);
     this.state = {
       isChanging,
-      name: '',
-      IDCardNo: '',
-      email: '',
-      address: '',
+      name: props.user.get('name') || '',
+      IDCardNo: props.user.get('IDCardNo') || '',
+      email: props.user.get('email') || '',
+      address: props.user.get('address') || '',
     };
+  }
+
+  componentWillUpdate(nextProps) {
+    if (this.props.user !== nextProps.user) {
+      this.setState({
+        isChanging,
+        name: nextProps.user.get('name') || '',
+        IDCardNo: nextProps.user.get('IDCardNo') || '',
+        email: nextProps.user.get('email') || '',
+        address: nextProps.user.get('address') || '',
+      });
+    }
   }
 
   change = field => (e) => {
@@ -107,7 +131,8 @@ export default class Profile extends Component {
         () =>
           this.props.updateProfile({
             values: {
-              [field]: this.state[field],
+              field,
+              value: this.state[field],
             },
             resolve,
             reject,
@@ -120,9 +145,10 @@ export default class Profile extends Component {
           isChanging,
         });
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         this.setState({
-          [field]: this.props.user.get(field),
+          [field]: this.props.user.get(field) || '',
           isChanging,
         });
       });
@@ -145,9 +171,11 @@ export default class Profile extends Component {
                 {...(this.state.isChanging.name ? { readOnly: 'readonly' } : {})}
               />
             )}
-            <Save onClick={() => !this.state.isChanging.name && this.update({ field: 'name' })}>
-              保 存
-            </Save>
+            {!user.get('name') && (
+              <Save onClick={() => !this.state.isChanging.name && this.update({ field: 'name' })}>
+                保 存
+              </Save>
+            )}
           </Item>
           <Item>
             <p>身份证</p>
@@ -162,11 +190,14 @@ export default class Profile extends Component {
                 {...(this.state.isChanging.IDCardNo ? { readOnly: 'readonly' } : {})}
               />
             )}
-            <Save
-              onClick={() => !this.state.isChanging.IDCardNo && this.update({ field: 'IDCardNo' })}
-            >
-              保 存
-            </Save>
+            {!user.get('IDCardNo') && (
+              <Save
+                onClick={() =>
+                  !this.state.isChanging.IDCardNo && this.update({ field: 'IDCardNo' })}
+              >
+                保 存
+              </Save>
+            )}
           </Item>
           <Item>
             <p>手机号</p>
@@ -205,6 +236,7 @@ export default class Profile extends Component {
             </Save>
           </Item>
         </Container>
+        <Help>联系客服获得帮助</Help>
       </div>
     );
   }

@@ -57,6 +57,22 @@ function post(url, data) {
   return callApi(config);
 }
 
+// for POST data is params
+function put(url, data) {
+  const { token, ...rest } = data;
+  const config = {
+    url,
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  if (data) {
+    config.data = rest;
+  }
+  return callApi(config);
+}
+
 // fro PUT data is params
 function del(url, data) {
   const { token, ...rest } = data;
@@ -90,6 +106,8 @@ export const getZones = data => get('/zones', data);
 export const getCards = data => get('/users/cards', data);
 export const addNewCard = data => post('/users/cards', data);
 export const removeCard = ({ id, ...rest }) => del(`/users/cards/${id}`, rest);
+
+export const updateProfile = data => put('/users', data);
 // ****************************************************************************************8
 
 // auth
