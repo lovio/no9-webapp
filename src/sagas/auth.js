@@ -129,6 +129,12 @@ export function* watchResetPwd() {
 export function* watchAuthSuccess() {
   for (;;) {
     const { payload } = yield take(actions.authSuccess);
+    yield put(
+      showToastItem({
+        type: 'success',
+        msg: '登录成功！',
+      }),
+    );
     if (payload) {
       yield call(redirect, HOME_PATH);
     }
@@ -138,6 +144,12 @@ export function* watchAuthSuccess() {
 export function* watchSignUpSuccess() {
   for (;;) {
     yield take(actions.signUpSuccess);
+    yield put(
+      showToastItem({
+        type: 'success',
+        msg: '注册成功，请登录！',
+      }),
+    );
     history.push({
       pathname: '/login',
       search: history.location.search,
@@ -148,6 +160,12 @@ export function* watchSignUpSuccess() {
 export function* watchResetPwdSuccess() {
   for (;;) {
     yield take(actions.resetPwdSuccess);
+    yield put(
+      showToastItem({
+        type: 'success',
+        msg: '密码重置成功，请重新登录！',
+      }),
+    );
     history.push({
       pathname: '/login',
       search: history.location.search,
