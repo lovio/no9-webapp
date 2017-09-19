@@ -119,7 +119,7 @@ export default function HomeView({ user }) {
         </Tool>
         <Tool>
           <IconTransfer />
-          <p>转账</p>
+          <p>提现</p>
         </Tool>
         <Tool>
           <IconRelation />
