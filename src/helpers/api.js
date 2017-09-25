@@ -21,7 +21,13 @@ function callApi(config) {
     .then(checkStatus)
     .then(response => ({ response: response.data }))
     .catch(error => ({
-      error: error.response,
+      error: error.response
+        ? error.response
+        : {
+          data: {
+            message: error.message,
+          },
+        },
     }));
 }
 

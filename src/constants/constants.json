@@ -7,7 +7,7 @@
     "sortType": "name",
     "sortRule": "down"
   },
-  "DEFAULT_PRODUCT_ID": 4,
+  "DEFAULT_PRODUCT_ID": 3,
   "GRADE_MAPPING": {
     "l1": ["分销商"],
     "l2": ["经销商"],
@@ -15,5 +15,6 @@
     "l4": ["初级", "合伙人"],
     "l5": ["高级", "合伙人"]
   },
-  "PRODUCT_NAME": "垂直循环智能立体停车位"
+  "PRODUCT_NAME": "垂直循环智能立体停车位",
+  "MINIMAL_PAY": 650000
 }

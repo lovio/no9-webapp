@@ -1,5 +1,8 @@
 import size from 'lodash-es/size';
 import isEmailValidator from 'validator/lib/isEmail';
+import IDValidator from 'id-validator';
+
+const Validator = new IDValidator();
 
 export const required = tip => (value) => {
   if (value) {
@@ -23,6 +26,14 @@ export const isEmail = tip => (value) => {
     return undefined;
   }
   return tip || '请输入正确的电子邮箱';
+};
+
+// 18位，六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码
+export const isIDCard = tip => (value) => {
+  if (Validator.isValid(value)) {
+    return undefined;
+  }
+  return tip || '请输入正确的身份证号码';
 };
 
 export const checkPasswordLength = tip => (value) => {

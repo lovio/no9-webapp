@@ -8,7 +8,7 @@ import initialState from './initialState';
 
 export default handleActions(
   {
-    [actions.authSuccess]: (state, { payload }) => fromJS(payload),
+    [actions.authSuccess]: (state, { payload: { response } }) => fromJS(response),
     [actions.signOut]: () => Immutable.Map(),
     [actions.userInfo.success]: (state, { payload }) => state.merge(fromJS(payload)),
     [actions.userInfo.failure]: () => Immutable.Map(),

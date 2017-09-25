@@ -145,8 +145,7 @@ export default class Profile extends Component {
           isChanging,
         });
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
         this.setState({
           [field]: this.props.user.get(field) || '',
           isChanging,

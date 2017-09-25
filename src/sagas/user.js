@@ -5,6 +5,7 @@ import * as actions from 'actions/user';
 import * as apis from 'helpers/api';
 import { showToastItem } from '../actions/common';
 import { formRequest, fetchEntity } from './utils';
+import { isEmail, isIDCard } from '../helpers/validators';
 
 const requestCards = fetchEntity.bind(null, actions.cards, apis.getCards);
 const requestRemoveCard = fetchEntity.bind(null, actions.cardRemove, apis.removeCard);
@@ -79,7 +80,23 @@ export function* watchUpdateProfile() {
     if (!value) {
       yield put(showToastItem({ type: 'error', msg: `${fieldMappings[field]}不能为空` }));
       reject();
+      continue;
     }
+
+    let tip = '';
+    if (field === 'IDCardNo') {
+      tip = isIDCard()(value);
+    }
+    // check email
+    if (field === 'email') {
+      tip = isEmail()(value);
+    }
+    if (tip) {
+      yield put(showToastItem(tip));
+      reject();
+      continue;
+    }
+    // check IDCardNo
 
     yield call(
       formRequest,
@@ -114,7 +131,6 @@ export function* watchUpdateProfileSuccess() {
 export function* watchUpdateProfileFailure() {
   for (;;) {
     const { payload } = yield take(actions.updateProfileFailure);
-    console.log(payload);
     yield put(showToastItem({ type: 'error', msg: `${payload.msg}` }));
   }
 }

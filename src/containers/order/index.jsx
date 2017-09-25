@@ -19,7 +19,7 @@ const productSelector = createSelector(
   (state, props) => {
     const search = getSearch(props.location.search);
     const id = +search.paymentId;
-    return includes([1, 2, 3, 4], id) ? id : DEFAULT_PRODUCT_ID;
+    return includes([1, 2, 3], id) ? id : DEFAULT_PRODUCT_ID;
   },
   id => Immutable.fromJS(find(products, { id })),
 );

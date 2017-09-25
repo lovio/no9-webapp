@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { PRODUCT_NAME } from 'constants/constants.json';
+import { PRODUCT_NAME, MINIMAL_PAY } from 'constants/constants.json';
 
 import imgCarport from '../product/carport4.jpg';
 
@@ -10,17 +10,17 @@ function cents2Yuan(cents) {
   return cents / 100;
 }
 
-function getPaidPrice(cents) {
-  const yuan = cents2Yuan(cents);
-  if (yuan <= 10000) {
-    return yuan;
-  }
-  return 10000;
+function getPaidPrice() {
+  // const yuan = cents2Yuan(cents);
+  // if (yuan <= MINIMAL_PAY) {
+  //   return yuan;
+  // }
+  return cents2Yuan(MINIMAL_PAY);
 }
 
 function getRemainningPriceTips(cents) {
-  const yuan = cents2Yuan(cents) - 10000;
-  const tips = yuan < 0 ? '' : `剩余款项 ${yuan}元，`;
+  const yuan = cents2Yuan(cents - MINIMAL_PAY);
+  const tips = yuan <= 0 ? '' : `剩余款项 ${yuan}元，`;
   return tips;
 }
 
