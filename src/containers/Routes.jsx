@@ -5,6 +5,7 @@ import { Container, Overflow } from 'ui';
 import FooterView from 'components/footer';
 
 import AuthenticatedHOC from './auth/AuthenticatedHOC';
+import Confirm from './common/confirm';
 import Tips from './common/tips';
 import Home from './home';
 import Auth from './auth';
@@ -24,6 +25,7 @@ export default function Routes() {
   return (
     <Container>
       <Tips />
+      <Confirm />
       <Overflow>
         <Switch>
           <Route exact path="/" component={Home} />

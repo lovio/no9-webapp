@@ -53,7 +53,7 @@ const UserInfo = ({ user }) => (
       </Item>
       <Item>
         <span>身份证号码</span>
-        <span>{user.get('IDNumber')}</span>
+        <span>{user.get('IDCardNo')}</span>
       </Item>
       <Item>
         <span>联系电话</span>

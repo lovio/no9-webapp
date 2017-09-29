@@ -85,6 +85,7 @@ export default class Input extends Component {
     sendCaptcha: noop,
     captchaType: '',
     inputType: '',
+    type: 'text',
   };
 
   static propTypes = {
@@ -92,7 +93,7 @@ export default class Input extends Component {
     inputType: PropTypes.string,
     label: PropTypes.string.isRequired,
     sendCaptcha: PropTypes.func,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
   };
 
   constructor(props) {

@@ -1,4 +1,4 @@
-import { take, put, call, fork, select } from 'redux-saga/effects';
+import { take, put, call, fork, select, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import get from 'lodash-es/get';
 import includes from 'lodash-es/includes';
@@ -27,6 +27,49 @@ export function* watchShowToastItem() {
   for (;;) {
     const { payload } = yield take(commonActions.showToastItem);
     yield fork(hideToastItem, payload.id);
+  }
+}
+
+// modal
+function* handleShowModal({ payload: { willHide } }) {
+  if (willHide) {
+    yield call(delay, ToastMsgTimeout);
+    yield put(commonActions.hideModal());
+  }
+}
+
+function* handleHideModal() {
+  // const next = yield select(state => state.getIn(['common', 'modal', 'next']));
+  // if (next === 'redirect2Profile') {
+  //   history.push('/mine/profile');
+  // }
+  // if (next) {
+  //   if (next.get('type') === 'medal') {
+  //     yield put(commonActions.showMedal({ id: next.get('id') }));
+  //   }
+  // }
+  yield put(commonActions.clearModalData());
+}
+
+export function* watchShowModal() {
+  yield takeEvery(commonActions.showModal, handleShowModal);
+}
+
+export function* watchHideModal() {
+  yield takeEvery(commonActions.hideModal, handleHideModal);
+}
+
+export function* watchHandleConfirm() {
+  for (;;) {
+    yield take(commonActions.handleConfirm);
+    const type = yield select(state => state.getIn(['common', 'confirm', 'type']));
+    if (type === 'profileIncomplete') {
+      yield put(commonActions.hideConfirm());
+      history.push({
+        pathname: '/mine/profile',
+        // search: history.location.search,
+      });
+    }
   }
 }
 

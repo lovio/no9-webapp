@@ -28,8 +28,11 @@ export default combineReducers({
     },
     initialState.getIn(['common', 'modal']),
   ),
-  // confirm: handleActions({
-  //   [actions.showConfirm]: (state, { payload }) => Immutable.fromJS(payload),
-  //   [actions.hideConfirm]: () => Immutable.Map(),
-  // }, initialState.getIn(['common', 'confirm'])),
+  confirm: handleActions(
+    {
+      [actions.showConfirm]: (state, { payload }) => Immutable.fromJS(payload),
+      [actions.hideConfirm]: () => Immutable.Map(),
+    },
+    initialState.getIn(['common', 'confirm']),
+  ),
 });
