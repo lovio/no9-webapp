@@ -50,7 +50,7 @@ const Menu = () => (
         </Icon>
         账户设置
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/profile')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>

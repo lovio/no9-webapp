@@ -23,15 +23,28 @@ const QRCodeContainer = styled.div`
   left: 0;
   right: 0;
   position: absolute;
-  padding-top: 0.85rem;
+  padding-top: 0.3rem;
   text-align: center;
   canvas {
-    width: 1.26rem !important;
-    height: 1.26rem !important;
+    width: 1.15rem !important;
+    height: 1.15rem !important;
   }
 `;
 
-export default function MineView({ referrerCode }) {
+const Name = styled.p`
+  font-size: 0.18rem;
+  color: #4a4a4a;
+  line-height: 0.25rem;
+`;
+
+const No = styled.p`
+  font-size: 0.12rem;
+  color: #4a4a4a;
+  line-heght: 0.2rem;
+  margin-bottom: 0.2rem;
+`;
+
+export default function MineView({ user }) {
   return (
     <div>
       <Helmet>
@@ -40,7 +53,9 @@ export default function MineView({ referrerCode }) {
       <Container>
         <img src={imgInviteBg} alt="" />
         <QRCodeContainer>
-          <QRCode value={getInviteUrl(referrerCode)} />
+          <Name>{user.get('name')}</Name>
+          <No>用户编码：{user.get('id')}</No>
+          <QRCode value={getInviteUrl(user.get('referrerCode'))} />
         </QRCodeContainer>
       </Container>
     </div>
@@ -48,5 +63,5 @@ export default function MineView({ referrerCode }) {
 }
 
 MineView.propTypes = {
-  referrerCode: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };

@@ -6,7 +6,7 @@ import InviteView from 'components/mine/invite';
 
 function mapStateToProps(state) {
   return {
-    referrerCode: state.get('user').get('referrerCode'),
+    user: state.get('user'),
   };
 }
 
