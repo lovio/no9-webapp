@@ -35,6 +35,7 @@ const Name = styled.p`
   font-size: 0.18rem;
   color: #4a4a4a;
   line-height: 0.25rem;
+  min-height: 0.25rem;
 `;
 
 const No = styled.p`
@@ -53,7 +54,7 @@ export default function MineView({ user }) {
       <Container>
         <img src={imgInviteBg} alt="" />
         <QRCodeContainer>
-          <Name>{user.get('name')}</Name>
+          <Name>姓名：{user.get('name') ? user.get('name') : '***'}</Name>
           <No>用户编码：{user.get('id')}</No>
           <QRCode value={getInviteUrl(user.get('referrerCode'))} />
         </QRCodeContainer>

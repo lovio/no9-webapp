@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import history from 'helpers/history';
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, YAxis } from 'recharts';
 import styled from 'styled-components';
 
@@ -169,7 +170,7 @@ export default function HomeView({ user }) {
         <p>七日年化收益率</p>
       </Graph>
       <Tools>
-        <Tool>
+        <Tool onClick={() => history.push('/mine/records')}>
           <IconBill />
           <p>收支明细</p>
         </Tool>

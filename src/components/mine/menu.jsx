@@ -71,13 +71,13 @@ const Menu = () => (
     </Container>
 
     <Container>
-      <Item>
+      <Item onClick={() => history.push('/mine/records')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>
         收支明细
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/records?type=withdraw')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>
