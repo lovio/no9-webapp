@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import noop from 'lodash-es/noop';
+
+import imgVisible from './visible.png';
+import imgInVisible from './invisible.png';
 
 const Container = styled.div`
   display: flex;
@@ -67,6 +69,11 @@ const Tip = styled.span`
   line-height: 0.2rem;
   font-size: 0.12rem;
   color: #9b9b9b;
+
+  img {
+    width: 0.18rem;
+    vertical-align: middle;
+  }
 `;
 
 const COUNTER = 60;
@@ -85,18 +92,25 @@ export default class Input extends Component {
     inputType: PropTypes.string,
     label: PropTypes.string.isRequired,
     sendCaptcha: PropTypes.func,
+    type: PropTypes.string.isRequired,
   };
 
   constructor(props) {
     super(props);
-    this.state =
-      props.inputType === 'captcha'
-        ? {
-          counter: 0,
-          isLoading: false,
-          isSent: false,
-        }
-        : {};
+    const { inputType } = props;
+    if (inputType === 'captcha') {
+      this.state = {
+        counter: 0,
+        isLoading: false,
+        isSent: false,
+      };
+    } else if (inputType === 'password') {
+      this.state = {
+        showPasword: false,
+      };
+    } else {
+      this.state = {};
+    }
   }
 
   componentWillUnmount() {
@@ -125,12 +139,16 @@ export default class Input extends Component {
       .catch(() => this.setState({ isLoading: false }));
 
   render() {
-    const { inputType, label, input, ...rest } = this.props;
-    const { counter, isSent, isLoading } = this.state;
+    const { inputType, label, input, type, ...rest } = this.props;
+    const { counter, isSent, isLoading, showPasword } = this.state;
+    let newType = type;
+    if (inputType === 'password' && showPasword) {
+      newType = 'text';
+    }
     return (
       <Container>
         <label htmlFor={input.name}>{label}</label>
-        <StyledInput id={input.name} {...input} {...rest} />
+        <StyledInput id={input.name} {...input} {...rest} type={newType} />
         {inputType === 'captcha' && (
           <Button
             type="button"
@@ -146,7 +164,16 @@ export default class Input extends Component {
           </Button>
         )}
         {inputType === 'referrerCode' && <Tip>邀请码不可修改</Tip>}
-        {inputType === 'password' && <Tip>邀请码不可修改</Tip>}
+        {inputType === 'password' && (
+          <Tip
+            onClick={() =>
+              this.setState(prevState => ({
+                showPasword: !prevState.showPasword,
+              }))}
+          >
+            <img src={showPasword ? imgInVisible : imgVisible} alt="" />
+          </Tip>
+        )}
       </Container>
     );
   }
