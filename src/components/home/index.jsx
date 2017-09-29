@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, YAxis } from 'recharts';
 import styled from 'styled-components';
 
 import imgBanner from './banner.jpg';
@@ -40,9 +41,15 @@ const P4 = styled.p`
 `;
 
 const Graph = styled.div`
+  padding-top: 0.1rem;
   margin-bottom: 0.1rem;
   background-color: white;
-  height: 1.5rem;
+  p {
+    text-align: center;
+    line-height: 0.3rem;
+    font-size: 0.14rem;
+    color: #4a4a4a;
+  }
 `;
 
 const Tools = styled.div`
@@ -111,7 +118,56 @@ export default function HomeView({ user }) {
           <SubP4>1300.22</SubP4>
         </div>
       </SubHead>
-      <Graph>这里是Graph</Graph>
+      <Graph>
+        <ResponsiveContainer width="100%" height={200}>
+          <LineChart
+            margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
+            data={[
+              {
+                name: 'a',
+                value: 110,
+              },
+              {
+                name: 'b',
+                value: 10,
+              },
+              {
+                name: 'c',
+                value: 70,
+              },
+              {
+                name: 'd',
+                value: -100,
+              },
+              {
+                name: 'e',
+                value: 110,
+              },
+              {
+                name: 'f',
+                value: 110,
+              },
+            ]}
+          >
+            <Line
+              type="monotoneX"
+              dataKey="value"
+              stroke="#E01053"
+              unit="%"
+              label={{ fill: 'black', fontSize: 14 }}
+            />
+            <CartesianGrid strokeDasharray="4 4" vertical={false} />
+            {/* <XAxis dataKey="name" /> */}
+            <YAxis
+              unit="%"
+              minTickGap={5}
+              interval="preserveStartEnd"
+              domain={['dataMin - 20', 'dataMax + 20']}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+        <p>七日年化收益率</p>
+      </Graph>
       <Tools>
         <Tool>
           <IconBill />
