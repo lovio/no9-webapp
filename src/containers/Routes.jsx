@@ -29,7 +29,7 @@ export default function Routes() {
       <Confirm />
       <Overflow>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={AuthenticatedHOC(Home)} />
           <Route exact path="/login" component={Auth} />
           <Route exact path="/signup" component={Auth} />
           <Route exact path="/resetpwd" component={ResetPwd} />
@@ -39,8 +39,8 @@ export default function Routes() {
           <Route exact path="/mine/cards/new" component={AuthenticatedHOC(NewCard)} />
           <Route exact path="/mine/profile" component={AuthenticatedHOC(Profile)} />
           <Route exact path="/mine/records" component={AuthenticatedHOC(Records)} />
-          <Route exact path="/products" component={Product} />
-          <Route exact path="/zones" component={Zone} />
+          <Route exact path="/products" component={AuthenticatedHOC(Product)} />
+          <Route exact path="/zones" component={AuthenticatedHOC(Zone)} />
           <Route exact path="/orders/new" component={AuthenticatedHOC(Order)} />
         </Switch>
       </Overflow>
