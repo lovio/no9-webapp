@@ -42,9 +42,6 @@ if (!config.disableSSR) {
 }
 
 app.use((req, res) => {
-  res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.header('Expires', 0);
-  res.header('Pragma', 'no-cache');
   const inWechat = new RegExp('MicroMessenger', 'i').test(req.headers['user-agent']);
   res.render('index', { inWechat, injectedData, serverRenderData: req.serverRenderData });
 });
