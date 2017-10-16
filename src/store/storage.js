@@ -1,8 +1,8 @@
 import persistState from 'redux-localstorage';
 import Immutable from 'immutable';
 
-// const path = ['user'];
-const path = [];
+const path = ['user'];
+// const path = [];
 
 export default persistState(path, {
   key: 'no9-0.0.1',
