@@ -84,6 +84,7 @@ class ZoneView extends Component {
       <Container>
         <Title red>
           <img src={imgRedCar} alt="" />
+          我的车位
         </Title>
         <BuyMore onClick={() => history.push('/products')}>您暂无车位，请点击购买</BuyMore>
       </Container>
