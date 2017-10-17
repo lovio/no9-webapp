@@ -33,3 +33,5 @@ export const handleConfirm = createAction('HANDLE_CONFIRM');
 
 // redirect前检查token
 export const authorizedRedirect = createAction('AUTHORIZED_REDIRECT');
+
+export const clearPagination = createAction('CLEAR_PAGINATION');

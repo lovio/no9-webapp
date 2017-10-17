@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux-immutable';
 import { reducer as formReducer } from 'redux-form/immutable';
 
-// import pagination from './pagination';
+import pagination from './pagination';
 
 import common from './common';
 import user from './user';
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   user,
   extra,
   mine,
-  // pagination,
+  pagination,
   // payment,
   form: formReducer,
 });

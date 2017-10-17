@@ -114,6 +114,8 @@ export const addNewCard = data => post('/users/cards', data);
 export const removeCard = ({ id, ...rest }) => del(`/users/cards/${id}`, rest);
 
 export const updateProfile = data => put('/users', data);
+
+export const getRecords = data => get('/records', data);
 // ****************************************************************************************8
 
 // auth

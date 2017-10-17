@@ -4,7 +4,7 @@ const DEFAULT_PAGINATION = {
   isLoading: false,
   totalPage: 0,
   pageSize: 20,
-  page: 1,
+  pageNo: 1,
   hasMore: true,
 };
 
@@ -19,7 +19,7 @@ export default Immutable.fromJS({
     confirm: {},
   },
   pagination: {
-    credits: DEFAULT_PAGINATION,
+    records: DEFAULT_PAGINATION,
   },
   extra: {
     cities: [],

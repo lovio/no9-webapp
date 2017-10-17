@@ -6,32 +6,30 @@ import Loading from 'ui/loading';
 
 import Waypoint from 'react-waypoint';
 
-const LoadMore = styled.div`
+const LoadMore = styled.div`text-align: center;`;
+
+const Empty = styled.p`
+  margin-top: 0.4rem;
   text-align: center;
+  font-size: 0.16rem;
+  line-height: 0.4rem;
+  color: #4a4a4a;
 `;
 
 // hasNoMoreComponent is optional
 class AutoLoader extends Component {
-
   renderHasMore = () => {
     const { pagination } = this.props;
     const hasMore = pagination.get('hasMore');
     const isLoading = pagination.get('isLoading');
     if (!hasMore) {
-      return null;
-      // return (
-      //   <div>已到最后一页</div>
-      // );
+      return <Empty>暂无任何交易记录</Empty>;
     }
     if (isLoading) {
-      return (<Loading />);
+      return <Loading />;
     }
-    return (
-      <LoadMore onClick={() => this.props.loadMoreData()}>
-        加载更多
-      </LoadMore>
-    );
-  }
+    return <LoadMore onClick={() => this.props.loadMoreData()}>加载更多</LoadMore>;
+  };
 
   renderWayPoint = () => {
     const { pagination } = this.props;
@@ -39,7 +37,7 @@ class AutoLoader extends Component {
       return null;
     }
     return <Waypoint onEnter={this.props.loadMoreData} />;
-  }
+  };
   render() {
     return (
       <div>

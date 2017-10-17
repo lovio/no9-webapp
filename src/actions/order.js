@@ -8,4 +8,5 @@ export const triggerWechatPay = createAction('TRIGGER_WECHATPAY');
 export const payment = createFetchActions('PAYMENT');
 
 export const loadRecords = createAction('LOAD_RECORDS');
+export const loadMoreRecords = createAction('LOAD_MORE_RECORDS');
 export const records = createFetchActions('RECORDS');

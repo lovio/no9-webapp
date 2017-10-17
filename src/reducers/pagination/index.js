@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux-immutable';
-// import createPaginationReducer from './utils';
+import { records } from 'actions/order';
+import createPaginationReducer from './utils';
 
 export default combineReducers({
-  // credits: createPaginationReducer(realGetCreditRecords, 'credits', 20),
+  records: createPaginationReducer(records, 'records', 20),
 });

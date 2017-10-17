@@ -28,7 +28,7 @@ const Link = styled.p`
   }};
 `;
 
-const TYPES = ['charge', 'allowance', 'widthdraw'];
+const TYPES = ['fee', 'allowance', 'withdraw'];
 
 const Tabs = ({ type }) => (
   <Container>

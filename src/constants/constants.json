@@ -18,8 +18,8 @@
   "PRODUCT_NAME": "垂直循环智能立体停车位",
   "MINIMAL_PAY": 650000,
   "RECORD_TYPE_MAPPINGS": {
-    "widthdraw": "提现",
+    "withdraw": "提现",
     "allowance": "补贴收益",
-    "charge": "车位收益"
+    "fee": "车位收益"
   }
 }
