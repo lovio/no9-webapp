@@ -4,10 +4,11 @@ import { take, call, select, put, fork } from 'redux-saga/effects';
 // import { HOME_PATH } from 'constants/constants.json';
 import * as actions from 'actions/order';
 import * as apis from 'helpers/api';
-import { showConfirm, clearPagination } from '../actions/common';
+import { createPayment } from 'helpers/pingxx';
+import { showConfirm, clearPagination, showToastItem } from '../actions/common';
 import { fetchEntity } from './utils';
 
-const requestNewOrder = fetchEntity.bind(null, actions.newOrder, apis.postNewOrders);
+// const requestNewOrder = fetchEntity.bind(null, actions.newOrder, apis.postNewOrders);
 const requestPayment = fetchEntity.bind(null, actions.payment, apis.getPaymentPkg);
 const requestRecords = fetchEntity.bind(null, actions.records, apis.getRecords);
 
@@ -38,23 +39,29 @@ export function* watchLoadMorePhotos() {
   }
 }
 
+function* pay(charge) {
+  const { status } = yield call(createPayment, charge);
+  if (status === 'fail') {
+    yield put(showToastItem('支付失败'));
+  } else if (status === 'success') {
+    yield put(showToastItem({ type: 'success', msg: '支付成功' }));
+  }
+}
+
 export function* watchCreateNewOrder() {
   for (;;) {
     const { payload: { cityId, product } } = yield take(actions.createNewOrder);
     const user = yield select(state => state.get('user'));
     if (user.get('name') && user.get('IDCardNo')) {
       const openid = user.get('openid') || 'oDCCVuIQeIug7Gx4OHIOsjrUWFFY';
-      const order = yield call(
-        requestNewOrder,
-        {
-          openid,
-          cityId,
-          productId: product.get('id'),
-        },
-        true,
-      );
-      console.log(order);
-      // here now we should trigger payment
+      const token = yield select(state => state.getIn(['user', 'token']));
+      const { response } = yield call(apis.postNewOrders, {
+        openid,
+        cityId,
+        productId: product.get('id'),
+        token,
+      });
+      yield call(pay, response.credential);
     } else {
       yield put(
         showConfirm({

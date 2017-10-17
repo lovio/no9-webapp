@@ -41,6 +41,7 @@
     "lodash": "4.17.4",
     "mitt": "^1.1.2",
     "morgan": "^1.8.2",
+    "pingpp-js": "^2.1.14",
     "prop-types": "^15.5.10",
     "pug": "^2.0.0-rc.4",
     "qrcode.react": "^0.7.1",

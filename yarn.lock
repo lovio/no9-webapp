@@ -5112,6 +5112,10 @@ pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "http://registry.npm.taobao.org/pify/download/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 
+pingpp-js@^2.1.14:
+  version "2.1.14"
+  resolved "http://registry.npm.taobao.org/pingpp-js/download/pingpp-js-2.1.14.tgz#03c0bf0b6e9f9922cd3f246cef0ae29fe4f146d4"
+
 pinkie-promise@^2.0.0:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/pinkie-promise/download/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
