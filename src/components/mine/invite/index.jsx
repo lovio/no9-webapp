@@ -55,7 +55,7 @@ export default function MineView({ user }) {
         <img src={imgInviteBg} alt="" />
         <QRCodeContainer>
           <Name>姓名：{user.get('name') ? user.get('name') : '***'}</Name>
-          <No>用户编码：{user.get('id')}</No>
+          <No>邀请码：{user.get('referrerCode')}</No>
           <QRCode value={getInviteUrl(user.get('referrerCode'))} />
         </QRCodeContainer>
       </Container>
