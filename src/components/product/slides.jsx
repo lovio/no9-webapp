@@ -2,10 +2,9 @@ import React from 'react';
 import Slider from 'ui/slider';
 import styled from 'styled-components';
 
-import imgCarport from './carport.jpg';
-import imgCarport2 from './carport2.jpg';
-import imgCarport3 from './carport3.jpg';
-import imgCarport4 from './carport4.jpg';
+import imgSlide1 from './slide-dafeng.jpg';
+import imgSlide2 from './slide-dafeng2.jpg';
+import imgSlide3 from './slide-project.jpg';
 
 const Container = styled.div`
   img {
@@ -18,10 +17,9 @@ export default function Slides() {
   return (
     <Container>
       <Slider>
-        <img src={imgCarport} alt="carport" />
-        <img src={imgCarport2} alt="carport" />
-        <img src={imgCarport3} alt="carport" />
-        <img src={imgCarport4} alt="carport" />
+        <img src={imgSlide1} alt="carport" />
+        <img src={imgSlide2} alt="carport" />
+        <img src={imgSlide3} alt="carport" />
       </Slider>
     </Container>
   );

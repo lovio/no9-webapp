@@ -2,20 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import imgTabBar from 'images/tab-bar.jpg';
+import imgTabBar from './tab-bar.jpg';
 
 const Container = styled.div`
-  background: #FFFFFF;
+  background: #ffffff;
   height: 0.44rem;
   box-sizing: content-box;
-  border-bottom: 0.01rem solid #EAEFF2;
+  border-bottom: 0.01rem solid #eaeff2;
 `;
 
 export const TabContainer = Container.extend`
-  ${
-    (props) => {
-      if (props.type === 'overflow') {
-        return `
+  ${(props) => {
+    if (props.type === 'overflow') {
+      return `
           overflow: auto;
           -webkit-overflow-scrolling: touch;
           white-space: nowrap;
@@ -29,17 +28,16 @@ export const TabContainer = Container.extend`
             min-width: 0.7rem;
           }
         `;
-      }
-      return `
+    }
+    return `
         display: flex;
         justify-content: space-around;
       `;
-    }
-  }
+  }};
 `;
 
 const Link = styled.div`
-  padding:0.04rem 0.15rem;
+  padding: 0.04rem 0.15rem;
   font-size: 0.14rem;
   line-height: 0.36rem;
   color: ${(props) => {
@@ -60,15 +58,11 @@ const Link = styled.div`
       `;
     }
     return '';
-  }}
+  }};
 `;
 
 export function Tab({ name, ...rest }) {
-  return (
-    <Link {...rest}>
-      {name}
-    </Link>
-  );
+  return <Link {...rest}>{name}</Link>;
 }
 
 Tab.propTypes = {

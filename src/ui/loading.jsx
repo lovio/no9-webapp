@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import imgLoading from 'images/loading.gif';
+import imgLoading from './loading.gif';
 
 const Container = styled.div`
   margin-top: 0.2rem;

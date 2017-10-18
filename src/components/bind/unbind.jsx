@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import history from 'helpers/history';
 import styled from 'styled-components';
 import { Button } from 'ui/button';
-
-import ImgSuccess from 'images/success.svg';
-import ImgFailure from 'images/error.svg';
-
 import Empty from 'ui/empty';
+
+import ImgSuccess from './success.svg';
+import ImgFailure from './error.svg';
 
 const Container = styled.div`
   padding: 0.45rem 0.15rem;
@@ -23,7 +22,7 @@ const Container = styled.div`
     /* 亲，解绑成功: */
     font-size: 0.12rem;
     line-height: 0.18rem;
-    color: #2E3236;
+    color: #2e3236;
     letter-spacing: 0;
   }
 `;
@@ -32,7 +31,7 @@ export default class UnbindView extends Component {
   static propTypes = {
     unbind: PropTypes.object.isRequired,
     unbindAccount: PropTypes.func.isRequired,
-  }
+  };
 
   componentDidMount() {
     const { unbind } = this.props;
@@ -47,36 +46,30 @@ export default class UnbindView extends Component {
     const status = this.props.unbind.get('status');
     return (
       <Container>
-        {
-          status === 'request' && <Empty type="isLoading" />
-        }
-        {
-          status === 'success' && (
-            <div>
-              <ImgSuccess />
-              <p>亲，解绑成功！</p>
-              <Button
-                onClick={() => {
-                  history.replace({
-                    pathname: '/bind/account',
-                    search: history.location.search,
-                  });
-                }}
-              >立即绑定</Button>
-            </div>
-          )
-        }
-        {
-          status === 'failure' && (
-            <div>
-              <ImgFailure />
-              <p>亲，解绑失败！</p>
-              <Button
-                onClick={() => this.props.unbindAccount()}
-              >重新解绑</Button>
-            </div>
-          )
-        }
+        {status === 'request' && <Empty type="isLoading" />}
+        {status === 'success' && (
+          <div>
+            <ImgSuccess />
+            <p>亲，解绑成功！</p>
+            <Button
+              onClick={() => {
+                history.replace({
+                  pathname: '/bind/account',
+                  search: history.location.search,
+                });
+              }}
+            >
+              立即绑定
+            </Button>
+          </div>
+        )}
+        {status === 'failure' && (
+          <div>
+            <ImgFailure />
+            <p>亲，解绑失败！</p>
+            <Button onClick={() => this.props.unbindAccount()}>重新解绑</Button>
+          </div>
+        )}
       </Container>
     );
   }

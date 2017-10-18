@@ -52,7 +52,7 @@ const SignInView = (props) => {
             inputType="cellphone"
             component={Input}
             placeholder="请输入手机号"
-            type="number"
+            type="tel"
           />
           <Field
             name="password"

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import img404 from 'images/404.png';
-import imgNoContent from 'images/no-content.png';
+import img404 from './404.png';
+import imgNoContent from './no-content.png';
 
 const imgMapping = {
   404: img404,

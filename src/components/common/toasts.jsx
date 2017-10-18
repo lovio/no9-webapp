@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import imgError from 'images/error.png';
-import imgSuccess from 'images/success.png';
+import imgError from './error.png';
+import imgSuccess from './success.png';
 
 const Container = styled.div`
   display: flex;

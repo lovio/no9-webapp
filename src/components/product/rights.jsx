@@ -3,13 +3,6 @@ import styled from 'styled-components';
 
 const Container = styled.div`text-align: center;`;
 
-// const BackToTop = styled.p`
-//   line-height: 0.2rem;
-//   font-size: 0.14rem;
-//   color: #e01053;
-//   padding-top: 0.1rem;
-// `;
-
 const Company = styled.p`
   margin: 0.3rem 0 0.2rem;
   font-size: 0.12rem;

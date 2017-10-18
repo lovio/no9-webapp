@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import history from 'helpers/history';
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, YAxis } from 'recharts';
 import styled from 'styled-components';
+import { dealNumber } from 'helpers/string';
 
 import imgBanner from './banner.jpg';
 import IconBill from './bill.svg';
@@ -104,19 +105,19 @@ export default function HomeView({ user }) {
     <div>
       <Head>
         <P1>昨日收益（元）</P1>
-        <P2>299.88</P2>
-        <P3>总资产 {user.get('balance')} 元</P3>
-        <P3>累计收益 103232.00 元</P3>
-        <P3>入账收益 103232.00 元</P3>
+        <P2>{dealNumber(0)}</P2>
+        <P3>总资产 {dealNumber(user.get('totalAssets'))} 元</P3>
+        <P3>累计收益 {dealNumber(user.get('allowance') + user.get('fee'))} 元</P3>
+        {/* <P3>入账收益 103232.00 元</P3> */}
       </Head>
       <SubHead>
         <div>
           <SubP1>昨日车位收益（元）</SubP1>
-          <SubP4>130.22</SubP4>
+          <SubP4>{dealNumber(0)}</SubP4>
         </div>
         <div>
           <SubP1>昨日补贴收益（元）</SubP1>
-          <SubP4>1300.22</SubP4>
+          <SubP4>{dealNumber(0)}</SubP4>
         </div>
       </SubHead>
       <Graph>
@@ -178,7 +179,7 @@ export default function HomeView({ user }) {
           <IconTransfer />
           <p>提现</p>
         </Tool>
-        <Tool>
+        <Tool onClick={() => history.push('/mine/relations')}>
           <IconRelation />
           <p>客户关系</p>
         </Tool>

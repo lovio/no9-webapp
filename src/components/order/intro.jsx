@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { PRODUCT_NAME, MINIMAL_PAY } from 'constants/constants.json';
 
-import imgCarport from '../product/carport4.jpg';
+import imgCarport from './carport.jpg';
 
 function cents2Yuan(cents) {
   return cents / 100;

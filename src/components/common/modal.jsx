@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Image } from 'ui';
-import imgCredits from 'images/credits.png';
-
 const Container = styled.div`
   position: fixed;
   top: 0;
@@ -13,19 +10,18 @@ const Container = styled.div`
   bottom: 0;
   padding: 1.4rem 0.5rem;
   z-index: 900;
-  background: rgba(0,0,0,0.50);
+  background: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalBox = styled.div`
   display: flex;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 0.2rem 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   border-radius: 0.03rem;
-
 
   img {
     width: 0.5rem;
@@ -39,25 +35,22 @@ const ModalBox = styled.div`
     margin-top: 0.08rem;
   }
   p:nth-of-type(1) {
-    color: #8F9DA5;
+    color: #8f9da5;
   }
   p:nth-of-type(2) {
-    color: #2E3236;
+    color: #2e3236;
   }
 `;
 
 export default function Modal({ modal, hideModal }) {
   return (
     <Container onClick={() => hideModal()}>
-      {
-        modal.get('type') === 'credits' && (
-          <ModalBox>
-            <Image src={imgCredits} alt="credits" />
-            <p>{modal.getIn(['data', 'desc'])}</p>
-            <p>恭喜您获得{modal.getIn(['data', 'point'])}积分</p>
-          </ModalBox>
-        )
-      }
+      {modal.get('type') === 'credits' && (
+        <ModalBox>
+          <p>{modal.getIn(['data', 'desc'])}</p>
+          <p>恭喜您获得{modal.getIn(['data', 'point'])}积分</p>
+        </ModalBox>
+      )}
     </Container>
   );
 }

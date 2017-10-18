@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
-import imgEmailBind from 'images/email-bind.png';
-import imgLogoBind from 'images/logo-bind.png';
+import imgEmailBind from './email-bind.png';
+import imgLogoBind from './logo-bind.png';
 
-export const Container = styled.div`
-  height: 100%;
-`;
+export const Container = styled.div`height: 100%;`;
 
 export const Desc = styled.div`
   text-align: center;
   height: 0.4rem;
   font-size: 0.12rem;
   line-height: 0.4rem;
-  color: #2E3236;
+  color: #2e3236;
   letter-spacing: 0;
 `;
 
@@ -48,7 +46,7 @@ export const WaysTitle = styled.div`
     margin: 0;
     text-align: center;
     font-size: 0.12rem;
-    color: #8F9DA5;
+    color: #8f9da5;
     line-height: 0.17rem;
   }
 `;
@@ -60,16 +58,16 @@ export const BindWay = styled.span`
   background-position: top center;
   padding-top: 0.45rem;
   font-size: 0.12rem;
-  color: #8F9DA5;
+  color: #8f9da5;
   line-height: 0.17rem;
   text-align: center;
 `;
 
-export const BindEmail = styled(BindWay) `
+export const BindEmail = styled(BindWay)`
   background-image: url('${imgEmailBind}');
 `;
 
-export const BindAccount = styled(BindWay) `
+export const BindAccount = styled(BindWay)`
   background-image: url('${imgLogoBind}');
 `;
 
@@ -77,11 +75,11 @@ export const Contact = styled.p`
   margin: 0.2rem 0 0;
   font-size: 0.12rem;
   line-height: 0.24rem;
-  color: #2E3236;
+  color: #2e3236;
   text-align: center;
 
   a {
-    color: #FE663B;
+    color: #fe663b;
     text-decoration: none;
   }
 `;

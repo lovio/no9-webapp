@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Image } from 'ui';
 import { initWechat } from 'actions/wx';
 
-import imgShareArrow from 'images/share-arrow.png';
+import imgShareArrow from './share-arrow.png';
 
 export const Container = styled.div`
   position: fixed;
@@ -14,7 +14,7 @@ export const Container = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,.7);
+  background: rgba(0, 0, 0, 0.7);
 
   img {
     position: fixed;
@@ -49,7 +49,7 @@ class ShareArrow extends Component {
     title: '',
     imgUrl: '',
     desc: '',
-  }
+  };
 
   static propTypes = {
     initWechat: PropTypes.func.isRequired,
