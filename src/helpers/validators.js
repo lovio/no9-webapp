@@ -1,6 +1,7 @@
 import size from 'lodash-es/size';
 import isEmailValidator from 'validator/lib/isEmail';
 import IDValidator from 'id-validator';
+import isNaN from 'lodash-es/isNaN';
 
 const Validator = new IDValidator();
 
@@ -54,5 +55,16 @@ export const checkCorrectScore = tip => (value) => {
 
 export const checkPasswordSame = password => (value) => {
   const tip = value !== password ? '两次密码不一致' : undefined;
+  return tip;
+};
+
+export const checkWithdrawAmount = cents => (value) => {
+  const yuan = cents / 100;
+  let tip;
+  if (isNaN(yuan) || value <= 0) {
+    tip = '请输入正确的取现金额';
+  } else if (yuan < value) {
+    tip = '可取现金额不足';
+  }
   return tip;
 };

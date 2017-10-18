@@ -65,7 +65,10 @@ export function* watchAddNewCardSuccess() {
         msg: '银行卡添加成功',
       }),
     );
-    history.push('/mine/cards');
+    history.push({
+      pathname: '/mine/cards',
+      search: history.location.search,
+    });
   }
 }
 

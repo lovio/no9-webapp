@@ -2,6 +2,7 @@ import { SubmissionError } from 'redux-form/immutable';
 import { showToastItem } from 'actions/common';
 import _values from 'lodash-es/values';
 import head from 'lodash-es/head';
+import noop from 'lodash-es/noop';
 // import flatMap from 'lodash-es/flatMap';
 
 export function onSubmitFail(errors, dispatch) {
@@ -16,8 +17,6 @@ export function onSubmitFail(errors, dispatch) {
 function throwSubmissionError(error) {
   throw new SubmissionError(error);
 }
-
-function noop() {}
 
 export function submit(submitFunc, success = noop, failure = throwSubmissionError) {
   return values =>

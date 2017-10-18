@@ -16,3 +16,8 @@ export const updateProfileFailure = createAction('UPDATE_PROFILE_FAILURE');
 
 export const loadRelations = createAction('LOAD_RELATIONS');
 export const relations = createFetchActions('RELATIONS');
+
+export const chooseCard = createAction('CHOOSE_CARD');
+
+export const withdraw = createAction('WITHDRAW');
+export const withdrawSuccess = createAction('WITHDRAW_SUCCESS');

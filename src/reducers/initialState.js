@@ -32,5 +32,6 @@ export default Immutable.fromJS({
       isLoading: false,
       data: {},
     },
+    card: 0,
   },
 });

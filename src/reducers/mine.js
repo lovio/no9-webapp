@@ -16,6 +16,13 @@ export default combineReducers({
     },
     initialState.getIn(['mine', 'cards']),
   ),
+  card: handleActions(
+    {
+      [actions.chooseCard]: (state, { payload }) => payload,
+      [actions.withdrawSuccess]: () => initialState.getIn(['mine', 'card']),
+    },
+    initialState.getIn(['mine', 'card']),
+  ),
   records: handleActions(
     {
       [orderActions.loadRecords]: () => Immutable.List(),

@@ -79,16 +79,24 @@ class Cards extends Component {
     }));
 
   render() {
-    const { cards, removeCard } = this.props;
+    const { cards, removeCard, action, chooseCard } = this.props;
     return (
       <Container>
         <Helmet>
-          <title>提现账户</title>
+          <title>{action === 'withdraw' ? '选择银行卡' : '提现账户'}</title>
         </Helmet>
         {cards.map((card) => {
           const cardNo = card.get('cardNo');
           return (
-            <Card key={card.get('id')}>
+            <Card
+              key={card.get('id')}
+              onClick={() => {
+                if (action === 'withdraw' && !this.state.inManagement) {
+                  chooseCard(card.get('id'));
+                  history.push('/mine/withdraw');
+                }
+              }}
+            >
               <BankIcon src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
               <p>
                 {card.get('name')} | 尾号{cardNo.substr(cardNo.length - 4)}
@@ -99,7 +107,13 @@ class Cards extends Component {
             </Card>
           );
         })}
-        <AddCard onClick={() => history.push('/mine/cards/new')}>
+        <AddCard
+          onClick={() =>
+            history.push({
+              pathname: '/mine/cards/new',
+              search: history.location.search,
+            })}
+        >
           <img src={imgAdd} alt="" />
           添加银行卡
         </AddCard>
@@ -117,6 +131,8 @@ Cards.propTypes = {
   loadCards: PropTypes.func.isRequired,
   cards: PropTypes.object.isRequired,
   removeCard: PropTypes.func.isRequired,
+  chooseCard: PropTypes.func.isRequired,
+  action: PropTypes.string.isRequired,
 };
 
 export default Cards;

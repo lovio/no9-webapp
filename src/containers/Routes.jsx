@@ -22,6 +22,7 @@ import Cards from './mine/cards';
 import NewCard from './mine/newCard';
 import Profile from './mine/profile';
 import Relations from './mine/relations';
+import Withdraw from './mine/withdraw';
 
 export default function Routes() {
   return (
@@ -36,6 +37,7 @@ export default function Routes() {
           <Route exact path="/resetpwd" component={ResetPwd} />
           <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
           <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
+          <Route exact path="/mine/withdraw" component={AuthenticatedHOC(Withdraw)} />
           <Route exact path="/mine/cards" component={AuthenticatedHOC(Cards)} />
           <Route exact path="/mine/cards/new" component={AuthenticatedHOC(NewCard)} />
           <Route exact path="/mine/profile" component={AuthenticatedHOC(Profile)} />
