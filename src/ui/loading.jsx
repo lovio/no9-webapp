@@ -20,15 +20,13 @@ const Container = styled.div`
 export default function Loading({ type, color }) {
   return (
     <Container>
-      {
-        type === 'NORMAL' ? (
-          <div>
-            <img src={imgLoading} alt="" />
-          </div>
-        ) : (
-          <span style={{ color }}>正在加载...</span>
-        )
-      }
+      {type === 'NORMAL' ? (
+        <div>
+          <img src={imgLoading} alt="" />
+        </div>
+      ) : (
+        <span style={{ color }}>正在加载...</span>
+      )}
     </Container>
   );
 }

@@ -9,6 +9,7 @@ import { isEmail, isIDCard } from '../helpers/validators';
 
 const requestCards = fetchEntity.bind(null, actions.cards, apis.getCards);
 const requestRemoveCard = fetchEntity.bind(null, actions.cardRemove, apis.removeCard);
+const requestRelations = fetchEntity.bind(null, actions.relations, apis.getDescendants);
 
 // 获取用户信息
 function* loadCards({ payload }) {
@@ -17,6 +18,15 @@ function* loadCards({ payload }) {
 
 export function* watchLoadCards() {
   yield takeEvery(actions.loadCards, loadCards);
+}
+
+// 获取用户信息
+function* loadRelations({ payload }) {
+  yield call(requestRelations, payload || {}, true);
+}
+
+export function* watchLoadRelations() {
+  yield takeEvery(actions.loadRelations, loadRelations);
 }
 
 function* addNewCard({ payload }) {

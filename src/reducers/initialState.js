@@ -28,5 +28,9 @@ export default Immutable.fromJS({
   mine: {
     cards: [],
     records: [],
+    relations: {
+      isLoading: false,
+      data: {},
+    },
   },
 });

@@ -8,7 +8,7 @@ import QRCode from 'qrcode.react';
 import imgInviteBg from './invite-bg.jpg';
 
 function getInviteUrl(referrerCode) {
-  return `${location.origin}/#/login?referrerCode=${referrerCode}`;
+  return `${location.origin}/#/signup?referrerCode=${referrerCode}`;
 }
 
 const Container = styled.div`

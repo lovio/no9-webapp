@@ -23,4 +23,21 @@ export default combineReducers({
     },
     initialState.getIn(['mine', 'records']),
   ),
+  relations: combineReducers({
+    data: handleActions(
+      {
+        [actions.loadRelations]: () => Immutable.Map(),
+        [actions.relations.success]: (state, { payload }) => fromJS(payload),
+      },
+      initialState.getIn(['mine', 'relations', 'data']),
+    ),
+    isLoading: handleActions(
+      {
+        [actions.relations.request]: () => true,
+        [actions.relations.success]: () => false,
+        [actions.relations.failure]: () => false,
+      },
+      initialState.getIn(['mine', 'relations', 'isLoading']),
+    ),
+  }),
 });

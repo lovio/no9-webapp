@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const bgColor = 'background-color: #F4F3F3;';
+export const bgColor = 'background-color: #F4F3F3;';
 const footerHeight = '0.5rem';
 
 export { Button } from './button';

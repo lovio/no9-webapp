@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_SERVER } from '../../config.json';
 
-axios.defaults.baseURL = `${API_SERVER}/usr`;
+axios.defaults.baseURL = `${API_SERVER}`;
 
 function checkStatus(response) {
   if (response.status < 400) {
@@ -116,6 +116,8 @@ export const removeCard = ({ id, ...rest }) => del(`/users/cards/${id}`, rest);
 export const updateProfile = data => put('/users', data);
 
 export const getRecords = data => get('/records', data);
+
+export const getDescendants = data => get('/target/descendants', data);
 // ****************************************************************************************8
 
 // auth

@@ -56,7 +56,7 @@ const Menu = () => (
         </Icon>
         实名信息
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/relations')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>
