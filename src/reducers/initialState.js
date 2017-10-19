@@ -25,6 +25,10 @@ export default Immutable.fromJS({
     cities: [],
     zones: [],
   },
+  order: {
+    isLoading: false,
+    data: {},
+  },
   mine: {
     cards: [],
     records: [],

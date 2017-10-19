@@ -11,6 +11,18 @@ import { fetchEntity } from './utils';
 // const requestNewOrder = fetchEntity.bind(null, actions.newOrder, apis.postNewOrders);
 const requestPayment = fetchEntity.bind(null, actions.payment, apis.getPaymentPkg);
 const requestRecords = fetchEntity.bind(null, actions.records, apis.getRecords);
+const requestOrder = fetchEntity.bind(null, actions.order, apis.getOrder);
+
+function* loadOrder(payload) {
+  yield call(requestOrder, payload, true);
+}
+
+export function* watchLoadOrder() {
+  for (;;) {
+    const { payload } = yield take(actions.loadOrder);
+    yield fork(loadOrder, payload);
+  }
+}
 
 function* loadRecords({ type }) {
   const pagination = yield select(state => state.getIn(['pagination', 'records']));
@@ -39,15 +51,14 @@ export function* watchLoadMorePhotos() {
   }
 }
 
-function* pay(charge) {
+function* pay(charge, orderId) {
   const { status } = yield call(createPayment, charge);
   if (status === 'fail') {
     yield put(showToastItem('支付失败'));
   } else if (status === 'success') {
     yield put(showToastItem({ type: 'success', msg: '支付成功' }));
     history.push({
-      pathname: '/orders/success',
-      search: history.location.search,
+      pathname: `/orders/success?orderId=${orderId}`,
     });
   }
 }
@@ -68,7 +79,7 @@ export function* watchCreateNewOrder() {
       if (error) {
         yield put(showToastItem('获取支付凭证失败'));
       } else {
-        yield call(pay, response.credential);
+        yield call(pay, response.credential, response.id);
       }
     } else {
       yield put(

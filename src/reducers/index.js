@@ -7,6 +7,7 @@ import common from './common';
 import user from './user';
 import extra from './extra';
 import mine from './mine';
+import order from './order';
 
 const rootReducer = combineReducers({
   common,
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
   extra,
   mine,
   pagination,
-  // payment,
+  order,
   form: formReducer,
 });
 

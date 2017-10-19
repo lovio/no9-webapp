@@ -105,6 +105,7 @@ export const getUserInfo = data => get('/sessions', data);
 // 获取支付pkg
 export const postNewOrders = data => post('/orders', data);
 export const getPaymentPkg = data => get('/orders/payment', data);
+export const getOrder = ({ id, ...rest }) => get(`/orders/${id}`, rest);
 
 export const getCities = data => get('/cities', data);
 export const getZones = data => get('/zones', data);

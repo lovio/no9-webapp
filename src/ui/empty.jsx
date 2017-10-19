@@ -40,5 +40,5 @@ Empty.propTypes = {
 };
 
 Empty.defaultProps = {
-  type: '404',
+  type: 'no-content',
 };

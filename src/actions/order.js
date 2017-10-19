@@ -10,3 +10,10 @@ export const payment = createFetchActions('PAYMENT');
 export const loadRecords = createAction('LOAD_RECORDS');
 export const loadMoreRecords = createAction('LOAD_MORE_RECORDS');
 export const records = createFetchActions('RECORDS');
+
+export const loadOrders = createAction('LOAD_ORDERS');
+export const loadMoreOrders = createAction('LOAD_MORE_ORDERS');
+export const orders = createFetchActions('ORDERFS');
+
+export const loadOrder = createAction('LOAD_ORDER');
+export const order = createFetchActions('ORDERF');

@@ -130,6 +130,6 @@ WithdrawView.propTypes = {
 };
 
 export default reduxForm({
-  form: 'resetPwd',
+  form: 'withdraw',
   onSubmitFail,
 })(WithdrawView);

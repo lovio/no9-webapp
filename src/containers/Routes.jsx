@@ -14,7 +14,8 @@ import Mine from './mine';
 import Invite from './mine/invite';
 import Zone from './zone';
 import Product from './product';
-import Order from './order';
+import NewOrder from './order/new';
+import OrderSuccess from './order/success';
 import Records from './mine/records';
 
 // mine
@@ -45,7 +46,8 @@ export default function Routes() {
           <Route exact path="/mine/relations" component={AuthenticatedHOC(Relations)} />
           <Route exact path="/products" component={AuthenticatedHOC(Product)} />
           <Route exact path="/zones" component={AuthenticatedHOC(Zone)} />
-          <Route exact path="/orders/new" component={AuthenticatedHOC(Order)} />
+          <Route exact path="/orders/new" component={AuthenticatedHOC(NewOrder)} />
+          <Route exact path="/orders/success" component={AuthenticatedHOC(OrderSuccess)} />
         </Switch>
       </Overflow>
       <Route exact path="/" component={FooterView} />
