@@ -32,6 +32,7 @@ app.use(
     maxAge: 31536000,
   }),
 );
+app.use(helmet.noCache());
 
 app.get(`/MP_verify_${config.WX_VERIFY_ID}.txt`, (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
