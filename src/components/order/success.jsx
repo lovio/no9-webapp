@@ -30,7 +30,7 @@ const StartTime = styled.p`
   padding-bottom: 0.4rem;
 `;
 
-const Block = styled.p`
+const Block = styled.div`
   padding: 0.05rem 0;
   border-bottom: 1px solid #dbdcdd;
 

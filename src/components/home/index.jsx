@@ -10,6 +10,8 @@ import IconBill from './bill.svg';
 import IconRelation from './relation.svg';
 import IconTransfer from './transfer.svg';
 
+const Container = styled.div`user-select: none;`;
+
 const Head = styled.div`
   padding: 0.15rem 0;
   background-color: #e01053;
@@ -102,7 +104,7 @@ const SubHead = styled.div`
 
 export default function HomeView({ user }) {
   return (
-    <div>
+    <Container>
       <Head>
         <P1>昨日收益（元）</P1>
         <P2>{dealNumber(0)}</P2>
@@ -185,7 +187,7 @@ export default function HomeView({ user }) {
         </Tool>
       </Tools>
       <Banner src={imgBanner} alt="" />
-    </div>
+    </Container>
   );
 }
 
