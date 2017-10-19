@@ -175,7 +175,7 @@ export default function HomeView({ user }) {
           <IconBill />
           <p>收支明细</p>
         </Tool>
-        <Tool>
+        <Tool onClick={() => history.push('/mine/withdraw')}>
           <IconTransfer />
           <p>提现</p>
         </Tool>
