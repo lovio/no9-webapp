@@ -10,9 +10,9 @@ import * as commonSagas from './common';
 import * as orderSagas from './order';
 import * as extraSagas from './extra';
 import * as userSagas from './user';
-// import * as wxSagas from './wx';
+import * as wxSagas from './wx';
 // import * as mittSagas from './mitt';
-// import * as startupSagas from './startup';
+import * as startupSagas from './startup';
 
 const composeSagas = sagasArr => all(map(flatMap(sagasArr, values), fork));
 
@@ -23,9 +23,9 @@ export default function* root() {
     commonSagas,
     orderSagas,
     extraSagas,
-    // wxSagas,
+    wxSagas,
     // mittSagas,
     // 顺序是很重要的
-    // startupSagas,
+    startupSagas,
   ]);
 }

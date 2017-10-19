@@ -17,7 +17,7 @@ const bs = browserSync.create();
 
 // Run Browsersync and use middleware for Hot Module Replacement
 bs.init({
-  port: 3000,
+  port: 80,
   ui: {
     port: 3001,
   },

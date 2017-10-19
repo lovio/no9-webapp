@@ -1,17 +1,13 @@
-import { take, put, call, fork, select, takeEvery } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { take, call, fork, select, put, takeEvery } from 'redux-saga/effects';
 import qs from 'qs';
+import history, { getSafePath } from 'helpers/history';
 import { inWechat } from 'helpers/ua';
 
 import assign from 'lodash-es/assign';
 import isEmpty from 'lodash-es/isEmpty';
-import isArray from 'lodash-es/isArray';
 import pickBy from 'lodash-es/pickBy';
-import last from 'lodash-es/last';
 
 import * as actions from 'actions/wx';
-import * as commonActions from 'actions/common';
-import * as userActions from 'actions/user';
 import * as wxHelper from 'helpers/wx';
 import * as apis from 'helpers/api';
 import { fetchEntity } from './utils';
@@ -20,7 +16,7 @@ import { site, STATIC_PREFIX } from '../../config.json';
 
 // const cacheURLForIOS = location.href.split('#')[0];
 
-const requestUploadAvatar = fetchEntity.bind(null, userActions.avatarUpload, apis.uploadHeadImage);
+const requestOpenID = fetchEntity.bind(null, actions.openid, apis.getOpenID);
 
 // 跳转获取code
 export function* watchCode() {
@@ -29,6 +25,32 @@ export function* watchCode() {
     if (inWechat) {
       yield fork(wxHelper.transferCode, payload || {});
     }
+  }
+}
+
+function* getOpenID(payload) {
+  yield call(requestOpenID, payload);
+}
+
+export function* watchGetOpenIDByCode() {
+  for (;;) {
+    const { payload } = yield take(actions.getOpenIDByCode);
+    yield call(getOpenID, payload);
+  }
+}
+
+export function* watchOpenIDSuccess() {
+  for (;;) {
+    yield take(actions.openid.success);
+    history.replace(getSafePath());
+  }
+}
+
+export function* watchOpenIDFailure() {
+  for (;;) {
+    yield take(actions.openid.failure);
+    history.replace(getSafePath());
+    yield put(actions.transferCode());
   }
 }
 
@@ -92,69 +114,4 @@ function* initiWechat({ payload }) {
 // use takeEvery to ensure trigger everytime
 export function* watchInitWechat() {
   yield takeEvery(actions.initWechat, initiWechat);
-}
-
-export function* watchUploadAvatar() {
-  for (;;) {
-    yield take(userActions.uploadAvatar);
-    if (inWechat) {
-      try {
-        const localId = yield call(wxHelper.chooseImage);
-        if (localId) {
-          yield put(userActions.loadWechatImage(localId));
-          yield call(delay, 100);
-          const mediaId = yield call(wxHelper.uploadImage, localId);
-          yield call(requestUploadAvatar, { mediaId }, true);
-        }
-      } catch (e) {
-        yield put(commonActions.showToastItem('上传图片错误'));
-      }
-    }
-  }
-}
-
-export function* watchUploadAvatarSuccess() {
-  for (;;) {
-    yield take(userActions.avatarUpload.success);
-    yield put(commonActions.showToastItem({ type: 'success', msg: '上传图片成功' }));
-    yield put(userActions.loadUserInfo());
-  }
-}
-
-export function* watchUserDataLoadedAndShare() {
-  for (;;) {
-    yield take(userActions.userInfoLoaded);
-    yield put(actions.initWechat({ type: 'share' }));
-  }
-}
-
-export function* watchCheckinWithDataLoadedAndShare() {
-  for (;;) {
-    yield take(userActions.checkin.success);
-    yield put(actions.initWechat({ type: 'share' }));
-  }
-}
-
-export function* watchUploadShareStatsSuccess() {
-  for (;;) {
-    const { payload } = yield take(userActions.shareStats.success);
-    if (payload.isPoint) {
-      const { point, pointDescription, medal } = payload;
-      const modalData = {
-        type: 'credits',
-        data: {
-          point,
-          desc: isArray(pointDescription) ? last(pointDescription) : pointDescription,
-        },
-        willHide: true,
-      };
-      if (medal) {
-        modalData.next = {
-          type: 'medal',
-          id: medal,
-        };
-      }
-      yield put(commonActions.showModal(modalData));
-    }
-  }
 }

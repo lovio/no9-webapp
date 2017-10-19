@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import path from 'path';
-import WebpackMd5Hash from 'webpack-md5-hash';
 
 import nodeExternals from 'webpack-node-externals';
 
@@ -14,10 +13,7 @@ const GLOBALS = {
 
 export default {
   resolve: {
-    modules: [
-      path.join(__dirname, '../src'),
-      'node_modules',
-    ],
+    modules: [path.join(__dirname, '../src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
     alias: {
       ui: path.join(__dirname, '../src/ui'),
@@ -32,7 +28,6 @@ export default {
     libraryTarget: 'commonjs2',
   },
   plugins: [
-    new WebpackMd5Hash(),
     new webpack.DefinePlugin(GLOBALS), // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
   ],
   module: {
@@ -41,21 +36,29 @@ export default {
         test: /\.jsx?$/,
         include: path.join(__dirname, '../src'),
         use: ['babel-loader', 'eslint-loader'],
-      }, {
+      },
+      {
         test: /\.(ico|jpe?g|png|gif|woff|eot|ttf)\??.*$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[sha512:hash:base64:7].[ext]',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[sha512:hash:base64:7].[ext]',
+            },
           },
-        }],
-      }, {
+        ],
+      },
+      {
         test: /\.svg$/,
-        use: ['svg-sprite-loader', {
-          loader: 'svgo-loader',
-          options: svgoConfig,
-        }],
-      }, {
+        use: [
+          'svg-sprite-loader',
+          {
+            loader: 'svgo-loader',
+            options: svgoConfig,
+          },
+        ],
+      },
+      {
         test: /\.pug$/,
         use: ['pug-loader'],
       },

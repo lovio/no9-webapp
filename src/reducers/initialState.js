@@ -30,6 +30,7 @@ export default Immutable.fromJS({
     data: {},
   },
   mine: {
+    openid: '',
     cards: [],
     records: [],
     relations: {

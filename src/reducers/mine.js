@@ -1,12 +1,21 @@
 import { combineReducers } from 'redux-immutable';
 import Immutable, { fromJS } from 'immutable';
 import { handleActions } from 'redux-actions';
+import get from 'lodash-es/get';
 
+import * as wxActions from '../actions/wx';
 import * as actions from '../actions/user';
 import * as orderActions from '../actions/order';
 import initialState from './initialState';
 
 export default combineReducers({
+  openid: handleActions(
+    {
+      [wxActions.getOpenIDByCode]: () => '',
+      [wxActions.openid.success]: (state, { payload }) => get(payload, 'openid'),
+    },
+    initialState.getIn(['mine', 'openid']),
+  ),
   cards: handleActions(
     {
       [actions.loadCards]: () => Immutable.List(),

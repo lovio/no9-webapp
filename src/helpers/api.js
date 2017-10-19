@@ -119,6 +119,8 @@ export const updateProfile = data => put('/users', data);
 export const getRecords = data => get('/records', data);
 
 export const getDescendants = data => get('/target/descendants', data);
+
+export const getOpenID = data => get('/wechat/code', data);
 // ****************************************************************************************8
 
 // auth

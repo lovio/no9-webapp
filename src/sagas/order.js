@@ -66,7 +66,7 @@ export function* watchCreateNewOrder() {
     const { payload: { cityId, product } } = yield take(actions.createNewOrder);
     const user = yield select(state => state.get('user'));
     if (user.get('name') && user.get('IDCardNo')) {
-      const openid = user.get('openid') || 'oDCCVuIQeIug7Gx4OHIOsjrUWFFY';
+      const openid = yield select(state => state.getIn(['mine', 'openid']));
       const token = yield select(state => state.getIn(['user', 'token']));
       const { response, error } = yield call(apis.postNewOrders, {
         openid,
