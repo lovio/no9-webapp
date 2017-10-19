@@ -98,7 +98,11 @@ class RelationView extends Component {
           {descendants.map(u => (
             <Item
               key={u.get('id')}
-              onClick={() => history.push(`/mine/relations?userId=${u.get('id')}`)}
+              onClick={() => {
+                if (depth <= 3) {
+                  history.push(`/mine/relations?userId=${u.get('id')}`);
+                }
+              }}
             >
               {maskName(u.get('name')) || maskPhone(u.get('phone'))}{' '}
               <Money>累计{dealNumber(u.get('validPaid') * rate) || 0}元</Money>

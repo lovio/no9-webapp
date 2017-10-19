@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import history from 'helpers/history';
 import { reduxForm, propTypes, Form, Field } from 'redux-form/immutable';
 import Helmet from 'react-helmet';
+import addDays from 'date-fns/add_days';
+import format from 'date-fns/format';
 
 import { onSubmitFail, submit } from 'helpers/form';
 import Input from 'ui/input/input';
@@ -21,7 +23,7 @@ const FieldContainer = styled.div`
 `;
 
 const SubmitContainer = styled.div`
-  padding: 0.12rem 0.2rem;
+  padding: 0 0.2rem;
   text-align: center;
   p {
     /* 未注册的手机号码将自动创建账户: */
@@ -108,11 +110,13 @@ const WithdrawView = (props) => {
             type="number"
           />
         </FieldContainer>
+        <Tip>手续费：0.6%</Tip>
         <SubmitContainer>
           <Button type="submit" disabled={pristine || submitting}>
             确认取现
           </Button>
         </SubmitContainer>
+        <Tip>预计到账时间：{format(addDays(new Date(), 7), 'YYYY年MM月DD')}</Tip>
       </Form>
     </div>
   );
