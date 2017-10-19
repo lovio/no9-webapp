@@ -1,5 +1,5 @@
 import { take, call, select, put, fork } from 'redux-saga/effects';
-// import history, { redirect } from 'helpers/history';
+import history from 'helpers/history';
 
 // import { HOME_PATH } from 'constants/constants.json';
 import * as actions from 'actions/order';
@@ -45,6 +45,10 @@ function* pay(charge) {
     yield put(showToastItem('支付失败'));
   } else if (status === 'success') {
     yield put(showToastItem({ type: 'success', msg: '支付成功' }));
+    history.push({
+      pathname: '/orders/success',
+      search: history.location.search,
+    });
   }
 }
 
