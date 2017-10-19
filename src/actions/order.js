@@ -13,7 +13,7 @@ export const records = createFetchActions('RECORDS');
 
 export const loadOrders = createAction('LOAD_ORDERS');
 export const loadMoreOrders = createAction('LOAD_MORE_ORDERS');
-export const orders = createFetchActions('ORDERFS');
+export const orders = createFetchActions('ORDERS');
 
 export const loadOrder = createAction('LOAD_ORDER');
-export const order = createFetchActions('ORDERF');
+export const order = createFetchActions('ORDER');

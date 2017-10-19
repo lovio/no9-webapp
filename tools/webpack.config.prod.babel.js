@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import path from 'path';
-import WebpackMd5Hash from 'webpack-md5-hash';
 // import HtmlWebpackPlugin from 'html-webpack-plugin';
 import AssetsPlugin from 'assets-webpack-plugin';
 // import CopyWebpackPlugin from 'copy-webpack-plugin';
@@ -57,7 +56,7 @@ export default {
     //     from: path.join(__dirname, '../src/images/logo.jpg'),
     //   },
     // ]),
-    new WebpackMd5Hash(),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
       filename: '[name].[chunkhash:8].js',

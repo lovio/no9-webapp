@@ -11,7 +11,6 @@ export function maskName(name) {
 
 /* eslint-disable */
 export function dealNumber(cents) {
-  console.log(cents);
   if (cents) {
     const money = String(cents / 100);
     const left = money.split('.')[0];

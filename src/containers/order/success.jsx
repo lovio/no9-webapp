@@ -27,7 +27,7 @@ function mapStateToProps(state, props) {
     orderId: orderIdSelector(state, props),
     order: orderSelector(state),
     isLoading: isLoadingSelector(state),
-    user: state.getIn(['user']),
+    user: state.get('user'),
     product: productSelector(state, props),
   };
 }
