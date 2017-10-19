@@ -55,13 +55,17 @@ export function* watchCreateNewOrder() {
     if (user.get('name') && user.get('IDCardNo')) {
       const openid = user.get('openid') || 'oDCCVuIQeIug7Gx4OHIOsjrUWFFY';
       const token = yield select(state => state.getIn(['user', 'token']));
-      const { response } = yield call(apis.postNewOrders, {
+      const { response, error } = yield call(apis.postNewOrders, {
         openid,
         cityId,
         productId: product.get('id'),
         token,
       });
-      yield call(pay, response.credential);
+      if (error) {
+        yield put(showToastItem('获取支付凭证失败'));
+      } else {
+        yield call(pay, response.credential);
+      }
     } else {
       yield put(
         showConfirm({
