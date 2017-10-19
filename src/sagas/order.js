@@ -57,9 +57,7 @@ function* pay(charge, orderId) {
     yield put(showToastItem('支付失败'));
   } else if (status === 'success') {
     yield put(showToastItem({ type: 'success', msg: '支付成功' }));
-    history.push({
-      pathname: `/orders/success?orderId=${orderId}`,
-    });
+    history.push(`/orders/success?orderId=${orderId}`);
   }
 }
 

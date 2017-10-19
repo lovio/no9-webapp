@@ -6,7 +6,7 @@ import Empty from 'ui/empty';
 import addDays from 'date-fns/add_days';
 import format from 'date-fns/format';
 import { dealNumber } from 'helpers/string';
-import { DONE_STATUS, PRODUCT_NAME } from 'constants/constants.json';
+import { ORDER_DONE, ORDER_INIT, PRODUCT_NAME } from 'constants/constants.json';
 
 const OrderContainer = styled.div`
   background-color: white;
@@ -28,6 +28,7 @@ const StartTime = styled.p`
   color: #4a4a4a;
   line-height: 0.2rem;
   padding-bottom: 0.4rem;
+  padding-right: 0.2rem;
 `;
 
 const Block = styled.div`
@@ -79,15 +80,19 @@ class OrderSuccessView extends Component {
     if (!order.has('id')) {
       return <Empty />;
     }
-    console.log(order, user, product);
     return (
       <div>
         <OrderContainer>
-          <SuccessTip>支付成功！</SuccessTip>
+          <SuccessTip>
+            {order.get('status') === ORDER_INIT && '已支付'}
+            {order.get('status') !== ORDER_INIT && '支付成功'}
+          </SuccessTip>
           <StartTime>
-            {order.get('status') === DONE_STATUS
-              ? `恭喜您，${format(addDays(new Date(order.get('doneAt')), 7), 'YYYY年MM月DD')}`
-              : '订单全部支付完成时'}开始获得收益。
+            {order.get('status') === ORDER_INIT
+              ? '最终支付结果可能会有一些延迟，请耐心等待'
+              : order.get('status') === ORDER_DONE
+                ? `恭喜您，${format(addDays(new Date(order.get('doneAt')), 7), 'YYYY年MM月DD')}开始获得收益。`
+                : '订单全部支付完成时开始获得收益。'}
           </StartTime>
           <Block>
             <Intro isBold>

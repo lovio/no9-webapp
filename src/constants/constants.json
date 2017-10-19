@@ -28,5 +28,6 @@
     "3": 0.05,
     "4": 0.03
   },
-  "DONE_STATUS": 60
+  "ORDER_DONE": 60,
+  "ORDER_INIT": 1
 }
