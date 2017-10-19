@@ -20,8 +20,7 @@ import { site, STATIC_PREFIX } from '../../config.json';
 
 // const cacheURLForIOS = location.href.split('#')[0];
 
-const requestUploadAvatar =
-  fetchEntity.bind(null, userActions.avatarUpload, apis.uploadHeadImage);
+const requestUploadAvatar = fetchEntity.bind(null, userActions.avatarUpload, apis.uploadHeadImage);
 
 // 跳转获取code
 export function* watchCode() {
@@ -41,23 +40,21 @@ const jsApiMapping = {
     'onMenuShareWeibo',
     'onMenuShareQZone',
   ],
-  image: [
-    'chooseImage',
-    'uploadImage',
-    'previewImage',
-    'downloadImage',
-  ],
+  image: ['chooseImage', 'uploadImage', 'previewImage', 'downloadImage'],
 };
 
 function* getWXData(payload) {
   if (payload.type === 'share') {
     const userId = yield select(state => state.getIn(['user', 'info', 'userId']));
-    return assign({
-      link: `${site.zhanToefl}/#/share?${qs.stringify({ userId })}`,
-      title: '智课斩托福',
-      imgUrl: `http:${STATIC_PREFIX}logo.jpg`,
-      desc: '托福大杀器！备考黑科技！',
-    }, pickBy(payload.data));
+    return assign(
+      {
+        link: `${site.zhanToefl}/#/share?${qs.stringify({ userId })}`,
+        title: '智课斩托福',
+        imgUrl: `http:${STATIC_PREFIX}logo.jpg`,
+        desc: '托福大杀器！备考黑科技！',
+      },
+      pickBy(payload.data),
+    );
   }
   return {};
 }
@@ -97,9 +94,8 @@ export function* watchInitWechat() {
   yield takeEvery(actions.initWechat, initiWechat);
 }
 
-
 export function* watchUploadAvatar() {
-  for (; ;) {
+  for (;;) {
     yield take(userActions.uploadAvatar);
     if (inWechat) {
       try {
@@ -118,7 +114,7 @@ export function* watchUploadAvatar() {
 }
 
 export function* watchUploadAvatarSuccess() {
-  for (; ;) {
+  for (;;) {
     yield take(userActions.avatarUpload.success);
     yield put(commonActions.showToastItem({ type: 'success', msg: '上传图片成功' }));
     yield put(userActions.loadUserInfo());
@@ -126,21 +122,21 @@ export function* watchUploadAvatarSuccess() {
 }
 
 export function* watchUserDataLoadedAndShare() {
-  for (; ;) {
+  for (;;) {
     yield take(userActions.userInfoLoaded);
     yield put(actions.initWechat({ type: 'share' }));
   }
 }
 
 export function* watchCheckinWithDataLoadedAndShare() {
-  for (; ;) {
+  for (;;) {
     yield take(userActions.checkin.success);
     yield put(actions.initWechat({ type: 'share' }));
   }
 }
 
 export function* watchUploadShareStatsSuccess() {
-  for (; ;) {
+  for (;;) {
     const { payload } = yield take(userActions.shareStats.success);
     if (payload.isPoint) {
       const { point, pointDescription, medal } = payload;

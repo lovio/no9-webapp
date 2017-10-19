@@ -3,7 +3,7 @@ import path from 'path';
 import WebpackMd5Hash from 'webpack-md5-hash';
 // import HtmlWebpackPlugin from 'html-webpack-plugin';
 import AssetsPlugin from 'assets-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+// import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HappyPack from 'happypack';
 import svgoConfig from './svgo-config.json';
 
@@ -52,11 +52,11 @@ export default {
       NODE_ENV: 'production',
     }),
     // new webpack.DefinePlugin(GLOBALS), // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
-    new CopyWebpackPlugin([
-      {
-        from: path.join(__dirname, '../src/images/logo.jpg'),
-      },
-    ]),
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: path.join(__dirname, '../src/images/logo.jpg'),
+    //   },
+    // ]),
     new WebpackMd5Hash(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
