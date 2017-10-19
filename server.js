@@ -27,7 +27,11 @@ app.use(compression());
 app.engine('pug', pug.__express); // eslint-disable-line
 app.set('view engine', 'pug');
 app.set('views', `${__dirname}/views`);
-app.use(express.static(`${__dirname}/dist`));
+app.use(
+  express.static(`${__dirname}/dist`, {
+    maxAge: 31536000,
+  }),
+);
 
 app.get(`/MP_verify_${config.WX_VERIFY_ID}.txt`, (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
@@ -36,14 +40,16 @@ app.get(`/MP_verify_${config.WX_VERIFY_ID}.txt`, (req, res) => {
 });
 
 // 默认开启服务端渲染
-if (!config.disableSSR) {
-  const serverRenderMiddleware = require('./dist/serverRenderMiddleware.js'); // eslint-disable-line
-  app.use(serverRenderMiddleware);
-}
+// if (!config.disableSSR) {
+// const serverRenderMiddleware = require('./dist/serverRenderMiddleware.js');
+// eslint-disable-line
+//   app.use(serverRenderMiddleware);
+// }
 
 app.use((req, res) => {
   const inWechat = new RegExp('MicroMessenger', 'i').test(req.headers['user-agent']);
-  res.render('index', { inWechat, injectedData, serverRenderData: req.serverRenderData });
+  // res.render('index', { inWechat, injectedData, serverRenderData: req.serverRenderData });
+  res.render('index', { inWechat, injectedData });
 });
 
 app.listen(PORT, () => {

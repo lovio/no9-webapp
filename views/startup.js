@@ -1,14 +1,15 @@
+// 这个脚本是干哈呢?
 (function () {
-  var searchQuery = location.search.split('?')[1];
+  const searchQuery = location.search.split('?')[1];
   if (!searchQuery) {
     return;
   }
-  var hashQuery = location.hash.split('?')[1];
-  var newUrl = '//' + location.host + (location.hash ? location.hash : '/#/');
+  const hashQuery = location.hash.split('?')[1];
+  let newUrl = `//${location.host}${location.hash ? location.hash : '/#/'}`;
   if (!hashQuery) {
-    newUrl = newUrl + '?' + searchQuery;
+    newUrl = `${newUrl}?${searchQuery}`;
   } else if (searchQuery) {
-    newUrl =  newUrl + '&' + searchQuery;
+    newUrl = `${newUrl}&${searchQuery}`;
   }
   location.replace(newUrl);
-})();
+}());

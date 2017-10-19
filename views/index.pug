@@ -16,20 +16,20 @@ html(lang="zh", dir="ltr")
     script
       include flexible_css.js
       include flexible.js
-    //- if data && data.api
-    //-   link(rel="dns-prefetch", href=data.api.zhanToefl)
+    if data && data.API_SERVER
+      link(rel="dns-prefetch", href=data.API_SERVER)
     if data && data.sentry
       //- 因为在国外，很容易慢
       script(src="https://cdn.bootcss.com/raven.js/3.15.0/raven.min.js", crossorigin="anonymous")
       script(type="text/javascript").
         Raven.config("#{data.sentry}").install()
   body
-    if serverRenderData
-      #app= serverRenderData.content
-      script(type="text/javascript").
-        window.__INITIAL_STATE__ = !{serverRenderData.initialState};
-    if !serverRenderData
-      #app
+    //- if serverRenderData
+    //-   #app= serverRenderData.content
+    //-   script(type="text/javascript").
+    //-     window.__INITIAL_STATE__ = !{serverRenderData.initialState};
+    //- if !serverRenderData
+    #app
     if inWechat
       script(src="//res.wx.qq.com/open/js/jweixin-1.2.0.js", type="text/javascript", async)
     if data && data.assets
