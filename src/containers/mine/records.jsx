@@ -8,6 +8,8 @@ import { loadRecords, loadMoreRecords } from 'actions/order';
 import Tabs from 'components/mine/records/tabs';
 import RecordsView from 'components/mine/records';
 
+import { Artboard, Container, Overflow } from 'ui';
+
 class Records extends Component {
   static defaultProps = {
     type: '',
@@ -35,15 +37,19 @@ class Records extends Component {
   render() {
     const { type, records, pagination } = this.props;
     return (
-      <div>
-        <Tabs type={type} />
-        <RecordsView
-          records={records}
-          pagination={pagination}
-          loadMoreRecords={this.props.loadMoreRecords}
-          type={type}
-        />
-      </div>
+      <Artboard>
+        <Container>
+          <Tabs type={type} />
+          <Overflow>
+            <RecordsView
+              records={records}
+              pagination={pagination}
+              loadMoreRecords={this.props.loadMoreRecords}
+              type={type}
+            />
+          </Overflow>
+        </Container>
+      </Artboard>
     );
   }
 }
