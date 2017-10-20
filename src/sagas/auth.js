@@ -157,6 +157,13 @@ export function* watchSignUpSuccess() {
   }
 }
 
+export function* watchSignOut() {
+  for (;;) {
+    yield take(actions.signOut);
+    history.push('/login');
+  }
+}
+
 export function* watchResetPwdSuccess() {
   for (;;) {
     yield take(actions.resetPwdSuccess);
