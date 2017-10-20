@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import history from 'helpers/history';
 import { reduxForm, propTypes, Form, Field } from 'redux-form/immutable';
 import Helmet from 'react-helmet';
-import addDays from 'date-fns/add_days';
-import format from 'date-fns/format';
 
 import { onSubmitFail, submit } from 'helpers/form';
 import Input from 'ui/input/input';
@@ -66,9 +64,10 @@ const BankIcon = styled.img`
   height: 0.5rem;
 `;
 
+const TipBox = styled.div`padding: 0.1rem 0 0.1rem 0.25rem;`;
+
 const Tip = styled.p`
-  padding-left: 0.25rem;
-  line-height: 0.36rem;
+  line-height: 0.2rem;
   font-size: 0.12rem;
   color: #9b9b9b;
 `;
@@ -95,9 +94,10 @@ const WithdrawView = (props) => {
           <CardTip>请选择取现银行卡</CardTip>
         )}
       </Card>
-      <Tip>
-        {user.get('asset') ? '最小取现金额1000元，取现上限5万。' : '取现上限5万。'}您的可取现金额为{dealNumber(user.get('cash'))}元
-      </Tip>
+      <TipBox>
+        <Tip>{user.get('asset') ? '最小取现金额1000元，取现上限5万。' : '取现上限5万。'}</Tip>
+        <Tip>您的可取现金额为{dealNumber(user.get('cash'))}元</Tip>
+      </TipBox>
       <Form onSubmit={handleSubmit(submit(withdraw))}>
         <FieldContainer>
           <Field
@@ -110,13 +110,17 @@ const WithdrawView = (props) => {
             type="number"
           />
         </FieldContainer>
-        <Tip>手续费：0.6%</Tip>
+        <TipBox>
+          <Tip>手续费：0.6%</Tip>
+        </TipBox>
         <SubmitContainer>
           <Button type="submit" disabled={pristine || submitting}>
             确认取现
           </Button>
         </SubmitContainer>
-        <Tip>预计到账时间：{format(addDays(new Date(), 7), 'YYYY年MM月DD')}</Tip>
+        <TipBox>
+          <Tip>预计到账时间：7个工作日</Tip>
+        </TipBox>
       </Form>
     </div>
   );

@@ -20,7 +20,15 @@
   "RECORD_TYPE_MAPPINGS": {
     "withdraw": "提现",
     "allowance": "补贴收益",
-    "fee": "车位收益"
+    "fee": "车位收益",
+    "paid": "充值",
+    "debt": "产生负债（购买车位）",
+    "paydebt": "偿还债务"
+  },
+  "RECORD_STATUS_MAPPING": {
+    "10": "待审核",
+    "50": "处理中",
+    "100": "已完成"
   },
   "ALLOWANCE": {
     "1": 0.1,

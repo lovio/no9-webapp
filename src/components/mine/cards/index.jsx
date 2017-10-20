@@ -65,6 +65,9 @@ const DelButton = styled.img`
 `;
 
 class Cards extends Component {
+  static defaultProps = {
+    action: '',
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -132,7 +135,7 @@ Cards.propTypes = {
   cards: PropTypes.object.isRequired,
   removeCard: PropTypes.func.isRequired,
   chooseCard: PropTypes.func.isRequired,
-  action: PropTypes.string.isRequired,
+  action: PropTypes.string,
 };
 
 export default Cards;

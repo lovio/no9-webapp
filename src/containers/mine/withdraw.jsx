@@ -11,7 +11,11 @@ const cardSelector = createSelector(
     if (!cards.size) {
       return Map();
     }
-    return cards.find(card => card.get('id') === cardId);
+    const c = cards.find(card => card.get('id') === cardId);
+    if (c) {
+      return c;
+    }
+    return Map();
   },
 );
 

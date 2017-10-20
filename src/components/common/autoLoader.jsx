@@ -9,10 +9,9 @@ import Waypoint from 'react-waypoint';
 const LoadMore = styled.div`text-align: center;`;
 
 const Empty = styled.p`
-  margin-top: 0.4rem;
   text-align: center;
   font-size: 0.16rem;
-  line-height: 0.4rem;
+  line-height: 0.6rem;
   color: #4a4a4a;
 `;
 
@@ -23,7 +22,7 @@ class AutoLoader extends Component {
     const hasMore = pagination.get('hasMore');
     const isLoading = pagination.get('isLoading');
     if (!hasMore) {
-      return <Empty>暂无任何交易记录</Empty>;
+      return <Empty>已到最后一页</Empty>;
     }
     if (isLoading) {
       return <Loading />;

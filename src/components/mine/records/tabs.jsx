@@ -32,14 +32,25 @@ const TYPES = ['fee', 'allowance', 'withdraw'];
 
 const Tabs = ({ type }) => (
   <Container>
-    <Link isActive={!includes(TYPES, type)} onClick={() => history.replace('/mine/records')}>
+    <Link
+      isActive={!includes(TYPES, type)}
+      onClick={() => {
+        if (includes(TYPES, type)) {
+          history.replace('/mine/records');
+        }
+      }}
+    >
       <span>全部</span>
     </Link>
     {map(TYPES, recordType => (
       <Link
         key={recordType}
         isActive={type === recordType}
-        onClick={() => history.replace(`/mine/records?type=${recordType}`)}
+        onClick={() => {
+          if (type !== recordType) {
+            history.replace(`/mine/records?type=${recordType}`);
+          }
+        }}
       >
         <span>{RECORD_TYPE_MAPPINGS[recordType]}</span>
       </Link>

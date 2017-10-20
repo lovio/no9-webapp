@@ -13,8 +13,8 @@ export default function requireAuthentication(Component) {
       token: PropTypes.string,
       checkAuth: PropTypes.func.isRequired,
     };
-
-    componentWillMount() {
+    constructor(props) {
+      super(props);
       this.props.checkAuth();
     }
 

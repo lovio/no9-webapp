@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import imgLoading from './loading.gif';
 
 const Container = styled.div`
-  margin-top: 0.2rem;
+  margin-top: 0.1rem;
   text-align: center;
 
   img {

@@ -5,9 +5,14 @@ import styled from 'styled-components';
 
 import AutoLoader from 'components/common/autoLoader';
 
+import RecordItem from './record';
+
 const Container = styled.div`width: 100%;`;
 
-const Wrapper = ({ children }) => children;
+const Wrapper = styled.div`
+  background-color: white;
+  padding-left: 0.2rem;
+`;
 
 export default function RecordsView({ records, pagination, loadMoreRecords, type }) {
   return (
@@ -17,7 +22,7 @@ export default function RecordsView({ records, pagination, loadMoreRecords, type
       </Helmet>
       <Container>
         <AutoLoader pagination={pagination} loadMoreData={() => loadMoreRecords({ type })}>
-          <Wrapper>{records.map(r => <div key={r.get('id')}>{r.get('amount')}</div>)}</Wrapper>
+          <Wrapper>{records.map(r => <RecordItem key={r.get('id')} record={r} />)}</Wrapper>
         </AutoLoader>
       </Container>
     </div>

@@ -5,7 +5,7 @@ import history from 'helpers/history';
 
 import imgRedCar from './redCar.png';
 import imgBlueCar from './blueCar.png';
-import imgMore from './more.png';
+// import imgMore from './more.png';
 
 const Container = styled.div`
   background-color: white;
@@ -50,15 +50,15 @@ const SoldOut = styled.span`
   color: #818b96;
 `;
 
-const More = styled.span`
-  float: right;
-  line-height: 0.2rem;
-  padding: 0.15rem 0.2rem;
-  img {
-    width: 0.12rem;
-    height: 0.2rem;
-  }
-`;
+// const More = styled.span`
+//   float: right;
+//   line-height: 0.2rem;
+//   padding: 0.15rem 0.2rem;
+//   img {
+//     width: 0.12rem;
+//     height: 0.2rem;
+//   }
+// `;
 
 class ZoneView extends Component {
   static propTypes = {
@@ -112,9 +112,9 @@ class ZoneView extends Component {
             <Item key={zone.get('id')}>
               {zone.get('name')}
               {zone.get('remain') === 0 && <SoldOut>车位已售罄</SoldOut>}
-              <More>
+              {/* <More>
                 <img src={imgMore} alt="" />
-              </More>
+              </More> */}
             </Item>
           ))}
         </Container>

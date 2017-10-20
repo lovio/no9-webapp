@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Button from 'ui/button';
 import map from 'lodash/map';
 import products from 'constants/products.json';
+import addDays from 'date-fns/add_days';
+import format from 'date-fns/format';
 
 const Container = styled.div`padding: 0.1rem 0.2rem;`;
 
@@ -79,7 +81,7 @@ const Intro = () => (
         <Content>
           {product.desc}
           <Time>
-            <span>开始收益时间</span> {product.time}
+            <span>开始收益时间</span> {format(addDays(new Date(), 7), 'YYYY年MM月DD')}
           </Time>
           <Link to={`/orders/new?paymentId=${product.id}`}>
             <Button>确认购买</Button>
