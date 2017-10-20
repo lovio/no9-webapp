@@ -81,7 +81,8 @@ class RelationView extends Component {
     if (!relations.get('data').size || !descendants.size) {
       return <Empty type="no-content" />;
     }
-    const depth = user.get('level') - me.get('level');
+    const targetLevel = user.get('level') + 1;
+    const depth = targetLevel - me.get('level');
     const isFrozen = me.get('carportsCount') === 0 && depth < me.get('grade');
     const rate = ALLOWANCE[depth];
     return (
