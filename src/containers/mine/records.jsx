@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { getSearch } from 'helpers/history';
+import { getUserInfo } from 'actions/auth';
 
 import { loadRecords, loadMoreRecords } from 'actions/order';
 
@@ -24,11 +25,14 @@ class Records extends Component {
     loadMoreRecords: PropTypes.func.isRequired,
     pagination: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    getUserInfo: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     props.loadRecords({ type: props.type });
+
+    props.getUserInfo();
   }
 
   componentDidUpdate(prevProps) {
@@ -46,7 +50,7 @@ class Records extends Component {
         </Helmet>
         <Container>
           <Tabs type={type} />
-          <Summary user={user} />
+          {type === '' && <Summary user={user} />}
           <Overflow>
             <RecordsView
               records={records}
@@ -69,4 +73,4 @@ function mapStateToProps(state, props) {
   };
 }
 
-export default connect(mapStateToProps, { loadRecords, loadMoreRecords })(Records);
+export default connect(mapStateToProps, { loadRecords, loadMoreRecords, getUserInfo })(Records);

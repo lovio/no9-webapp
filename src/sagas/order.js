@@ -69,7 +69,7 @@ export function* watchCreateNewOrder() {
       const openid = yield select(state => state.getIn(['mine', 'openid']));
       const token = yield select(state => state.getIn(['user', 'token']));
       const { response, error } = yield call(apis.postNewOrders, {
-        openid,
+        openid: openid || '123',
         cityId,
         productId: product.get('id'),
         token,

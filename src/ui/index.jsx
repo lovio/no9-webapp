@@ -39,4 +39,8 @@ export const Footer = styled.div`
   display: flex;
   justify-content: space-around;
   border-top: 0.01rem solid #eaeff2;
+
+  & > * {
+    user-select: none;
+  }
 `;

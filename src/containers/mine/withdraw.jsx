@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withdraw } from 'actions/user';
+import { getUserInfo } from 'actions/auth';
 import { createSelector } from 'reselect';
 import { Map } from 'immutable';
 import WithdrawView from 'components/mine/withdraw';
@@ -26,4 +27,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { withdraw })(WithdrawView);
+export default connect(mapStateToProps, { withdraw, getUserInfo })(WithdrawView);

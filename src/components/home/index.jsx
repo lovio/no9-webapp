@@ -10,7 +10,11 @@ import IconBill from './bill.svg';
 import IconRelation from './relation.svg';
 import IconTransfer from './transfer.svg';
 
-const Container = styled.div`user-select: none;`;
+const Container = styled.div`
+  & > * {
+    user-select: none;
+  }
+`;
 
 const Head = styled.div`
   padding: 0.15rem 0;

@@ -60,7 +60,10 @@ const minusTypes = ['debt', 'withdraw'];
 const RecordItem = ({ record }) => (
   <Container isFrozen={record.isFrozen}>
     <Row1>
-      <Type>{RECORD_TYPE_MAPPINGS[record.get('type')]}</Type>
+      <Type>
+        {RECORD_TYPE_MAPPINGS[record.get('type')]}
+        {record.get('type') === 'withdraw' && `（尾号${record.getIn(['extra', 'cardNo']).substr(-4)}）`}
+      </Type>
       <Amount isRed={includes(redTypes, record.get('type'))}>
         {includes(minusTypes, record.get('type')) ? '-' : ''} ￥{dealNumber(record.get('amount'))}
       </Amount>

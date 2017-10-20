@@ -1,4 +1,4 @@
-import { take, put, call, takeEvery } from 'redux-saga/effects';
+import { take, put, call, select, takeEvery } from 'redux-saga/effects';
 import history from 'helpers/history';
 
 import * as actions from 'actions/user';
@@ -27,6 +27,49 @@ function* loadRelations({ payload }) {
 
 export function* watchLoadRelations() {
   yield takeEvery(actions.loadRelations, loadRelations);
+}
+
+function* withdraw({ payload }) {
+  const { resolve, reject } = payload;
+  const cardId = yield select(state => state.getIn(['mine', 'card']));
+  if (!cardId) {
+    yield put(showToastItem('请选择提现银行卡'));
+  }
+  const values = {
+    cardId,
+    amount: payload.values.amount * 100,
+    // openid,
+  };
+  yield call(
+    formRequest,
+    {
+      api: apis.withdraw,
+      actions: {
+        success: actions.withdrawSuccess,
+      },
+      needToken: true,
+    },
+    {
+      payload: { values, resolve, reject },
+    },
+  );
+}
+
+export function* watchWithdraw() {
+  yield takeEvery(actions.withdraw, withdraw);
+}
+
+export function* watchWithdrawSuccess() {
+  for (;;) {
+    yield take(actions.withdrawSuccess);
+    yield put(
+      showToastItem({
+        type: 'success',
+        msg: '提现申请已提交',
+      }),
+    );
+    history.push('/mine/records?type=withdraw');
+  }
 }
 
 function* addNewCard({ payload }) {

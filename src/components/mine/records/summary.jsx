@@ -21,14 +21,12 @@ const Item = styled.p`
 
 const Summary = ({ user }) => (
   <Container>
-    <Item>累计补贴收益：￥{dealNumber(user.get('allowance'))}</Item>
-    <Item>累计停车费收益：￥{dealNumber(user.get('fee'))}</Item>
-    <Item>累计提现金额：￥{dealNumber(user.get('withdraw'))}</Item>
+    <Item>余额：{dealNumber(user.get('cash') - user.get('debt'))}</Item>
   </Container>
 );
 
 Summary.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default Summary;

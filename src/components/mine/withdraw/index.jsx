@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import history from 'helpers/history';
@@ -72,66 +72,72 @@ const Tip = styled.p`
   color: #9b9b9b;
 `;
 
-const WithdrawView = (props) => {
-  const { handleSubmit, submitting, pristine, withdraw, card, user } = props;
-  const cardNo = card.get('cardNo');
-  // 有车位最小取现金额为1千元
-  return (
-    <div>
-      <Helmet>
-        <title>取现</title>
-      </Helmet>
-      <Card onClick={() => history.push('/mine/cards?action=withdraw')}>
-        <Arrow src={imgArror} alt="" />
-        {card.has('id') ? (
-          <div>
-            <BankIcon src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
-            <p>
-              {card.get('name')} | 尾号{cardNo.substr(cardNo.length - 4)}
-            </p>
-          </div>
-        ) : (
-          <CardTip>请选择取现银行卡</CardTip>
-        )}
-      </Card>
-      <TipBox>
-        <Tip>{user.get('asset') ? '最小取现金额1000元，取现上限5万。' : '取现上限5万。'}</Tip>
-        <Tip>您的可取现金额为{dealNumber(user.get('cash'))}元</Tip>
-      </TipBox>
-      <Form onSubmit={handleSubmit(submit(withdraw))}>
-        <FieldContainer>
-          <Field
-            name="amount"
-            validate={[required('请输入取现金额'), checkWithdrawAmount(user.get('cash'))]}
-            label="取现金额"
-            id="amount"
-            component={Input}
-            placeholder="请输入取现金额"
-            type="number"
-          />
-        </FieldContainer>
-        <TipBox>
-          <Tip>手续费：0.6%</Tip>
-        </TipBox>
-        <SubmitContainer>
-          <Button type="submit" disabled={pristine || submitting}>
-            确认取现
-          </Button>
-        </SubmitContainer>
-        <TipBox>
-          <Tip>预计到账时间：7个工作日</Tip>
-        </TipBox>
-      </Form>
-    </div>
-  );
-};
+class WithdrawView extends Component {
+  static propTypes = {
+    ...propTypes,
+    withdraw: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    card: PropTypes.object.isRequired,
+  };
 
-WithdrawView.propTypes = {
-  ...propTypes,
-  withdraw: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  card: PropTypes.object.isRequired,
-};
+  constructor(props) {
+    super(props);
+    props.getUserInfo();
+  }
+  render() {
+    const { handleSubmit, submitting, pristine, withdraw, card, user } = this.props;
+    const cardNo = card.get('cardNo');
+    // 有车位最小取现金额为1千元
+    return (
+      <div>
+        <Helmet>
+          <title>取现</title>
+        </Helmet>
+        <Card onClick={() => history.push('/mine/cards?action=withdraw')}>
+          <Arrow src={imgArror} alt="" />
+          {card.has('id') ? (
+            <div>
+              <BankIcon src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
+              <p>
+                {card.get('name')} | 尾号{cardNo.substr(cardNo.length - 4)}
+              </p>
+            </div>
+          ) : (
+            <CardTip>请选择取现银行卡</CardTip>
+          )}
+        </Card>
+        <TipBox>
+          <Tip>{user.get('asset') ? '最小取现金额1000元，取现上限5万。' : '取现上限5万。'}</Tip>
+          <Tip>您的可取现金额为{dealNumber(user.get('cash'))}元</Tip>
+        </TipBox>
+        <Form onSubmit={handleSubmit(submit(withdraw))}>
+          <FieldContainer>
+            <Field
+              name="amount"
+              validate={[required('请输入取现金额'), checkWithdrawAmount(user.get('cash'))]}
+              label="取现金额"
+              id="amount"
+              component={Input}
+              placeholder="请输入取现金额"
+              type="number"
+            />
+          </FieldContainer>
+          <TipBox>
+            <Tip>手续费：0.6%</Tip>
+          </TipBox>
+          <SubmitContainer>
+            <Button type="submit" disabled={pristine || submitting}>
+              确认取现
+            </Button>
+          </SubmitContainer>
+          <TipBox>
+            <Tip>预计到账时间：7个工作日</Tip>
+          </TipBox>
+        </Form>
+      </div>
+    );
+  }
+}
 
 export default reduxForm({
   form: 'withdraw',
