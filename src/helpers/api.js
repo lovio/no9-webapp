@@ -104,7 +104,7 @@ export const getUserInfo = data => get('/sessions', data);
 
 // 获取支付pkg
 export const postNewOrders = data => post('/orders', data);
-export const getPaymentPkg = data => get('/orders/payment', data);
+export const getPaymentPkg = ({ orderId, ...rest }) => get(`/orders/${orderId}/credential`, rest);
 export const getOrder = ({ id, ...rest }) => get(`/orders/${id}`, rest);
 
 export const getCities = data => get('/cities', data);
@@ -118,6 +118,7 @@ export const updateProfile = data => put('/users', data);
 export const withdraw = data => post('/withdraw', data);
 
 export const getRecords = data => get('/records', data);
+export const getOrders = data => get('/orders', data);
 
 export const getDescendants = data => get('/target/descendants', data);
 

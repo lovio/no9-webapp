@@ -22,7 +22,7 @@ class AutoLoader extends Component {
     const hasMore = pagination.get('hasMore');
     const isLoading = pagination.get('isLoading');
     if (!hasMore) {
-      return <Empty>已到最后一页</Empty>;
+      return <Empty>没有更多了</Empty>;
     }
     if (isLoading) {
       return <Loading />;

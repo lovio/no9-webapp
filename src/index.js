@@ -3,12 +3,15 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import initReactFastclick from 'react-fastclick';
 
 // initialize redux store
 import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 
 import App from './containers/App';
+
+initReactFastclick();
 
 const container = document.getElementById('app');
 

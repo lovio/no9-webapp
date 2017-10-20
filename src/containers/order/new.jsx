@@ -13,7 +13,7 @@ import find from 'lodash/find';
 import products from 'constants/products.json';
 import { DEFAULT_PRODUCT_ID } from 'constants/constants.json';
 
-import OrderView from '../../components/order';
+import OrderView from '../../components/order/new';
 
 const productSelector = createSelector(
   (state, props) => {

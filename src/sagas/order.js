@@ -9,9 +9,9 @@ import { showConfirm, clearPagination, showToastItem } from '../actions/common';
 import { fetchEntity } from './utils';
 
 // const requestNewOrder = fetchEntity.bind(null, actions.newOrder, apis.postNewOrders);
-const requestPayment = fetchEntity.bind(null, actions.payment, apis.getPaymentPkg);
 const requestRecords = fetchEntity.bind(null, actions.records, apis.getRecords);
 const requestOrder = fetchEntity.bind(null, actions.order, apis.getOrder);
+const requestOrders = fetchEntity.bind(null, actions.orders, apis.getOrders);
 
 function* loadOrder(payload) {
   yield call(requestOrder, payload, true);
@@ -21,6 +21,33 @@ export function* watchLoadOrder() {
   for (;;) {
     const { payload } = yield take(actions.loadOrder);
     yield fork(loadOrder, payload);
+  }
+}
+
+function* loadOrders() {
+  const pagination = yield select(state => state.getIn(['pagination', 'orders']));
+  if (pagination.get('isLoading')) {
+    return;
+  }
+  const param = { pageNo: pagination.get('pageNo'), pageSize: pagination.get('pageSize') };
+  // if (type) {
+  //   param.type = type;
+  // }
+  yield call(requestOrders, param, true);
+}
+
+export function* watchLoadOrders() {
+  for (;;) {
+    const { payload } = yield take(actions.loadOrders);
+    yield put(clearPagination('orders'));
+    yield fork(loadOrders, payload);
+  }
+}
+
+export function* watchLoadMoreOrders() {
+  for (;;) {
+    const { payload } = yield take(actions.loadMoreOrders);
+    yield fork(loadOrders, payload);
   }
 }
 
@@ -44,7 +71,7 @@ export function* watchLoadRecords() {
   }
 }
 
-export function* watchLoadMorePhotos() {
+export function* watchLoadMoreRecords() {
   for (;;) {
     const { payload } = yield take(actions.loadMoreRecords);
     yield fork(loadRecords, payload);
@@ -57,7 +84,7 @@ function* pay(charge, orderId) {
     yield put(showToastItem('支付失败'));
   } else if (status === 'success') {
     yield put(showToastItem({ type: 'success', msg: '支付成功' }));
-    history.push(`/orders/success?orderId=${orderId}`);
+    history.push(`/mine/orders/${orderId}`);
   }
 }
 
@@ -93,16 +120,17 @@ export function* watchCreateNewOrder() {
 export function* watchTriggerWechatPay() {
   for (;;) {
     const { payload: { orderId } } = yield take(actions.triggerWechatPay);
-    const openid =
-      (yield select(state => state.getIn(['user', 'openid']))) || 'oDCCVuIQeIug7Gx4OHIOsjrUWFFY';
-    const payment = yield call(
-      requestPayment,
-      {
-        orderId,
-        openid,
-      },
-      true,
-    );
-    console.log(payment);
+    const openid = yield select(state => state.getIn(['mine', 'openid']));
+    const token = yield select(state => state.getIn(['user', 'token']));
+    const { response, error } = yield call(apis.getPaymentPkg, {
+      openid: openid || '123',
+      orderId,
+      token,
+    });
+    if (error) {
+      yield put(showToastItem('获取支付凭证失败'));
+    } else {
+      yield call(pay, response, orderId);
+    }
   }
 }

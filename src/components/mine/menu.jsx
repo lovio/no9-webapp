@@ -38,6 +38,12 @@ const Icon = styled.span`
 const Menu = () => (
   <div>
     <Container>
+      <Item onClick={() => history.push('/mine/orders')}>
+        <Icon>
+          <img src={imgCar} alt="" />
+        </Icon>
+        我的订单
+      </Item>
       <Item>
         <Icon>
           <img src={imgCar} alt="" />

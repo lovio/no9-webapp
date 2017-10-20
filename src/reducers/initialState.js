@@ -20,6 +20,7 @@ export default Immutable.fromJS({
   },
   pagination: {
     records: DEFAULT_PAGINATION,
+    orders: DEFAULT_PAGINATION,
   },
   extra: {
     cities: [],
@@ -33,6 +34,7 @@ export default Immutable.fromJS({
     openid: '',
     cards: [],
     records: [],
+    orders: [],
     relations: {
       isLoading: false,
       data: {},
