@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { getSearch } from 'helpers/history';
 
 import { loadRecords, loadMoreRecords } from 'actions/order';
 
-import Tabs from 'components/mine/records/tabs';
 import RecordsView from 'components/mine/records';
+import Tabs from 'components/mine/records/tabs';
+import Summary from 'components/mine/records/summary';
 
 import { Artboard, Container, Overflow } from 'ui';
 
@@ -21,6 +23,7 @@ class Records extends Component {
     loadRecords: PropTypes.func.isRequired,
     loadMoreRecords: PropTypes.func.isRequired,
     pagination: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -35,11 +38,15 @@ class Records extends Component {
   }
 
   render() {
-    const { type, records, pagination } = this.props;
+    const { type, records, pagination, user } = this.props;
     return (
       <Artboard>
+        <Helmet>
+          <title>交易记录</title>
+        </Helmet>
         <Container>
           <Tabs type={type} />
+          <Summary user={user} />
           <Overflow>
             <RecordsView
               records={records}
@@ -58,6 +65,7 @@ function mapStateToProps(state, props) {
     type: getSearch(props.location.search).type || '',
     records: state.getIn(['mine', 'records']),
     pagination: state.getIn(['pagination', 'records']),
+    user: state.get('user'),
   };
 }
 

@@ -35,7 +35,7 @@ export default combineReducers({
   records: handleActions(
     {
       [orderActions.loadRecords]: () => Immutable.List(),
-      [orderActions.records.success]: (state, { payload }) => fromJS(payload),
+      [orderActions.records.success]: (state, { payload }) => state.concat(fromJS(payload)),
     },
     initialState.getIn(['mine', 'records']),
   ),

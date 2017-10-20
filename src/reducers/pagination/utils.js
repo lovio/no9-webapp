@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux-immutable';
 import { handleActions } from 'redux-actions';
 import { clearPagination } from 'actions/common';
+import size from 'lodash-es/size';
 import initialState from '../initialState';
 
-export default (requestTypes, reducerField) => {
+export default (requestTypes, reducerField, pageCount) => {
   // const totalPage = handleActions(
   //   {
   //     [requestTypes.success]: (state, { payload }) => payload.totalPage,
@@ -28,7 +29,7 @@ export default (requestTypes, reducerField) => {
 
   const hasMore = handleActions(
     {
-      [requestTypes.success]: (state, { payload }) => payload.page < payload.totalPage,
+      [requestTypes.success]: (state, { payload }) => size(payload) === pageCount,
       [clearPagination]: (state, { payload }) => {
         if (payload === reducerField) {
           return true;
