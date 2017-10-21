@@ -2,7 +2,7 @@
   "HOME_PATH": "/",
   "WX_OAUTH_API": "https://open.weixin.qq.com/connect/oauth2/authorize",
   "COOKIE_DOMAIN": "smartstudy.com",
-  "ToastMsgTimeout": 2000,
+  "ToastMsgTimeout": 1500,
   "DEFAULT_SORT": {
     "sortType": "name",
     "sortRule": "down"
@@ -44,5 +44,6 @@
     "100": "清单已取消"
   },
   "ORDER_DONE": 60,
-  "ORDER_INIT": 1
+  "ORDER_INIT": 1,
+  "ORDER_UNPAID": 10
 }

@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Immutable from 'immutable';
 import products from 'constants/products.json';
-import { ORDER_STATUS_MAPPING, ORDER_INIT, PRODUCT_NAME } from 'constants/constants.json';
+import {
+  ORDER_STATUS_MAPPING,
+  ORDER_INIT,
+  ORDER_UNPAID,
+  PRODUCT_NAME,
+} from 'constants/constants.json';
 import { dealNumber } from 'helpers/string';
 import find from 'lodash/find';
+import includes from 'lodash-es/includes';
 import format from 'date-fns/format';
 import Button from 'ui/button';
 
@@ -67,7 +73,7 @@ const OrderItem = ({ order, triggerWechatPay }) => {
     <Container>
       <Header>
         <DateTime>{format(new Date(order.get('createdAt')), 'YYYY-MM-DD HH:mm:ss')}</DateTime>
-        <Status isRed={order.get('status') === ORDER_INIT}>
+        <Status isRed={includes([ORDER_INIT, ORDER_UNPAID], order.get('status'))}>
           {ORDER_STATUS_MAPPING[order.get('status')]}
         </Status>
       </Header>

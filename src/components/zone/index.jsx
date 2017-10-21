@@ -5,7 +5,7 @@ import history from 'helpers/history';
 
 import imgRedCar from './redCar.png';
 import imgBlueCar from './blueCar.png';
-// import imgMore from './more.png';
+import imgMore from './more.png';
 
 const Container = styled.div`
   background-color: white;
@@ -31,6 +31,7 @@ const BuyMore = styled.p`
   text-align: center;
   color: #57d3f2;
   padding: 0.15rem;
+  text-decoration: underline;
 `;
 
 const Item = styled.div`
@@ -50,22 +51,24 @@ const SoldOut = styled.span`
   color: #818b96;
 `;
 
-// const More = styled.span`
-//   float: right;
-//   line-height: 0.2rem;
-//   padding: 0.15rem 0.2rem;
-//   img {
-//     width: 0.12rem;
-//     height: 0.2rem;
-//   }
-// `;
+const More = styled.span`
+  float: right;
+  line-height: 0.2rem;
+  padding: 0.15rem 0.2rem;
+  img {
+    width: 0.12rem;
+    height: 0.2rem;
+  }
+`;
 
 class ZoneView extends Component {
   static propTypes = {
     loadCities: PropTypes.func.isRequired,
     loadZones: PropTypes.func.isRequired,
+    loadCarports: PropTypes.func.isRequired,
     cities: PropTypes.object.isRequired,
     zones: PropTypes.object.isRequired,
+    carports: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
   };
 
@@ -73,10 +76,11 @@ class ZoneView extends Component {
     super(props);
     props.loadCities();
     props.loadZones();
+    props.loadCarports();
   }
 
   renderMyCarports = () => {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, carports } = this.props;
     if (!isLoggedIn) {
       return null;
     }
@@ -86,7 +90,21 @@ class ZoneView extends Component {
           <img src={imgRedCar} alt="" />
           我的车位
         </Title>
-        <BuyMore onClick={() => history.push('/products')}>您暂无车位，请点击购买</BuyMore>
+        {carports.size ? (
+          carports.map(carport => (
+            <Item key={carport.get('id')} onClick={() => history.push('/mine/orders')}>
+              {carport.get('status') === 'unpaid' && '您还有车位尚未完成支付，请点击查看详情'}
+              {carport.get('status') === 'virtual' &&
+                `您已购买${carport.getIn(['city', 'name'])}车位，建设中`}
+              {carport.get('status') === 'real' && '小区车位已建成，点击查看车位详情'}
+              <More>
+                <img src={imgMore} alt="" />
+              </More>
+            </Item>
+          ))
+        ) : (
+          <BuyMore onClick={() => history.push('/products')}>您暂无车位，请点击购买</BuyMore>
+        )}
       </Container>
     );
   };

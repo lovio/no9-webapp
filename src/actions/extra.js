@@ -6,3 +6,6 @@ export const cities = createFetchActions('ZCITIES');
 
 export const loadZones = createAction('LOAD_ZONES');
 export const zones = createFetchActions('ZONES');
+
+export const loadCarports = createAction('LOAD_CARPORTS');
+export const carports = createFetchActions('CARPORTS');

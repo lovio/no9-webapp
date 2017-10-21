@@ -20,4 +20,11 @@ export default combineReducers({
     },
     initialState.getIn(['extra', 'zones']),
   ),
+  carports: handleActions(
+    {
+      [actions.loadCarports]: () => Immutable.List(),
+      [actions.carports.success]: (state, { payload }) => fromJS(payload),
+    },
+    initialState.getIn(['extra', 'carports']),
+  ),
 });

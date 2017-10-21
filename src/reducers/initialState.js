@@ -25,6 +25,7 @@ export default Immutable.fromJS({
   extra: {
     cities: [],
     zones: [],
+    carports: [],
   },
   order: {
     isLoading: false,
