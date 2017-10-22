@@ -5,6 +5,7 @@ import { Artboard, Container, Overflow } from 'ui';
 import FooterView from 'components/footer';
 import About from 'components/static/about';
 import Agreement from 'components/static/agreement';
+import Agreement2 from 'components/static/agreement2';
 
 import AuthenticatedHOC from './auth/AuthenticatedHOC';
 import Confirm from './common/confirm';
@@ -57,6 +58,7 @@ export default function Routes() {
             <Route exact path="/mine/orders/:orderId" component={AuthenticatedHOC(Order)} />
             <Route exact path="/about" component={About} />
             <Route exact path="/agreement" component={Agreement} />
+            <Route exact path="/agreement2" component={Agreement2} />
           </Switch>
         </Overflow>
         <Route exact path="/" component={FooterView} />

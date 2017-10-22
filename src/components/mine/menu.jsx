@@ -97,7 +97,7 @@ const Menu = () => (
       </Item>
     </Container>
     <Container>
-      <Item>
+      <Item onClick={() => history.push('/about')}>
         <Icon>
           <img src={imgRelation} alt="" />
         </Icon>

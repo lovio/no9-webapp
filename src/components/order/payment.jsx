@@ -53,7 +53,7 @@ class Payment extends Component {
               checked: !prevState.checked,
             }))}
         >
-          我同意<Link to="/agreement">《停车设施委托建设及委托管理协议》</Link>
+          我同意<Link to="/agreement2">《停车设施委托建设及委托管理协议》</Link>
         </Agreement>
         <Button
           disabled={!this.state.checked}
