@@ -1,4 +1,5 @@
 import React from 'react';
+import { Wrapper } from 'components/common/wrapper';
 import Slides from './slides';
 import Intro from './intro';
 import Ways from './ways';
@@ -7,12 +8,12 @@ import Rights from './rights';
 
 export default function HomeView() {
   return (
-    <div>
+    <Wrapper>
       <Slides />
       <Intro />
       <Ways />
       <Desc />
       <Rights />
-    </div>
+    </Wrapper>
   );
 }

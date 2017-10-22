@@ -16,7 +16,7 @@ import ResetPwd from './auth/ResetPwd';
 import Mine from './mine';
 import Invite from './mine/invite';
 import Zone from './zone';
-import Product from './product';
+import Product from '../components/product';
 import NewOrder from './order/new';
 import Order from './order';
 import Records from './mine/records';
