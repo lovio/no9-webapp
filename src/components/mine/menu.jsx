@@ -44,7 +44,7 @@ const Menu = () => (
         </Icon>
         我的订单
       </Item>
-      <Item>
+      <Item onClick={() => history.push('/mine/certs')}>
         <Icon>
           <img src={imgCar} alt="" />
         </Icon>

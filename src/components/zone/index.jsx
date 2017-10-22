@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import history from 'helpers/history';
+import Loading from 'ui/loading';
 
 import imgRedCar from './redCar.png';
 import imgBlueCar from './blueCar.png';
@@ -69,6 +70,7 @@ class ZoneView extends Component {
     cities: PropTypes.object.isRequired,
     zones: PropTypes.object.isRequired,
     carports: PropTypes.object.isRequired,
+    isLoading: PropTypes.string.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
   };
 
@@ -80,9 +82,12 @@ class ZoneView extends Component {
   }
 
   renderMyCarports = () => {
-    const { isLoggedIn, carports } = this.props;
+    const { isLoggedIn, carports, isLoading } = this.props;
     if (!isLoggedIn) {
       return null;
+    }
+    if (isLoading) {
+      return <Loading />;
     }
     return (
       <Container>

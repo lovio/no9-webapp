@@ -8,7 +8,8 @@ function mapStateToProps(state) {
     isLoggedIn: state.hasIn(['user', 'token']),
     cities: state.getIn(['extra', 'cities']),
     zones: state.getIn(['extra', 'zones']),
-    carports: state.getIn(['extra', 'carports']),
+    carports: state.getIn(['extra', 'carports', 'data']),
+    isLoading: state.getIn(['extra', 'carports', 'isLoading']),
   };
 }
 

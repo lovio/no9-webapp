@@ -5,6 +5,8 @@ import { handleActions } from 'redux-actions';
 import * as actions from 'actions/extra';
 import initialState from './initialState';
 
+console.log(initialState);
+
 export default combineReducers({
   cities: handleActions(
     {
@@ -20,11 +22,21 @@ export default combineReducers({
     },
     initialState.getIn(['extra', 'zones']),
   ),
-  carports: handleActions(
-    {
-      [actions.loadCarports]: () => Immutable.List(),
-      [actions.carports.success]: (state, { payload }) => fromJS(payload),
-    },
-    initialState.getIn(['extra', 'carports']),
-  ),
+  carports: combineReducers({
+    data: handleActions(
+      {
+        [actions.loadCarports]: () => Immutable.List(),
+        [actions.carports.success]: (state, { payload }) => fromJS(payload),
+      },
+      initialState.getIn(['extra', 'carports', 'data']),
+    ),
+    isLoading: handleActions(
+      {
+        [actions.carports.request]: () => true,
+        [actions.carports.success]: () => false,
+        [actions.carports.failure]: () => false,
+      },
+      initialState.getIn(['extra', 'carports', 'isLoading']),
+    ),
+  }),
 });
