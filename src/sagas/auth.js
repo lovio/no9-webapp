@@ -1,8 +1,8 @@
 import { take, put, call, select, takeEvery } from 'redux-saga/effects';
-import history, { redirect } from 'helpers/history';
+import history from 'helpers/history';
 import { isPhone } from 'helpers/validators';
 
-import { HOME_PATH } from 'constants/constants.json';
+// import { HOME_PATH } from 'constants/constants.json';
 import * as actions from 'actions/auth';
 import * as apis from 'helpers/api';
 import { getFormValuesByName } from './selector';
@@ -136,7 +136,8 @@ export function* watchAuthSuccess() {
       }),
     );
     if (payload) {
-      yield call(redirect, HOME_PATH);
+      // yield call(redirect, HOME_PATH);
+      history.push('/zones');
     }
   }
 }
