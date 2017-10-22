@@ -87,6 +87,7 @@ class WithdrawView extends Component {
   render() {
     const { handleSubmit, submitting, pristine, withdraw, card, user } = this.props;
     const cardNo = card.get('cardNo');
+    const availableCash = user.get('cash') - user.get('debt');
     // 有车位最小取现金额为1千元
     return (
       <div>
@@ -108,13 +109,16 @@ class WithdrawView extends Component {
         </Card>
         <TipBox>
           <Tip>{user.get('asset') ? '最小取现金额1000元，取现上限5万。' : '取现上限5万。'}</Tip>
-          <Tip>您的可取现金额为{dealNumber(user.get('cash'))}元</Tip>
+          <Tip>您的可取现金额为{dealNumber(availableCash < 0 ? 0 : availableCash)}元</Tip>
         </TipBox>
         <Form onSubmit={handleSubmit(submit(withdraw))}>
           <FieldContainer>
             <Field
               name="amount"
-              validate={[required('请输入取现金额'), checkWithdrawAmount(user.get('cash'))]}
+              validate={[
+                required('请输入取现金额'),
+                checkWithdrawAmount(availableCash < 0 ? 0 : availableCash),
+              ]}
               label="取现金额"
               id="amount"
               component={Input}
