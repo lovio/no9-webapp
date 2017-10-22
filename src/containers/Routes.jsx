@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import { Artboard, Container, Overflow } from 'ui';
 
 import FooterView from 'components/footer';
+import About from 'components/static/about';
+import Agreement from 'components/static/agreement';
 
 import AuthenticatedHOC from './auth/AuthenticatedHOC';
 import Confirm from './common/confirm';
@@ -53,6 +55,8 @@ export default function Routes() {
             <Route exact path="/orders/new" component={AuthenticatedHOC(NewOrder)} />
             <Route exact path="/mine/orders" component={AuthenticatedHOC(Orders)} />
             <Route exact path="/mine/orders/:orderId" component={AuthenticatedHOC(Order)} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/agreement" component={Agreement} />
           </Switch>
         </Overflow>
         <Route exact path="/" component={FooterView} />
