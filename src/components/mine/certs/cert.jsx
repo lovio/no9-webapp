@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Immutable from 'immutable';
-import products from 'constants/products.json';
 
 import { BasicButton } from 'ui/button';
 import { Wrapper } from 'components/common/wrapper';
@@ -100,11 +98,9 @@ export default class CertItem extends Component {
 
   render() {
     const { carport, user } = this.props;
-    const product = Immutable.fromJS(find(products, { id: carport.get('productId') }));
     if (carport.get('status') === 'unpaid') {
       return null;
     }
-    console.log(product, carport.toJS(), user);
     return (
       <Container>
         <Title>

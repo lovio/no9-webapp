@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Container, Overflow } from 'ui';
+import { Artboard, Container, Overflow } from 'ui';
 
 import FooterView from 'components/footer';
 
@@ -29,35 +29,37 @@ import Certs from './mine/certs';
 
 export default function Routes() {
   return (
-    <Container>
-      <Tips />
-      <Confirm />
-      <Overflow>
-        <Switch>
-          <Route exact path="/" component={AuthenticatedHOC(Home)} />
-          <Route exact path="/login" component={Auth} />
-          <Route exact path="/signup" component={Auth} />
-          <Route exact path="/resetpwd" component={ResetPwd} />
-          <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
-          <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
-          <Route exact path="/mine/withdraw" component={AuthenticatedHOC(Withdraw)} />
-          <Route exact path="/mine/cards" component={AuthenticatedHOC(Cards)} />
-          <Route exact path="/mine/cards/new" component={AuthenticatedHOC(NewCard)} />
-          <Route exact path="/mine/profile" component={AuthenticatedHOC(Profile)} />
-          <Route exact path="/mine/records" component={AuthenticatedHOC(Records)} />
-          <Route exact path="/mine/relations" component={AuthenticatedHOC(Relations)} />
-          <Route exact path="/mine/certs" component={AuthenticatedHOC(Certs)} />
-          <Route exact path="/products" component={AuthenticatedHOC(Product)} />
-          <Route exact path="/zones" component={AuthenticatedHOC(Zone)} />
-          <Route exact path="/orders/new" component={AuthenticatedHOC(NewOrder)} />
-          <Route exact path="/mine/orders" component={AuthenticatedHOC(Orders)} />
-          <Route exact path="/mine/orders/:orderId" component={AuthenticatedHOC(Order)} />
-        </Switch>
-      </Overflow>
-      <Route exact path="/" component={FooterView} />
-      <Route exact path="/mine" component={FooterView} />
-      <Route exact path="/products" component={FooterView} />
-      <Route exact path="/zones" component={FooterView} />
-    </Container>
+    <Artboard>
+      <Container>
+        <Tips />
+        <Confirm />
+        <Overflow>
+          <Switch>
+            <Route exact path="/" component={AuthenticatedHOC(Home)} />
+            <Route exact path="/login" component={Auth} />
+            <Route exact path="/signup" component={Auth} />
+            <Route exact path="/resetpwd" component={ResetPwd} />
+            <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
+            <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
+            <Route exact path="/mine/withdraw" component={AuthenticatedHOC(Withdraw)} />
+            <Route exact path="/mine/cards" component={AuthenticatedHOC(Cards)} />
+            <Route exact path="/mine/cards/new" component={AuthenticatedHOC(NewCard)} />
+            <Route exact path="/mine/profile" component={AuthenticatedHOC(Profile)} />
+            <Route exact path="/mine/records" component={AuthenticatedHOC(Records)} />
+            <Route exact path="/mine/relations" component={AuthenticatedHOC(Relations)} />
+            <Route exact path="/mine/certs" component={AuthenticatedHOC(Certs)} />
+            <Route exact path="/products" component={AuthenticatedHOC(Product)} />
+            <Route exact path="/zones" component={AuthenticatedHOC(Zone)} />
+            <Route exact path="/orders/new" component={AuthenticatedHOC(NewOrder)} />
+            <Route exact path="/mine/orders" component={AuthenticatedHOC(Orders)} />
+            <Route exact path="/mine/orders/:orderId" component={AuthenticatedHOC(Order)} />
+          </Switch>
+        </Overflow>
+        <Route exact path="/" component={FooterView} />
+        <Route exact path="/mine" component={FooterView} />
+        <Route exact path="/products" component={FooterView} />
+        <Route exact path="/zones" component={FooterView} />
+      </Container>
+    </Artboard>
   );
 }
