@@ -58,7 +58,7 @@ const redTypes = ['allowance', 'fee', 'paid'];
 const minusTypes = ['debt', 'withdraw'];
 
 const RecordItem = ({ record }) => (
-  <Container isFrozen={record.isFrozen}>
+  <Container isFrozen={record.get('isFrozen')}>
     <Row1>
       <Type>
         {RECORD_TYPE_MAPPINGS[record.get('type')]}
@@ -70,7 +70,9 @@ const RecordItem = ({ record }) => (
     </Row1>
     <Row2>
       <Time>{format(new Date(record.get('createdAt')), 'YYYY-MM-DD HH:mm:ss')}</Time>
-      <Status>{RECORD_STATUS_MAPPING[record.get('status')]}</Status>
+      <Status>
+        {record.get('isFrozen') ? '被冻结' : RECORD_STATUS_MAPPING[record.get('status')]}
+      </Status>
     </Row2>
   </Container>
 );
