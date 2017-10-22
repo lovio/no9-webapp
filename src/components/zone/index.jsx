@@ -70,7 +70,7 @@ class ZoneView extends Component {
     cities: PropTypes.object.isRequired,
     zones: PropTypes.object.isRequired,
     carports: PropTypes.object.isRequired,
-    isLoading: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
   };
 
@@ -97,7 +97,11 @@ class ZoneView extends Component {
         </Title>
         {carports.size ? (
           carports.map(carport => (
-            <Item key={carport.get('id')} onClick={() => history.push('/mine/orders')}>
+            <Item
+              key={carport.get('id')}
+              onClick={() =>
+                history.push(carport.get('status') === 'unpaid' ? '/mine/orders' : '/mine/certs')}
+            >
               {carport.get('status') === 'unpaid' && '您还有车位尚未完成支付，请点击查看详情'}
               {carport.get('status') === 'virtual' &&
                 `您已购买${carport.getIn(['city', 'name'])}车位，建设中`}

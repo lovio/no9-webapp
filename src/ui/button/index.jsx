@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const BasicButton = styled.button`
+export const BasicButton = styled.button`
   width: ${props => props.width || '100%'};
   height: ${props => props.height || '0.48rem'};
   outline: none;
