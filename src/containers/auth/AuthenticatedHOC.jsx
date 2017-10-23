@@ -5,6 +5,7 @@ import * as authActions from 'actions/auth';
 
 export default function requireAuthentication(Component) {
   const AuthenticatedComponent = ({ checkAuth, ...others }) => {
+    // console.log('authcheck');
     checkAuth();
     return <Component {...others} />;
   };

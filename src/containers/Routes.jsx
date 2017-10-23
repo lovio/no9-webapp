@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Artboard, Container, Overflow } from 'ui';
 
-import FooterView from 'components/footer';
 import About from 'components/static/about';
 import Agreement from 'components/static/agreement';
 import Agreement2 from 'components/static/agreement2';
 
+import Footer from './footer';
 import AuthenticatedHOC from './auth/AuthenticatedHOC';
 import Confirm from './common/confirm';
 import Tips from './common/tips';
@@ -61,10 +61,8 @@ export default function Routes() {
             <Route exact path="/agreement2" component={Agreement2} />
           </Switch>
         </Overflow>
-        <Route exact path="/" component={FooterView} />
-        <Route exact path="/mine" component={FooterView} />
-        <Route exact path="/products" component={FooterView} />
-        <Route exact path="/zones" component={FooterView} />
+        {/* always match */}
+        <Route component={Footer} />
       </Container>
     </Artboard>
   );

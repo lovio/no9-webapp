@@ -84,6 +84,7 @@ class WithdrawView extends Component {
     super(props);
     props.getUserInfo();
   }
+  // 考虑 1000车位情况
   render() {
     const { handleSubmit, submitting, pristine, withdraw, card, user } = this.props;
     const cardNo = card.get('cardNo');

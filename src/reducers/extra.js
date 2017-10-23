@@ -5,8 +5,6 @@ import { handleActions } from 'redux-actions';
 import * as actions from 'actions/extra';
 import initialState from './initialState';
 
-console.log(initialState);
-
 export default combineReducers({
   cities: handleActions(
     {
