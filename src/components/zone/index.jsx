@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import history from 'helpers/history';
 import Loading from 'ui/loading';
+import { Wrapper } from 'components/common/wrapper';
 
 import imgRedCar from './redCar.png';
 import imgBlueCar from './blueCar.png';
@@ -121,7 +122,7 @@ class ZoneView extends Component {
   render() {
     const { zones, cities } = this.props;
     return (
-      <div>
+      <Wrapper>
         {this.renderMyCarports()}
         <Container>
           <Title>
@@ -145,7 +146,7 @@ class ZoneView extends Component {
             </Item>
           ))}
         </Container>
-      </div>
+      </Wrapper>
     );
   }
 }
