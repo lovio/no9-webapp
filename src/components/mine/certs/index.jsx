@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Wrapper } from 'components/common/wrapper';
 import Loading from 'ui/loading';
+import Empty from 'ui/empty';
 
 import CertItem from './cert';
 
@@ -10,6 +11,9 @@ import CertItem from './cert';
 export default function CertsView({ carports, isLoading, user }) {
   if (isLoading) {
     return <Loading />;
+  }
+  if (!carports.size) {
+    return <Empty />;
   }
   return (
     <Wrapper>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Empty from 'ui/empty';
 
 import AutoLoader from 'components/common/autoLoader';
 import { Wrapper } from 'components/common/wrapper';
@@ -11,6 +12,9 @@ const Container = styled.div`width: 100%;`;
 
 // 不够通用
 export default function OrdersView({ orders, pagination, loadMoreOrders, triggerWechatPay }) {
+  if (!pagination.get('isLoading') && !orders.size) {
+    return <Empty />;
+  }
   return (
     <div>
       <Container>
