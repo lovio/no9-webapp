@@ -70,6 +70,13 @@ export function* watchHandleConfirm() {
         // search: history.location.search,
       });
     }
+    if (type === 'unfinishedOrder') {
+      yield put(commonActions.hideConfirm());
+      history.push({
+        pathname: '/mine/orders',
+        // search: history.location.search,
+      });
+    }
   }
 }
 

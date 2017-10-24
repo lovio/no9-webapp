@@ -5,6 +5,7 @@ import history from 'helpers/history';
 import * as actions from 'actions/order';
 import * as apis from 'helpers/api';
 import { createPayment } from 'helpers/pingxx';
+import get from 'lodash-es/get';
 import { showConfirm, clearPagination, showToastItem } from '../actions/common';
 import { fetchEntity } from './utils';
 
@@ -102,7 +103,17 @@ export function* watchCreateNewOrder() {
         token,
       });
       if (error) {
-        yield put(showToastItem('获取支付凭证失败'));
+        const errorCode = get(error, 'data.code');
+        if (errorCode === 'has_unfinished_order') {
+          yield put(
+            showConfirm({
+              type: 'unfinishedOrder',
+              desc: ['您有未完成的订单，请先完成'],
+            }),
+          );
+        } else {
+          yield put(showToastItem('获取支付凭证失败'));
+        }
       } else {
         yield call(pay, response.credential, response.id);
       }
