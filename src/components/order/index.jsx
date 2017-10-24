@@ -62,6 +62,7 @@ class OrderSuccessView extends Component {
     order: PropTypes.object.isRequired,
     orderId: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    getUserInfo: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -70,6 +71,7 @@ class OrderSuccessView extends Component {
       cityId: 1,
     };
     props.loadOrder({ id: props.orderId });
+    props.getUserInfo();
   }
 
   render() {

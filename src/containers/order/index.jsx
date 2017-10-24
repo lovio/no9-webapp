@@ -5,6 +5,7 @@ import Immutable from 'immutable';
 // import { loadUserData, loadCapabilityTest, loadUserInfo } from 'actions/user';
 // import { authorizedRedirect } from 'actions/common';
 import { loadOrder } from 'actions/order';
+import { getUserInfo } from 'actions/auth';
 import find from 'lodash/find';
 import products from 'constants/products.json';
 import { DEFAULT_PRODUCT_ID } from 'constants/constants.json';
@@ -32,4 +33,5 @@ function mapStateToProps(state, props) {
 
 export default connect(mapStateToProps, {
   loadOrder,
+  getUserInfo,
 })(OrderView);
