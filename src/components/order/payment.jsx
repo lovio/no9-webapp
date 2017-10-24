@@ -31,6 +31,7 @@ class Payment extends Component {
     product: PropTypes.object.isRequired,
     cityId: PropTypes.number.isRequired,
     createNewOrder: PropTypes.func.isRequired,
+    amount: PropTypes.number.isRequired,
   };
 
   constructor(props) {
@@ -43,7 +44,7 @@ class Payment extends Component {
   renderCities = () => {};
 
   render() {
-    const { createNewOrder, product, cityId } = this.props;
+    const { createNewOrder, product, cityId, amount } = this.props;
     return (
       <Container>
         <Agreement
@@ -61,6 +62,7 @@ class Payment extends Component {
             createNewOrder({
               product,
               cityId,
+              amount,
             })}
         >
           微信支付

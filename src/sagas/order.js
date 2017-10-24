@@ -91,7 +91,7 @@ function* pay(charge, orderId) {
 
 export function* watchCreateNewOrder() {
   for (;;) {
-    const { payload: { cityId, product } } = yield take(actions.createNewOrder);
+    const { payload: { cityId, product, amount } } = yield take(actions.createNewOrder);
     const user = yield select(state => state.get('user'));
     if (user.get('name') && user.get('IDCardNo')) {
       const openid = yield select(state => state.getIn(['mine', 'openid']));
@@ -99,6 +99,7 @@ export function* watchCreateNewOrder() {
       const { response, error } = yield call(apis.postNewOrders, {
         openid: openid || '123',
         cityId,
+        amount,
         productId: product.get('id'),
         token,
       });
@@ -130,13 +131,14 @@ export function* watchCreateNewOrder() {
 
 export function* watchTriggerWechatPay() {
   for (;;) {
-    const { payload: { orderId } } = yield take(actions.triggerWechatPay);
+    const { payload: { orderId, amount } } = yield take(actions.triggerWechatPay);
     const openid = yield select(state => state.getIn(['mine', 'openid']));
     const token = yield select(state => state.getIn(['user', 'token']));
     const { response, error } = yield call(apis.getPaymentPkg, {
       openid: openid || '123',
       orderId,
       token,
+      amount,
     });
     if (error) {
       yield put(showToastItem('获取支付凭证失败'));

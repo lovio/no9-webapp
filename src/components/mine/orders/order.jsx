@@ -99,15 +99,16 @@ const OrderItem = ({ order, triggerWechatPay }) => {
             <span>￥{dealNumber(order.get('paid'))}</span>
           </Intro>
         </Block>
-        {order.get('status') === ORDER_INIT && (
+        {includes([ORDER_INIT, ORDER_UNPAID], order.get('status')) && (
           <Payment>
             <Button
               onClick={() =>
                 triggerWechatPay({
                   orderId: order.get('id'),
+                  amount: order.get('price') - order.get('paid'),
                 })}
             >
-              微信支付
+              微信支付尾款
             </Button>
           </Payment>
         )}

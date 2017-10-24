@@ -2,25 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { PRODUCT_NAME, MINIMAL_PAY } from 'constants/constants.json';
+import { PRODUCT_NAME } from 'constants/constants.json';
+import { dealNumber } from 'helpers/string';
 
 import imgCarport from './carport.jpg';
 
-function cents2Yuan(cents) {
-  return cents / 100;
-}
-
-function getPaidPrice() {
-  // const yuan = cents2Yuan(cents);
-  // if (yuan <= MINIMAL_PAY) {
-  //   return yuan;
-  // }
-  return cents2Yuan(MINIMAL_PAY);
-}
-
-function getRemainningPriceTips(cents) {
-  const yuan = cents2Yuan(cents - MINIMAL_PAY);
-  const tips = yuan <= 0 ? '' : `剩余款项 ${yuan}元，`;
+function getRemainningPriceTips(cents, amount) {
+  const rest = cents - amount;
+  const tips = rest <= 0 ? '' : `剩余款项 ${dealNumber(rest)}元，`;
   return tips;
 }
 
@@ -72,7 +61,7 @@ const ThisPrice = styled.span`
   color: #e01053;
 `;
 
-const Intro = ({ product }) => (
+const Intro = ({ product, amount }) => (
   <Container>
     <Title>
       <img src={imgCarport} alt="" />
@@ -81,18 +70,19 @@ const Intro = ({ product }) => (
     </Title>
     <Detail>
       <Item>
-        商品总价<span>￥ {cents2Yuan(product.get('cents'))}</span>
+        商品总价<span>￥ {dealNumber(product.get('cents'))}</span>
       </Item>
       <Item>
-        本次支付<ThisPrice>￥ {getPaidPrice(product.get('cents'))}</ThisPrice>
+        本次支付<ThisPrice>￥ {dealNumber(amount)}</ThisPrice>
       </Item>
-      <p>{getRemainningPriceTips(product.get('cents'))}将有人工客服与您联系，并签署认购协议。</p>
+      <p>{getRemainningPriceTips(product.get('cents'), amount)}将有人工客服与您联系，并签署认购协议。</p>
     </Detail>
   </Container>
 );
 
 Intro.propTypes = {
   product: PropTypes.object.isRequired,
+  amount: PropTypes.number.isRequired,
 };
 
 export default Intro;

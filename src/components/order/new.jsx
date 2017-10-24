@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { MINIMAL_PAY } from 'constants/constants.json';
 import UserInfo from './userInfo';
 import Intro from './intro';
 import Payment from './payment';
 import Cities from './cities';
+import Amount from './amount';
 
 class OrderView extends Component {
   static propTypes = {
@@ -18,10 +20,12 @@ class OrderView extends Component {
     super(props);
     this.state = {
       cityId: 1,
+      amount: MINIMAL_PAY,
     };
     this.props.loadCities();
   }
 
+  setAmount = amount => this.setState({ amount });
   chooseCity = cityId => this.setState({ cityId });
 
   render() {
@@ -32,8 +36,16 @@ class OrderView extends Component {
         {!!cities.size && (
           <Cities cities={cities} cityId={this.state.cityId} chooseCity={this.chooseCity} />
         )}
-        <Intro product={product} />
-        <Payment product={product} cityId={this.state.cityId} createNewOrder={createNewOrder} />
+        {product.get('id') !== 1 && (
+          <Amount product={product} setAmount={this.setAmount} amount={this.state.amount} />
+        )}
+        <Intro product={product} amount={this.state.amount} />
+        <Payment
+          product={product}
+          cityId={this.state.cityId}
+          createNewOrder={createNewOrder}
+          amount={this.state.amount}
+        />
       </div>
     );
   }

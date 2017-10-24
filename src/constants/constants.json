@@ -2,6 +2,7 @@
   "HOME_PATH": "/",
   "WX_OAUTH_API": "https://open.weixin.qq.com/connect/oauth2/authorize",
   "COOKIE_DOMAIN": "smartstudy.com",
+  "TEL": "010-57277318",
   "ToastMsgTimeout": 1500,
   "DEFAULT_SORT": {
     "sortType": "name",
