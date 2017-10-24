@@ -43,6 +43,7 @@ const AddNewCardView = (props) => {
             component={Input}
             placeholder="收款人姓名，必须是会员本人"
             type="text"
+            disabled
           />
           <Field
             name="cardNo"
@@ -81,4 +82,5 @@ AddNewCardView.propTypes = {
 export default reduxForm({
   form: 'resetPwd',
   onSubmitFail,
+  enableReinitialize: true,
 })(AddNewCardView);

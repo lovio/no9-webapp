@@ -6,7 +6,8 @@ import { isPhone } from 'helpers/validators';
 import * as actions from 'actions/auth';
 import * as apis from 'helpers/api';
 import { getFormValuesByName } from './selector';
-import { showToastItem } from '../actions/common';
+import { showToastItem, showConfirm } from '../actions/common';
+
 import { formRequest, fetchEntity } from './utils';
 
 const requestUserInfo = fetchEntity.bind(null, actions.userInfo, apis.getUserInfo);
@@ -201,4 +202,18 @@ function* loadUserInfo({ payload }) {
 
 export function* watchGetUserInfo() {
   yield takeEvery(actions.getUserInfo, loadUserInfo);
+}
+
+export function* watchGetUserInfoSuccess() {
+  for (;;) {
+    const { payload } = yield take(actions.userInfo.success);
+    if (history.location.pathname === '/mine/cards/new' && !payload.name) {
+      yield put(
+        showConfirm({
+          type: 'profileIncomplete',
+          desc: ['实名信息未完善，请先完善实名信息'],
+        }),
+      );
+    }
+  }
 }
