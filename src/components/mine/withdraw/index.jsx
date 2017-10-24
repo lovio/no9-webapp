@@ -118,7 +118,11 @@ class WithdrawView extends Component {
               name="amount"
               validate={[
                 required('请输入取现金额'),
-                checkWithdrawAmount(availableCash < 0 ? 0 : availableCash),
+                // 有和胃的情况下最少取现1000元
+                checkWithdrawAmount(
+                  availableCash < 0 ? 0 : availableCash,
+                  user.get('asset') ? 100000 : 0,
+                ),
               ]}
               label="取现金额"
               id="amount"
