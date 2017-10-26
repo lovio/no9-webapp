@@ -29,7 +29,7 @@ const SubmitContainer = styled.div`
   p:last-of-type {
     margin-top: 0.3rem;
     a {
-      color: #57d3f2;
+      color: #0889ff;
     }
   }
 `;

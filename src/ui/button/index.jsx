@@ -5,24 +5,24 @@ export const BasicButton = styled.button`
   height: ${props => props.height || '0.48rem'};
   outline: none;
   border: none;
-  border: 1px solid #57d3f2;
+  border: 1px solid #0889ff;
   padding: 0;
   border-radius: 0.02rem;
   font-size: 0.18rem;
   line-height: ${props => props.height || '0.48rem'};
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 `;
 
 const Button = styled(BasicButton)`
-  background-color: #57d3f2;
+  background-color: #0889ff;
   color: #fff;
 `;
 
 export const CavityButton = styled(BasicButton)`
-  color: #57d3f2;
+  color: #0889ff;
   background-color: #f4f3f3;
 `;
 

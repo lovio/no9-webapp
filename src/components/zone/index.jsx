@@ -5,8 +5,7 @@ import history from 'helpers/history';
 import Loading from 'ui/loading';
 import { Wrapper } from 'components/common/wrapper';
 
-import imgRedCar from './redCar.png';
-import imgBlueCar from './blueCar.png';
+import IconCar from './car.svg';
 import imgMore from './more.png';
 
 const Container = styled.div`
@@ -17,21 +16,21 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  padding: 0.1rem 0;
-  color: ${props => (props.red ? '#E01053' : '#57D3F2')};
+  padding: 0.16rem 0;
+  background-color: ${props => (props.yellow ? '#E77C18' : '#0889FF')};
   border-bottom: 1px solid #dbdcdd;
+  color: white;
 
-  img {
-    display: inline-block;
-    margin: 0.03rem 0.1rem 0.03rem 0.2rem;
+  svg {
     width: 0.2rem;
     height: 0.14rem;
+    margin: 0.03rem 0.1rem 0.03rem 0.2rem;
   }
 `;
 
 const BuyMore = styled.p`
   text-align: center;
-  color: #57d3f2;
+  color: #0889ff;
   padding: 0.15rem;
   text-decoration: underline;
 `;
@@ -92,8 +91,8 @@ class ZoneView extends Component {
     }
     return (
       <Container>
-        <Title red>
-          <img src={imgRedCar} alt="" />
+        <Title>
+          <IconCar />
           我的车位
         </Title>
         {carports.size ? (
@@ -126,14 +125,14 @@ class ZoneView extends Component {
         {this.renderMyCarports()}
         <Container>
           <Title>
-            <img src={imgBlueCar} alt="" />
+            <IconCar />
             建设中车位
           </Title>
           {cities.map(city => <Item key={city.get('id')}>{city.get('name')}</Item>)}
         </Container>
         <Container>
-          <Title>
-            <img src={imgBlueCar} alt="" />
+          <Title yellow>
+            <IconCar />
             已建成车位
           </Title>
           {zones.map(zone => (

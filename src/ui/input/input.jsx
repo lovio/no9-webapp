@@ -51,8 +51,8 @@ const Button = styled.button`
   padding: 0 0.1rem;
   /* Rectangle: */
   background-color: #ffffff;
-  border: 1px solid #57d3f2;
-  color: #57d3f2;
+  border: 1px solid #0889ff;
+  color: #0889ff;
   border-radius: 0.03rem;
   font-size: 0.12rem;
   line-height: 0.2rem;

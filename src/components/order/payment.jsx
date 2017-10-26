@@ -23,7 +23,7 @@ const Agreement = styled.p`
   background-size: 0.14rem 0.14rem;
   background-position: left;
   a {
-    color: #57d3f2;
+    color: #0889ff;
   }
 `;
 class Payment extends Component {

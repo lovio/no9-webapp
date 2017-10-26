@@ -5,7 +5,7 @@ import { PRODUCT_NAME } from 'constants/constants.json';
 const Container = styled.div`
   overflow: auto;
   background-color: white;
-  padding: 0.05rem 0 0.1rem 0.2rem;
+  padding: 0.05rem 0 0.3rem 0.2rem;
   border-bottom: 1px solid #dbdcdd;
 `;
 

@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   padding: 0.1rem 0;
-  color: ${props => (props.red ? '#E01053' : '#57D3F2')};
+  color: ${props => (props.red ? '#E01053' : '#0889FF')};
   border-bottom: 1px solid #dbdcdd;
 
   svg {

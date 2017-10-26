@@ -56,7 +56,7 @@ const Tab = styled.div`
     /* 首页: */
     color: ${(props) => {
       if (props.isActive) {
-        return '#E01053';
+        return '#0889FF';
       }
       return '#4A4A4A';
     }};

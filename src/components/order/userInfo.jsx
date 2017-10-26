@@ -39,7 +39,7 @@ const Tips = styled.div`
 const Change = styled.span`
   margin-right: 0.2rem;
   font-size: 0.12rem;
-  color: #57d3f2;
+  color: #0889ff;
   float: right;
 `;
 

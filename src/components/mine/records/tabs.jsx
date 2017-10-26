@@ -22,7 +22,7 @@ const Link = styled.p`
   width: 100%;
   ${(props) => {
     if (props.isActive) {
-      return 'font-size: 0.18rem; color: #3FC4E6;line-height: 0.5rem;border-bottom: 0.02rem solid #57d3f2';
+      return 'font-size: 0.18rem; color: #3FC4E6;line-height: 0.5rem;border-bottom: 0.02rem solid #0889FF';
     }
     return 'padding-top: 0.2rem;color: #4A4A4A';
   }};

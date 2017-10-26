@@ -39,7 +39,7 @@ const Type = styled.span`
 const Amount = styled.span`
   float: right;
   font-size: 0.2rem;
-  color: ${props => (props.isRed ? '#e01053' : '#57D3F2')};
+  color: ${props => (props.isRed ? '#e01053' : '#0889FF')};
 `;
 
 const Row2 = styled.p`

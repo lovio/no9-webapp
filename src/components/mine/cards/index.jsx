@@ -55,7 +55,7 @@ const Manage = styled.p`
   text-align: center;
   line-height: 0.5rem;
   font-size: 0.18rem;
-  color: #57d3f2;
+  color: #0889ff;
 `;
 
 const DelButton = styled.img`
