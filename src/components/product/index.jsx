@@ -6,14 +6,12 @@ import Ways from './ways';
 import Desc from './desc';
 import Rights from './rights';
 
-export default function HomeView() {
-  return (
-    <Wrapper>
-      <Slides />
-      <Intro />
-      <Ways />
-      <Desc />
-      <Rights />
-    </Wrapper>
-  );
-}
+export default () => (
+  <Wrapper>
+    <Slides />
+    <Intro />
+    <Ways />
+    <Desc />
+    <Rights />
+  </Wrapper>
+);

@@ -4,6 +4,12 @@ import styled from 'styled-components';
 import IncomeCal from './incomeCal';
 
 import imgProfits from './profits.jpg';
+import imgBJ1 from './bj1.jpg';
+import imgGZ1 from './gz1.jpg';
+import imgSH1 from './sh1.jpg';
+import imgBJ2 from './bj2.jpg';
+import imgGZ2 from './gz2.jpg';
+import imgSH2 from './sh2.jpg';
 
 const Container = styled.div`
   padding-bottom: 0.1rem;
@@ -62,45 +68,179 @@ const Content = styled.p`
   color: #4a4a4a;
   text-align: center;
 `;
-const Image = styled.img`width: 2.2rem;`;
+
+const ContentImage = styled.p`
+  img {
+    width: 2.2rem;
+  }
+`;
+
+// =======================================
+const Card = styled.div`
+  margin: 0 0.2rem 0.15rem;
+  border: 1px solid #e7e7e7;
+  display: flex;
+  height: 1.58rem;
+
+  font-size: 0.14rem;
+  color: #999999;
+`;
+
+const CardImage = styled.div`
+  position: relative;
+  img {
+    width: 1.15rem;
+    height: 1.56rem;
+  }
+  p {
+    background-color: rgba(255, 255, 255, 0.75);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 0.35rem;
+
+    font-size: 0.14rem;
+    color: #666666;
+  }
+`;
+
+const CardKey = styled.div`
+  border-right: 1px solid #e7e7e7;
+  display: flex;
+  flex-direction: column;
+  width: 0.9rem;
+
+  &:last-of-type {
+    border: none;
+    flex: 1;
+  }
+
+  p {
+    width: 100%;
+    padding-right: 0.1rem;
+    text-align: right;
+  }
+`;
+
+const CardKeyItem = styled.div`
+  border-bottom: 1px solid #e7e7e7;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &:last-of-type {
+    border: none;
+  }
+`;
+
+const CardValueItem = styled.div`
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  p {
+    width: 100%;
+    padding-right: 0.1rem;
+    text-align: right;
+  }
+`;
 
 const Desc = () => (
   <Container>
     <Title>收益方式</Title>
     <TitleDesc>九路云商车位地产收益主要由三种方式构成，即：停车费收入、代理销售收入、车位增值收益三种方式。</TitleDesc>
-    {/* <Feature>
+    <Feature>
       <BlueSpan />
       <FeatureTitle>停车费收入</FeatureTitle>
-      <Image src={imgHuaiBei} alt="carport" />
-      <Content></Content>
-      <FeatureDesc>
-        淮北首个垂直循环式智能立体停车库（惠泽停车场）基本建成， 预计8月底投入试运营。据了解，惠泽停车场位于原市第二高级职业中学校园内，
-        总占地面积约2000平方米，由两排面对面共28组七层288个车位的垂直循环式智能立体车库组成， 停车数量比地面普通停车场增加3至4倍，投入运营后将进一步缓解周边社区停车难问题。
-      </FeatureDesc>
-    </Feature> */}
+      <Content>
+        {[[imgBJ1, '北京'], [imgGZ1, '广州'], [imgSH1, '上海']].map(item => (
+          <Card key={item[1]}>
+            <CardImage>
+              <img src={item[0]} alt="carport" />
+              <p>{item[1]}</p>
+            </CardImage>
+            <CardKey>
+              <CardKeyItem>租金价格</CardKeyItem>
+              <CardKeyItem>临停价格</CardKeyItem>
+            </CardKey>
+            <CardKey>
+              <CardKeyItem>
+                <CardValueItem>
+                  <p>地上1600/月</p>
+                </CardValueItem>
+                <CardValueItem>
+                  <p>地下1200/月</p>
+                </CardValueItem>
+                <CardValueItem>
+                  <p>机械600/月</p>
+                </CardValueItem>
+              </CardKeyItem>
+              <CardKeyItem>
+                <CardValueItem>
+                  <p>地上白天8元/小时</p>
+                </CardValueItem>
+                <CardValueItem>
+                  <p>地下6元/小时</p>
+                </CardValueItem>
+                <CardValueItem>
+                  <p>夜晚1元/2小时</p>
+                </CardValueItem>
+              </CardKeyItem>
+            </CardKey>
+          </Card>
+        ))}
+      </Content>
+    </Feature>
     <Feature>
       <BlueSpan />
       <FeatureTitle>代理销售收入</FeatureTitle>
-
       <Content>
-        <Image src={imgProfits} alt="carport" />
+        <ContentImage>
+          <img src={imgProfits} alt="carport" />
+        </ContentImage>
         <IncomeCal />
       </Content>
-      {/* <FeatureDesc>
-        九路泊车公司按照韩国DMIC公司客户要求推出一款10车位SUV型垂直循环式立体车库， 此款车库外观设计独特，寓意深长，该车库主体颜色采用“西瓜红”是一种甜甜的带有柔软特性的色彩。
-        这种红在炎炎夏日中透出清凉，吊臂采用中国特有的“工程黄”，载车盘采用银色象征着财源滚滚 。“中国制造，2025”强有力的印在主机架上，代表着“中国制造，走出国门，走向世界”。
-      </FeatureDesc> */}
     </Feature>
-    {/* <Feature>
+    <Feature>
       <BlueSpan />
-      <FeatureTitle>大丰住建局项目</FeatureTitle>
-      <Image src={imgDaFeng} alt="carport" />
-      <FeatureDesc>
-        大丰位于江苏沿海中部，是国务院批复的长三角城市群规划中苏北唯一城市盐城的临海新城区， 也是江苏省面积最大的城市区。大丰区人大主任提出大丰区应该有规划地在一些区域建设一些立体停车场，
-        以解决或缓和目前停车难的问题，在汽车保有量飞速增加和土地价格大幅攀升的今天，采用机械形式提高单位面积的停车数量，
-        实现“立体停车”，是既节约土地又解决“停车难”问题的有效途径，今后应当多建设人民医院这种智能立体停车场，方便市民出行。
-      </FeatureDesc>
-    </Feature> */}
+      <FeatureTitle>停车费收入</FeatureTitle>
+      <Content>
+        {[[imgBJ2, '北京'], [imgGZ2, '广州'], [imgSH2, '上海']].map(item => (
+          <Card key={item[1]}>
+            <CardImage>
+              <img src={item[0]} alt="carport" />
+              <p>{item[1]}</p>
+            </CardImage>
+            <CardKey>
+              <CardKeyItem>成交价格</CardKeyItem>
+              <CardKeyItem>成交时间</CardKeyItem>
+              <CardKeyItem>建筑面积</CardKeyItem>
+              <CardKeyItem>挂牌价格</CardKeyItem>
+            </CardKey>
+            <CardKey>
+              <CardKeyItem>
+                <p>43万元</p>
+              </CardKeyItem>
+              <CardKeyItem>
+                <p>2017年9月11日</p>
+              </CardKeyItem>
+              <CardKeyItem>
+                <p>
+                  38.83m<sup>2</sup>
+                </p>
+              </CardKeyItem>
+              <CardKeyItem>
+                <p>48万元</p>
+              </CardKeyItem>
+            </CardKey>
+          </Card>
+        ))}
+      </Content>
+    </Feature>
   </Container>
 );
 
