@@ -17,9 +17,11 @@ const Container = styled.div`
 `;
 
 const Head = styled.div`
-  padding: 0.15rem 0;
-  background-color: #e01053;
+  padding: 0.15rem 0 0;
   color: white;
+
+  /* Rectangle: */
+  background-image: linear-gradient(0deg, #3db4ff 0%, #0889ff 100%);
 `;
 
 const P1 = styled.p`
@@ -39,6 +41,10 @@ const P3 = styled.p`
   text-align: center;
   font-size: 0.14rem;
   line-height: 0.2rem;
+
+  &:last-of-type {
+    margin-bottom: 0.2rem;
+  }
 `;
 
 const P4 = styled.p`
@@ -85,20 +91,18 @@ const Tool = styled.div`
 
 const Banner = styled.img`width: 100%;`;
 
-const SubP1 = styled(P1)`margin-top: 0.1rem;`;
-const SubP4 = styled(P4)`margin-bottom: 0.15rem;`;
+const SubP1 = styled(P1)`margin-top: 0.12rem;`;
+const SubP4 = styled(P4)`margin-bottom: 0.1rem;`;
 
 const SubHead = styled.div`
-  background-color: #ee2062;
+  background: #0e83ef;
   display: flex;
 
-  /* 注册: */
-  font-family: .AppleSystemUIFont;
   font-size: 0.14rem;
   line-height: 0.4rem;
   div {
     flex: 1;
-    border-right: 1px solid white;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   div:last-of-type {
@@ -115,17 +119,18 @@ export default function HomeView({ user }) {
         <P3>总资产 {dealNumber(user.get('totalAssets'))} 元</P3>
         <P3>累计收益 {dealNumber(user.get('allowance') + user.get('fee'))} 元</P3>
         {/* <P3>入账收益 103232.00 元</P3> */}
+        <SubHead>
+          <div>
+            <SubP1>昨日车位收益（元）</SubP1>
+            <SubP4>{dealNumber(0)}</SubP4>
+          </div>
+          <div>
+            <SubP1>昨日补贴收益（元）</SubP1>
+            <SubP4>{dealNumber(0)}</SubP4>
+          </div>
+        </SubHead>
       </Head>
-      <SubHead>
-        <div>
-          <SubP1>昨日车位收益（元）</SubP1>
-          <SubP4>{dealNumber(0)}</SubP4>
-        </div>
-        <div>
-          <SubP1>昨日补贴收益（元）</SubP1>
-          <SubP4>{dealNumber(0)}</SubP4>
-        </div>
-      </SubHead>
+
       <Graph>
         <ResponsiveContainer width="100%" height={200}>
           <LineChart
@@ -160,7 +165,7 @@ export default function HomeView({ user }) {
             <Line
               type="monotoneX"
               dataKey="value"
-              stroke="#E01053"
+              stroke="#0e83ef"
               unit="%"
               label={{ fill: 'black', fontSize: 14 }}
             />
@@ -174,7 +179,7 @@ export default function HomeView({ user }) {
             />
           </LineChart>
         </ResponsiveContainer>
-        <p>七日年化收益率</p>
+        <p style={{ color: '#0e83ef' }}>七日年化收益率</p>
       </Graph>
       <Tools>
         <Tool onClick={() => history.push('/mine/records')}>

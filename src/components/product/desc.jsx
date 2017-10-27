@@ -5,10 +5,10 @@ import IncomeCal from './incomeCal';
 
 import imgProfits from './profits.jpg';
 import imgBJ1 from './bj1.jpg';
-import imgGZ1 from './gz1.jpg';
+import imgXM1 from './xm1.jpg';
 import imgSH1 from './sh1.jpg';
 import imgBJ2 from './bj2.jpg';
-import imgGZ2 from './gz2.jpg';
+import imgXM2 from './xm2.jpg';
 import imgSH2 from './sh2.jpg';
 
 const Container = styled.div`
@@ -149,6 +149,12 @@ const CardValueItem = styled.div`
   }
 `;
 
+const Tip = styled.p`
+  padding: 0 0.2rem;
+  font-size: 0.14rem;
+  color: #999999;
+`;
+
 const Desc = () => (
   <Container>
     <Title>收益方式</Title>
@@ -157,42 +163,108 @@ const Desc = () => (
       <BlueSpan />
       <FeatureTitle>停车费收入</FeatureTitle>
       <Content>
-        {[[imgBJ1, '北京'], [imgGZ1, '广州'], [imgSH1, '上海']].map(item => (
-          <Card key={item[1]}>
-            <CardImage>
-              <img src={item[0]} alt="carport" />
-              <p>{item[1]}</p>
-            </CardImage>
-            <CardKey>
-              <CardKeyItem>租金价格</CardKeyItem>
-              <CardKeyItem>临停价格</CardKeyItem>
-            </CardKey>
-            <CardKey>
-              <CardKeyItem>
-                <CardValueItem>
-                  <p>地上1600/月</p>
-                </CardValueItem>
-                <CardValueItem>
-                  <p>地下1200/月</p>
-                </CardValueItem>
-                <CardValueItem>
-                  <p>机械600/月</p>
-                </CardValueItem>
-              </CardKeyItem>
-              <CardKeyItem>
-                <CardValueItem>
-                  <p>地上白天8元/小时</p>
-                </CardValueItem>
-                <CardValueItem>
-                  <p>地下6元/小时</p>
-                </CardValueItem>
-                <CardValueItem>
-                  <p>夜晚1元/2小时</p>
-                </CardValueItem>
-              </CardKeyItem>
-            </CardKey>
-          </Card>
-        ))}
+        <Card>
+          <CardImage>
+            <img src={imgBJ1} alt="carport" />
+            <p>北京</p>
+          </CardImage>
+          <CardKey>
+            <CardKeyItem>租金价格</CardKeyItem>
+            <CardKeyItem>临停价格</CardKeyItem>
+          </CardKey>
+          <CardKey>
+            <CardKeyItem>
+              <CardValueItem>
+                <p>地上1800元/月</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>地下1300元/月</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>机械1000元/月</p>
+              </CardValueItem>
+            </CardKeyItem>
+            <CardKeyItem>
+              <CardValueItem>
+                <p>地上10元/小时</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>地下8元/小时</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>夜晚1元/2小时</p>
+              </CardValueItem>
+            </CardKeyItem>
+          </CardKey>
+        </Card>
+        <Card>
+          <CardImage>
+            <img src={imgXM1} alt="carport" />
+            <p>厦门</p>
+          </CardImage>
+          <CardKey>
+            <CardKeyItem>租金价格</CardKeyItem>
+            <CardKeyItem>临停价格</CardKeyItem>
+          </CardKey>
+          <CardKey>
+            <CardKeyItem>
+              <CardValueItem>
+                <p>地上1500元/月</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>地下1000元/月</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>机械800元/月</p>
+              </CardValueItem>
+            </CardKeyItem>
+            <CardKeyItem>
+              <CardValueItem>
+                <p>地上15元/小时</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>地下6元/小时</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>夜晚6元/小时</p>
+              </CardValueItem>
+            </CardKeyItem>
+          </CardKey>
+        </Card>
+        <Card>
+          <CardImage>
+            <img src={imgSH1} alt="carport" />
+            <p>上海</p>
+          </CardImage>
+          <CardKey>
+            <CardKeyItem>租金价格</CardKeyItem>
+            <CardKeyItem>临停价格</CardKeyItem>
+          </CardKey>
+          <CardKey>
+            <CardKeyItem>
+              <CardValueItem>
+                <p>地上1600/月</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>地下1200/月</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>机械1000/月</p>
+              </CardValueItem>
+            </CardKeyItem>
+            <CardKeyItem>
+              <CardValueItem>
+                <p>地上8元/小时</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>地下6元/小时</p>
+              </CardValueItem>
+              <CardValueItem>
+                <p>夜晚1元/2小时</p>
+              </CardValueItem>
+            </CardKeyItem>
+          </CardKey>
+        </Card>
       </Content>
     </Feature>
     <Feature>
@@ -207,40 +279,89 @@ const Desc = () => (
     </Feature>
     <Feature>
       <BlueSpan />
-      <FeatureTitle>停车费收入</FeatureTitle>
+      <FeatureTitle>车位增值收益</FeatureTitle>
       <Content>
-        {[[imgBJ2, '北京'], [imgGZ2, '广州'], [imgSH2, '上海']].map(item => (
-          <Card key={item[1]}>
-            <CardImage>
-              <img src={item[0]} alt="carport" />
-              <p>{item[1]}</p>
-            </CardImage>
-            <CardKey>
-              <CardKeyItem>成交价格</CardKeyItem>
-              <CardKeyItem>成交时间</CardKeyItem>
-              <CardKeyItem>建筑面积</CardKeyItem>
-              <CardKeyItem>挂牌价格</CardKeyItem>
-            </CardKey>
-            <CardKey>
-              <CardKeyItem>
-                <p>43万元</p>
-              </CardKeyItem>
-              <CardKeyItem>
-                <p>2017年9月11日</p>
-              </CardKeyItem>
-              <CardKeyItem>
-                <p>
-                  38.83m<sup>2</sup>
-                </p>
-              </CardKeyItem>
-              <CardKeyItem>
-                <p>48万元</p>
-              </CardKeyItem>
-            </CardKey>
-          </Card>
-        ))}
+        <Card>
+          <CardImage>
+            <img src={imgBJ2} alt="carport" />
+            <p>北京</p>
+          </CardImage>
+          <CardKey>
+            <CardKeyItem>最高价格</CardKeyItem>
+            <CardKeyItem>最低价格</CardKeyItem>
+            <CardKeyItem>价格趋势</CardKeyItem>
+            <CardKeyItem>采集时间</CardKeyItem>
+          </CardKey>
+          <CardKey>
+            <CardKeyItem>
+              <p>78万元</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>25万元</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>连续9年上涨</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>2017年10月11日</p>
+            </CardKeyItem>
+          </CardKey>
+        </Card>
+        <Card>
+          <CardImage>
+            <img src={imgXM2} alt="carport" />
+            <p>厦门</p>
+          </CardImage>
+          <CardKey>
+            <CardKeyItem>最高价格</CardKeyItem>
+            <CardKeyItem>最低价格</CardKeyItem>
+            <CardKeyItem>价格趋势</CardKeyItem>
+            <CardKeyItem>采集时间</CardKeyItem>
+          </CardKey>
+          <CardKey>
+            <CardKeyItem>
+              <p>70万元</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>28.2万元</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>连续4年上涨</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>2017年10月11日</p>
+            </CardKeyItem>
+          </CardKey>
+        </Card>
+        <Card>
+          <CardImage>
+            <img src={imgSH2} alt="carport" />
+            <p>上海</p>
+          </CardImage>
+          <CardKey>
+            <CardKeyItem>最高价格</CardKeyItem>
+            <CardKeyItem>最低价格</CardKeyItem>
+            <CardKeyItem>价格趋势</CardKeyItem>
+            <CardKeyItem>采集时间</CardKeyItem>
+          </CardKey>
+          <CardKey>
+            <CardKeyItem>
+              <p>110万元</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>18.75万元</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>连续7年上涨</p>
+            </CardKeyItem>
+            <CardKeyItem>
+              <p>2017年10月11日</p>
+            </CardKeyItem>
+          </CardKey>
+        </Card>
       </Content>
     </Feature>
+    <Tip>＊ 数据来源：网络</Tip>
   </Container>
 );
 
