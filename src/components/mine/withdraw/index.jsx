@@ -10,6 +10,7 @@ import Input from 'ui/input/input';
 import Button from 'ui/button';
 import { required, checkWithdrawAmount } from 'helpers/validators';
 import { dealNumber } from 'helpers/string';
+import { Wrapper } from '../../common/wrapper';
 
 import imgArror from './arrow.png';
 
@@ -18,6 +19,7 @@ const BANK_IMG_PREFIX = 'https://apimg.alipay.com/combo.png?d=cashier&t=';
 const FieldContainer = styled.div`
   background-color: white;
   padding-left: 0.2rem;
+  margin-bottom: 0.1rem;
 `;
 
 const SubmitContainer = styled.div`
@@ -72,26 +74,44 @@ const Tip = styled.p`
   color: #9b9b9b;
 `;
 
+const TipBlock = styled.div`
+  background-color: white;
+  line-height: 0.4rem;
+  margin-bottom: 0.1rem;
+  padding: 0 0.25rem;
+
+  span {
+    font-size: 0.12rem;
+    color: #666666;
+    letter-spacing: 1px;
+  }
+  span:last-of-type {
+    float: right;
+  }
+`;
+
 class WithdrawView extends Component {
   static propTypes = {
     ...propTypes,
     withdraw: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     card: PropTypes.object.isRequired,
+    restCash: PropTypes.number.isRequired,
   };
 
   constructor(props) {
     super(props);
     props.getUserInfo();
   }
+
   // 考虑 1000车位情况
   render() {
-    const { handleSubmit, submitting, pristine, withdraw, card, user } = this.props;
+    const { handleSubmit, submitting, pristine, withdraw, card, user, restCash } = this.props;
     const cardNo = card.get('cardNo');
     const availableCash = user.get('cash') - user.get('debt');
     // 有车位最小取现金额为1千元
     return (
-      <div>
+      <Wrapper>
         <Helmet>
           <title>取现</title>
         </Helmet>
@@ -109,7 +129,7 @@ class WithdrawView extends Component {
           )}
         </Card>
         <TipBox>
-          <Tip>{user.get('asset') ? '最小取现金额1000元，取现上限5万。' : '取现上限5万。'}</Tip>
+          <Tip>{user.get('asset') ? '最低取现金额1000元，当日最高5万元。' : '当日最高5万元。'}</Tip>
           <Tip>您的可取现金额为{dealNumber(availableCash < 0 ? 0 : availableCash)}元</Tip>
         </TipBox>
         <Form onSubmit={handleSubmit(submit(withdraw))}>
@@ -118,7 +138,7 @@ class WithdrawView extends Component {
               name="amount"
               validate={[
                 required('请输入取现金额'),
-                // 有和胃的情况下最少取现1000元
+                // 有车位的情况下最少取现1000元
                 checkWithdrawAmount(
                   availableCash < 0 ? 0 : availableCash,
                   user.get('asset') ? 100000 : 0,
@@ -129,11 +149,15 @@ class WithdrawView extends Component {
               component={Input}
               placeholder="请输入取现金额"
               type="number"
+              inputType="withdraw"
             />
           </FieldContainer>
-          <TipBox>
-            <Tip>手续费：0.6%</Tip>
-          </TipBox>
+          <TipBlock>
+            <span>取现综合服务费率6%</span>
+            <span>
+              实际取现金额<strong style={{ color: '#0889FF' }}>{restCash}</strong>元
+            </span>
+          </TipBlock>
           <SubmitContainer>
             <Button type="submit" disabled={pristine || submitting}>
               确认取现
@@ -143,7 +167,7 @@ class WithdrawView extends Component {
             <Tip>预计到账时间：7个工作日</Tip>
           </TipBox>
         </Form>
-      </div>
+      </Wrapper>
     );
   }
 }

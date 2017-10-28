@@ -165,6 +165,7 @@ export default class Input extends Component {
           </Button>
         )}
         {inputType === 'referrerCode' && <Tip>邀请码不可修改</Tip>}
+        {inputType === 'withdraw' && <Tip>元</Tip>}
         {inputType === 'password' && (
           <Tip
             onClick={() =>
