@@ -9,6 +9,8 @@ import history from 'helpers/history';
 import IconUsers from './users.svg';
 import { ALLOWANCE } from '../../../constants/constants.json';
 
+import imgLock from './lock.png';
+
 const Container = styled.div`
   background-color: white;
   line-height: 0.2rem;
@@ -16,22 +18,31 @@ const Container = styled.div`
   margin-bottom: 0.1rem;
 `;
 
+const UserList = styled.div`
+  ${props =>
+    props.isFrozen &&
+    `background-image: url('${imgLock}');
+  background-size: 0.8rem 0.8rem;
+  background-position: center center;
+  background-repeat: no-repeat;`};
+`;
+
 const Title = styled.div`
-  padding: 0.1rem 0;
-  color: ${props => (props.red ? '#E01053' : '#0889FF')};
+  padding: 0.16rem 0;
+  background-color: ${props => (props.yellow ? '#E77C18' : '#0889FF')};
   border-bottom: 1px solid #dbdcdd;
+  color: white;
 
   svg {
-    margin: 0 0.1rem 0 0.2rem;
     width: 0.2rem;
-    height: 0.2rem;
+    height: 0.14rem;
+    margin: 0.03rem 0.1rem 0.03rem 0.2rem;
   }
 `;
 
 const Frozen = styled.span`
   float: right;
   padding-right: 0.2rem;
-  color: #e01053;
   letter-spacing: 0.02rem;
 `;
 
@@ -96,19 +107,21 @@ class RelationView extends Component {
             {maskName(user.get('name')) || maskPhone(user.get('phone'))}的客户（{descendants.size}人）
             {isFrozen && <Frozen>冻结中</Frozen>}
           </Title>
-          {descendants.map(u => (
-            <Item
-              key={u.get('id')}
-              onClick={() => {
-                if (depth <= 3) {
-                  history.push(`/mine/relations?userId=${u.get('id')}`);
-                }
-              }}
-            >
-              {maskName(u.get('name')) || maskPhone(u.get('phone'))}{' '}
-              <Money>累计{dealNumber(u.get('validPaid') * rate) || 0}元</Money>
-            </Item>
-          ))}
+          <UserList isFrozen={isFrozen}>
+            {descendants.map(u => (
+              <Item
+                key={u.get('id')}
+                onClick={() => {
+                  if (depth <= 3) {
+                    history.push(`/mine/relations?userId=${u.get('id')}`);
+                  }
+                }}
+              >
+                {maskName(u.get('name')) || maskPhone(u.get('phone'))}{' '}
+                <Money>累计{dealNumber(u.get('validPaid') * rate) || 0}元</Money>
+              </Item>
+            ))}
+          </UserList>
         </Container>
       </div>
     );
