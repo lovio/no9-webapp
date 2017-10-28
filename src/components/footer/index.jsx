@@ -5,30 +5,30 @@ import history from 'helpers/history';
 import map from 'lodash/map';
 
 import { Footer } from 'ui';
-import imgProperty from './property.png';
-import imgCarport from './carport.png';
-import imgCart from './cart.png';
-import imgMine from './mine.png';
+import IconProperty from './property.svg';
+import IconCart from './cart.svg';
+import IconMine from './mine.svg';
+import IconCarport from './carport.svg';
 
 const LINKS = [
   {
     url: '/',
-    img: imgProperty,
+    Icon: () => <IconProperty />,
     title: '资产',
   },
   {
     url: '/zones',
-    img: imgCarport,
+    Icon: () => <IconCarport />,
     title: '车位',
   },
   {
     url: '/products',
-    img: imgCart,
+    Icon: () => <IconCart />,
     title: '购买',
   },
   {
     url: '/mine',
-    img: imgMine,
+    Icon: () => <IconMine />,
     title: '账户',
   },
 ];
@@ -43,8 +43,10 @@ const Tab = styled.div`
   margin: 0.07rem 0 0.04rem;
   border-right: 1px solid #dbdcdd;
 
-  img {
+  svg {
     height: 0.14rem;
+    fill: black;
+    ${props => props.isActive && 'fill: #0889FF;'};
   }
 
   p {
@@ -80,7 +82,7 @@ export default function FooterView({ location: { pathname } }) {
             }
           }}
         >
-          <img src={link.img} alt="property" />
+          {link.Icon()}
           <p>{link.title}</p>
         </Tab>
       ))}
