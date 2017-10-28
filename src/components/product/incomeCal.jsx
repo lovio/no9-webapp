@@ -29,7 +29,10 @@ const TipRow = styled.div`
   }
 `;
 
-const Cell = styled.p`color: #666666;`;
+const Cell = styled.p`
+  color: #666666;
+  flex: 1;
+`;
 
 const HeadCell = styled(Cell)`color: #ffffff;`;
 
