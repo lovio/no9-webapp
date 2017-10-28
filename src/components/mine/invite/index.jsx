@@ -23,26 +23,25 @@ const QRCodeContainer = styled.div`
   left: 0;
   right: 0;
   position: absolute;
-  padding-top: 0.3rem;
-  text-align: center;
+  padding-top: 2.4rem;
+  padding-left: 1.96rem;
   canvas {
-    width: 1.15rem !important;
-    height: 1.15rem !important;
+    width: 1.1rem !important;
+    height: 1.1rem !important;
   }
 `;
 
 const Name = styled.p`
-  font-size: 0.18rem;
+  font-size: 0.12rem;
   color: #4a4a4a;
-  line-height: 0.25rem;
-  min-height: 0.25rem;
+  line-height: 0.16rem;
+  min-height: 0.2rem;
 `;
 
 const No = styled.p`
   font-size: 0.12rem;
   color: #4a4a4a;
-  line-heght: 0.2rem;
-  margin-bottom: 0.2rem;
+  line-heght: 0.16rem;
 `;
 
 export default function MineView({ user }) {
