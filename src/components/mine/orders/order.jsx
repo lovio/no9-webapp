@@ -7,6 +7,7 @@ import {
   ORDER_STATUS_MAPPING,
   ORDER_INIT,
   ORDER_UNPAID,
+  ORDER_CANCEL,
   PRODUCT_NAME,
 } from 'constants/constants.json';
 import { dealNumber } from 'helpers/string';
@@ -37,7 +38,7 @@ const DateTime = styled.span`
 const Status = styled.span`
   float: right;
   font-size: 0.14rem;
-  color: ${props => (props.isRed ? '#e01053' : '#4ab3e2')};
+  color: ${props => (props.isRed ? '#e01053' : '#0889FF')};
 `;
 
 const InfoBox = styled.div`padding-left: 0.2rem;`;
@@ -65,15 +66,28 @@ const Intro = styled.p`
   }
 `;
 
-const Payment = styled.div`padding: 0.1rem 0.2rem 0.1rem 0;`;
+const BtnGroups = styled.div`
+  padding: 0.1rem 0.2rem 0.1rem 0;
+  display: flex;
+  justify-content: space-around;
+  button {
+    margin: 0 0.1rem;
+  }
+`;
 
-const OrderItem = ({ order, triggerWechatPay }) => {
+const CancelButton = styled(Button)`
+  color: #e01053;
+  background-color: white;
+  border-color: #e01053;
+`;
+
+const OrderItem = ({ order, triggerWechatPay, cancel }) => {
   const product = Immutable.fromJS(find(products, { id: order.get('productId') }));
   return (
     <Container>
       <Header>
         <DateTime>{format(new Date(order.get('createdAt')), 'YYYY-MM-DD HH:mm:ss')}</DateTime>
-        <Status isRed={includes([ORDER_INIT, ORDER_UNPAID], order.get('status'))}>
+        <Status isRed={includes([ORDER_INIT, ORDER_UNPAID, ORDER_CANCEL], order.get('status'))}>
           {ORDER_STATUS_MAPPING[order.get('status')]}
         </Status>
       </Header>
@@ -99,8 +113,8 @@ const OrderItem = ({ order, triggerWechatPay }) => {
             <span>￥{dealNumber(order.get('paid'))}</span>
           </Intro>
         </Block>
-        {includes([ORDER_INIT, ORDER_UNPAID], order.get('status')) && (
-          <Payment>
+        <BtnGroups>
+          {includes([ORDER_INIT, ORDER_UNPAID], order.get('status')) && (
             <Button
               onClick={() =>
                 triggerWechatPay({
@@ -110,8 +124,18 @@ const OrderItem = ({ order, triggerWechatPay }) => {
             >
               微信支付尾款
             </Button>
-          </Payment>
-        )}
+          )}
+          {order.get('status') === ORDER_INIT && (
+            <CancelButton
+              onClick={() =>
+                cancel({
+                  orderId: order.get('id'),
+                })}
+            >
+              取消订单
+            </CancelButton>
+          )}
+        </BtnGroups>
       </InfoBox>
     </Container>
   );
@@ -120,6 +144,7 @@ const OrderItem = ({ order, triggerWechatPay }) => {
 OrderItem.propTypes = {
   order: PropTypes.object.isRequired,
   triggerWechatPay: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired,
 };
 
 export default OrderItem;

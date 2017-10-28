@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { getUserInfo } from 'actions/auth';
 
-import { loadOrders, loadMoreOrders, triggerWechatPay } from 'actions/order';
+import { loadOrders, loadMoreOrders, triggerWechatPay, cancel } from 'actions/order';
 
 import OrdersView from 'components/mine/orders';
 
@@ -17,6 +17,7 @@ class Orders extends Component {
     user: PropTypes.object.isRequired,
     getUserInfo: PropTypes.func.isRequired,
     triggerWechatPay: PropTypes.func.isRequired,
+    cancel: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -38,6 +39,7 @@ class Orders extends Component {
           loadMoreOrders={this.props.loadMoreOrders}
           user={user}
           triggerWechatPay={this.props.triggerWechatPay}
+          cancel={this.props.cancel}
         />
       </div>
     );
@@ -56,4 +58,5 @@ export default connect(mapStateToProps, {
   loadMoreOrders,
   getUserInfo,
   triggerWechatPay,
+  cancel,
 })(Orders);

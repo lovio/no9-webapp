@@ -143,7 +143,26 @@ export function* watchTriggerWechatPay() {
     if (error) {
       yield put(showToastItem('获取支付凭证失败'));
     } else {
-      yield call(pay, response, orderId);
+      yield fork(pay, response, orderId);
     }
+  }
+}
+
+export function* watchCancelOrder() {
+  for (;;) {
+    const { payload: { orderId } } = yield take(actions.cancel);
+    const token = yield select(state => state.getIn(['user', 'token']));
+    const { response, error } = yield call(apis.cancelOrder, {
+      id: orderId,
+      token,
+    });
+    if (error) {
+      console.log(response, error);
+      yield put(showToastItem(get(error, 'data.message')));
+    } else {
+      yield put(showToastItem({ type: 'success', msg: '订单已取消' }));
+    }
+
+    yield put(actions.loadOrders());
   }
 }

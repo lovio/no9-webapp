@@ -11,7 +11,13 @@ import OrderItem from './order';
 const Container = styled.div`width: 100%;`;
 
 // 不够通用
-export default function OrdersView({ orders, pagination, loadMoreOrders, triggerWechatPay }) {
+export default function OrdersView({
+  orders,
+  pagination,
+  loadMoreOrders,
+  triggerWechatPay,
+  cancel,
+}) {
   if (!pagination.get('isLoading') && !orders.size) {
     return <Empty />;
   }
@@ -21,7 +27,12 @@ export default function OrdersView({ orders, pagination, loadMoreOrders, trigger
         <AutoLoader pagination={pagination} loadMoreData={() => loadMoreOrders()}>
           <Wrapper>
             {orders.map(order => (
-              <OrderItem key={order.get('id')} order={order} triggerWechatPay={triggerWechatPay} />
+              <OrderItem
+                key={order.get('id')}
+                order={order}
+                triggerWechatPay={triggerWechatPay}
+                cancel={cancel}
+              />
             ))}
           </Wrapper>
         </AutoLoader>
@@ -35,4 +46,5 @@ OrdersView.propTypes = {
   loadMoreOrders: PropTypes.func.isRequired,
   triggerWechatPay: PropTypes.func.isRequired,
   pagination: PropTypes.object.isRequired,
+  cancel: PropTypes.func.isRequired,
 };
