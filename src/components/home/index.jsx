@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import { dealNumber } from 'helpers/string';
 
 import imgBanner from './banner.jpg';
-import IconBill from './bill.svg';
-import IconRelation from './relation.svg';
-import IconTransfer from './transfer.svg';
+import ImgBill from './bill.png';
+import ImgRelation from './relation.png';
+import ImgTransfer from './transfer.png';
 
 const Container = styled.div`
   & > * {
@@ -76,7 +76,7 @@ const Tool = styled.div`
   padding: 0.15rem 0 0.1rem;
   text-align: center;
   flex: 1;
-  svg {
+  img {
     width: 0.54rem;
     height: 0.54rem;
   }
@@ -183,15 +183,16 @@ export default function HomeView({ user }) {
       </Graph>
       <Tools>
         <Tool onClick={() => history.push('/mine/records')}>
-          <IconBill />
+          <img src={ImgBill} alt="" />
           <p>收支明细</p>
         </Tool>
         <Tool onClick={() => history.push('/mine/withdraw')}>
-          <IconTransfer />
+          <img src={ImgTransfer} alt="" />
+
           <p>提现</p>
         </Tool>
         <Tool onClick={() => history.push('/mine/relations')}>
-          <IconRelation />
+          <img src={ImgRelation} alt="" />
           <p>客户关系</p>
         </Tool>
       </Tools>
