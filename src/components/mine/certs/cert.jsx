@@ -13,7 +13,7 @@ import { Wrapper } from 'components/common/wrapper';
 
 import imgStamp from './stamp.png';
 
-import imgBlueCar from '../../zone/blueCar.png';
+import IconCar from '../../zone/car.svg';
 
 const STOCK_DESC = {
   1: '众筹',
@@ -38,15 +38,16 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  padding: 0.1rem 0;
-  color: ${props => (props.red ? '#E01053' : '#0889FF')};
+  padding: 0.16rem 0;
+  background-color: ${props => (props.yellow ? '#E77C18' : '#0889FF')};
   border-bottom: 1px solid #dbdcdd;
+  color: white;
 
-  img {
+  svg {
     display: inline-block;
-    margin: 0.03rem 0.1rem 0.03rem 0.2rem;
     width: 0.2rem;
     height: 0.14rem;
+    margin: 0.03rem 0.1rem 0.03rem 0.2rem;
   }
 `;
 
@@ -104,7 +105,7 @@ export default class CertItem extends Component {
     return (
       <Container>
         <Title>
-          <img src={imgBlueCar} alt="" />
+          <IconCar />
           {carport.get('status') === 'virtual'
             ? carport.getIn(['city', 'name'])
             : carport.getIn(['zone', 'name'])}
