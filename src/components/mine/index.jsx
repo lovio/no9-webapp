@@ -6,13 +6,13 @@ import Card from './card';
 import Menu from './menu';
 import Exit from './exit';
 
-export default function MineView({ user, signOut }) {
+export default function MineView({ user, levelups, signOut }) {
   return (
     <div>
       <Helmet>
         <title>账户</title>
       </Helmet>
-      <Card user={user} />
+      <Card user={user} levelups={levelups} />
       <Menu />
       <Exit signOut={signOut} />
     </div>
@@ -22,4 +22,5 @@ export default function MineView({ user, signOut }) {
 MineView.propTypes = {
   user: PropTypes.object.isRequired,
   signOut: PropTypes.func.isRequired,
+  levelups: PropTypes.object.isRequired,
 };

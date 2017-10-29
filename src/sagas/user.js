@@ -18,7 +18,7 @@ const requestDailySummaries = fetchEntity.bind(
 const requestRemoveCard = fetchEntity.bind(null, actions.cardRemove, apis.removeCard);
 const requestRelations = fetchEntity.bind(null, actions.relations, apis.getDescendants);
 
-const requestLevelups = fetchEntity.bind(null, actions.levelups, apis.getLevelups);
+const requestLevelups = fetchEntity.bind(null, actions.levelups, apis.getLevelups, {}, true);
 
 // 获取用户信息
 function* loadCards({ payload }) {

@@ -42,6 +42,10 @@ export default Immutable.fromJS({
       isLoading: false,
       data: [],
     },
+    levelups: {
+      isLoading: false,
+      data: [],
+    },
     relations: {
       isLoading: false,
       data: {},

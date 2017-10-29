@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Slider from 'ui/slider';
 import { GRADE_MAPPING } from '../../constants/constants.json';
 
+import LevelUp from './levelup';
+
 import imgCrown1 from './crown1.png';
 import imgCrown2 from './crown2.png';
 import imgCrown3 from './crown3.png';
@@ -93,7 +95,7 @@ const No = styled(Item)`
   font-size: 0.14rem;
 `;
 
-const Card = ({ user }) => {
+const Card = ({ user, levelups }) => {
   const grade = user.get('grade');
   const style = gradeStyles[grade];
 
@@ -111,13 +113,16 @@ const Card = ({ user }) => {
           <No color={style.color}>账号编号：{user.get('phone')}</No>
         </Info>
       </Container>
-      {/* <Container></Container> */}
+      <Container>
+        <LevelUp levelups={levelups} />
+      </Container>
     </Slider>
   );
 };
 
 Card.propTypes = {
   user: PropTypes.object.isRequired,
+  levelups: PropTypes.object.isRequired,
 };
 
 export default Card;

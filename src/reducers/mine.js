@@ -37,6 +37,23 @@ export default combineReducers({
     },
     initialState.getIn(['mine', 'orders']),
   ),
+  levelups: combineReducers({
+    data: handleActions(
+      {
+        [actions.loadLevelups]: () => Immutable.Map(),
+        [actions.levelups.success]: (state, { payload }) => state.concat(fromJS(payload)),
+      },
+      initialState.getIn(['mine', 'levelups', 'data']),
+    ),
+    isLoading: handleActions(
+      {
+        [actions.levelups.request]: () => true,
+        [actions.levelups.success]: () => false,
+        [actions.levelups.failure]: () => false,
+      },
+      initialState.getIn(['mine', 'levelups', 'isLoading']),
+    ),
+  }),
   summries: combineReducers({
     data: handleActions(
       {
