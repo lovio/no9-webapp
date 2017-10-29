@@ -107,7 +107,7 @@ const Card = ({ user }) => {
             </div>
           </TitleContainer>
           <Name color={style.color}>{GRADE_MAPPING[grade]}</Name>
-          <Item color={style.color}>{user.get('name')}</Item>
+          <Item color={style.color}>{user.get('name') || ' '}</Item>
           <No color={style.color}>账号编号：{user.get('phone')}</No>
         </Info>
       </Container>
