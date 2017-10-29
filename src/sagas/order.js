@@ -94,7 +94,7 @@ export function* watchCreateNewOrder() {
     const { payload: { cityId, product, amount } } = yield take(actions.createNewOrder);
     const user = yield select(state => state.get('user'));
     if (user.get('name') && user.get('IDCardNo')) {
-      const openid = yield select(state => state.getIn(['mine', 'openid']));
+      const openid = yield select(state => state.getIn(['user', 'openid']));
       const token = yield select(state => state.getIn(['user', 'token']));
       const { response, error } = yield call(apis.postNewOrders, {
         openid: openid || '123',
@@ -132,7 +132,7 @@ export function* watchCreateNewOrder() {
 export function* watchTriggerWechatPay() {
   for (;;) {
     const { payload: { orderId, amount } } = yield take(actions.triggerWechatPay);
-    const openid = yield select(state => state.getIn(['mine', 'openid']));
+    const openid = yield select(state => state.getIn(['user', 'openid']));
     const token = yield select(state => state.getIn(['user', 'token']));
     const { response, error } = yield call(apis.getPaymentPkg, {
       openid: openid || '123',

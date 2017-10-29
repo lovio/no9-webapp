@@ -1,4 +1,4 @@
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 import history, { getSearch } from 'helpers/history';
 import { inWechat } from 'helpers/ua';
 import { transferCode, getOpenIDByCode } from 'actions/wx';
@@ -8,7 +8,8 @@ import { transferCode, getOpenIDByCode } from 'actions/wx';
 // 包含share的都走验证流程
 export function* wechatOauth() {
   // const { pathname } = history.location;
-  if (inWechat) {
+  const openid = yield select(state => state.getIn(['user', 'openid']));
+  if (inWechat && !openid) {
     const search = getSearch(history.location.search);
     const code = search.code;
     if (!code) {
