@@ -35,7 +35,7 @@ const SubmitContainer = styled.div`
 `;
 
 const SignInView = (props) => {
-  const { handleSubmit, submitting, pristine, signUp, sendCaptcha } = props;
+  const { handleSubmit, submitting, pristine, signUp, sendCaptcha, initialValues } = props;
   return (
     <div>
       <Helmet>
@@ -81,6 +81,7 @@ const SignInView = (props) => {
             inputType="referrerCode"
             component={Input}
             placeholder="请输入邀请码"
+            disabled={!!initialValues.get('referrerCode')}
           />
         </FieldContainer>
         <SubmitContainer>

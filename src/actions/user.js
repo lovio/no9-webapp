@@ -24,3 +24,6 @@ export const withdrawSuccess = createAction('WITHDRAW_SUCCESS');
 
 export const loadDailySummaries = createAction('LOAD_DAILY_SUMMARIES');
 export const dailySummaries = createFetchActions('DAILY_SUMMARIES');
+
+export const loadLevelups = createAction('LOAD_LEVELUPS');
+export const levelups = createFetchActions('LEVELUPS');

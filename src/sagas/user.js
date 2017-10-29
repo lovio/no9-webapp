@@ -18,6 +18,8 @@ const requestDailySummaries = fetchEntity.bind(
 const requestRemoveCard = fetchEntity.bind(null, actions.cardRemove, apis.removeCard);
 const requestRelations = fetchEntity.bind(null, actions.relations, apis.getDescendants);
 
+const requestLevelups = fetchEntity.bind(null, actions.levelups, apis.getLevelups);
+
 // 获取用户信息
 function* loadCards({ payload }) {
   yield call(requestCards, payload || {}, true);
@@ -38,6 +40,10 @@ export function* watchLoadRelations() {
 
 export function* watchLoadDailySummaries() {
   yield takeEvery(actions.loadDailySummaries, requestDailySummaries);
+}
+
+export function* watchLoadLevelups() {
+  yield takeEvery(actions.loadLevelups, requestLevelups);
 }
 
 function* withdraw({ payload }) {

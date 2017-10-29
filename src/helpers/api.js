@@ -129,6 +129,8 @@ export const cancelOrder = ({ id, ...rest }) => del(`/orders/${id}`, rest);
 
 export const getDailySummaries = data => get('/daily/summaries', data);
 
+export const getLevelups = data => get('/levelups', data);
+
 // ****************************************************************************************8
 
 // weixin related
