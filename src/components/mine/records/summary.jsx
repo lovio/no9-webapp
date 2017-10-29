@@ -22,7 +22,7 @@ const Item = styled.p`
 const Summary = ({ user, type }) => (
   <Container>
     <Item>
-      {type === '' ? '余额' : '总计'}：{type === ''
+      {type === '' ? '余额（* 如有未完成订单，余额显示可能不正常）' : '总计'}：{type === ''
         ? dealNumber(user.get('cash') - user.get('debt'))
         : dealNumber(user.get(type))}
     </Item>

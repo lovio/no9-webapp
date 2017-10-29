@@ -123,7 +123,7 @@ class OrderSuccessView extends Component {
               <span>￥{dealNumber(product.get('cents'))}</span>
             </Intro>
             <Intro>
-              本次支付
+              合计支付
               <span>￥{dealNumber(order.get('paid'))}</span>
             </Intro>
           </Block>
