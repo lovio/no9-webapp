@@ -39,7 +39,10 @@ export default Immutable.fromJS({
     cards: [],
     records: [],
     orders: [],
-    summries: [],
+    summries: {
+      isLoading: false,
+      data: [],
+    },
     relations: {
       isLoading: false,
       data: {},

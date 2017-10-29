@@ -16,7 +16,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.getUserInfo();
-    if (!this.props.summaries.size) {
+    if (!this.props.summaries.get('data').size) {
       this.props.loadDailySummaries();
     }
   }

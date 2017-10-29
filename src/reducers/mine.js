@@ -46,13 +46,23 @@ export default combineReducers({
     },
     initialState.getIn(['mine', 'orders']),
   ),
-  summries: handleActions(
-    {
-      [actions.loadDailySummaries]: () => Immutable.List(),
-      [actions.dailySummaries.success]: (state, { payload }) => state.concat(fromJS(payload)),
-    },
-    initialState.getIn(['mine', 'summries']),
-  ),
+  summries: combineReducers({
+    data: handleActions(
+      {
+        [actions.loadDailySummaries]: () => Immutable.List(),
+        [actions.dailySummaries.success]: (state, { payload }) => state.concat(fromJS(payload)),
+      },
+      initialState.getIn(['mine', 'summries', 'data']),
+    ),
+    isLoading: handleActions(
+      {
+        [actions.dailySummaries.request]: () => true,
+        [actions.dailySummaries.success]: () => false,
+        [actions.dailySummaries.failure]: () => false,
+      },
+      initialState.getIn(['mine', 'summries', 'isLoading']),
+    ),
+  }),
   relations: combineReducers({
     data: handleActions(
       {

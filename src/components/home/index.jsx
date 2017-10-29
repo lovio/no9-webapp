@@ -111,10 +111,9 @@ const SubHead = styled.div`
 `;
 
 export default function HomeView({ user, summaries }) {
-  const fee = summaries.getIn([0, 'fee']) || 0;
-  const allowance = summaries.getIn([0, 'allowance']) || 0;
-  console.log(fee, allowance);
-  console.log(summaries);
+  const data = summaries.get('data');
+  const fee = data.getIn([0, 'fee']) || 0;
+  const allowance = data.getIn([0, 'allowance']) || 0;
   return (
     <Container>
       <Head>
@@ -135,14 +134,14 @@ export default function HomeView({ user, summaries }) {
         </SubHead>
       </Head>
 
-      {!!summaries.size && (
+      {!summaries.get('isLoading') && (
         <Graph>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart
               margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
               data={[0, 1, 2, 3, 4, 5].map(num => ({
                 name: num,
-                value: summaries.getIn([num, 'rate']) || 0,
+                value: data.getIn([num, 'rate']) || 0,
               }))}
             >
               <Line
