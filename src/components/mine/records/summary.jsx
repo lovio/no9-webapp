@@ -19,14 +19,23 @@ const Item = styled.p`
   line-height: 0.2rem;
 `;
 
-const Summary = ({ user }) => (
+const Summary = ({ user, type }) => (
   <Container>
-    <Item>余额：{dealNumber(user.get('cash') - user.get('debt'))}</Item>
+    <Item>
+      {type === '' ? '余额' : '总计'}：{type === ''
+        ? dealNumber(user.get('cash') - user.get('debt'))
+        : dealNumber(user.get(type))}
+    </Item>
   </Container>
 );
 
 Summary.propTypes = {
   user: PropTypes.object.isRequired,
+  type: PropTypes.string,
+};
+
+Summary.defaultProps = {
+  type: '',
 };
 
 export default Summary;

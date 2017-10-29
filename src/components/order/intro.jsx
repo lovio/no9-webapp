@@ -75,7 +75,7 @@ const Intro = ({ product, amount }) => (
       <Item>
         本次支付<ThisPrice>￥ {dealNumber(amount)}</ThisPrice>
       </Item>
-      <p>{getRemainningPriceTips(product.get('cents'), amount)}将有人工客服与您联系，并签署认购协议。</p>
+      <p>{getRemainningPriceTips(product.get('cents'), amount)}点击微信支付，签署电子协议。</p>
     </Detail>
   </Container>
 );

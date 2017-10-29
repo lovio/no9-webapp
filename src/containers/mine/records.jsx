@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { getSearch } from 'helpers/history';
 import { getUserInfo } from 'actions/auth';
+import includes from 'lodash-es/includes';
 
 import { loadRecords, loadMoreRecords } from 'actions/order';
 
@@ -50,7 +51,7 @@ class Records extends Component {
         </Helmet>
         <Container>
           <Tabs type={type} />
-          {type === '' && <Summary user={user} />}
+          {includes(['', 'fee', 'allowance'], type) && <Summary user={user} type={type} />}
           <Overflow>
             <RecordsView
               records={records}
