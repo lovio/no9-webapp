@@ -127,6 +127,8 @@ export const getOpenID = data => get('/wechat/code', data);
 
 export const cancelOrder = ({ id, ...rest }) => del(`/orders/${id}`, rest);
 
+export const getDailySummaries = data => get('/daily/summaries', data);
+
 // ****************************************************************************************8
 
 // weixin related

@@ -110,77 +110,62 @@ const SubHead = styled.div`
   }
 `;
 
-export default function HomeView({ user }) {
+export default function HomeView({ user, summaries }) {
+  const fee = summaries.getIn([0, 'fee']) || 0;
+  const allowance = summaries.getIn([0, 'allowance']) || 0;
+  console.log(fee, allowance);
+  console.log(summaries);
   return (
     <Container>
       <Head>
         <P1>昨日收益（元）</P1>
-        <P2>{dealNumber(0)}</P2>
+        <P2>{dealNumber(fee + allowance)}</P2>
         <P3>总资产 {dealNumber(user.get('totalAssets'))} 元</P3>
         <P3>累计收益 {dealNumber(user.get('allowance') + user.get('fee'))} 元</P3>
         {/* <P3>入账收益 103232.00 元</P3> */}
         <SubHead>
           <div>
             <SubP1>昨日车位收益（元）</SubP1>
-            <SubP4>{dealNumber(0)}</SubP4>
+            <SubP4>{dealNumber(fee)}</SubP4>
           </div>
           <div>
             <SubP1>昨日补贴收益（元）</SubP1>
-            <SubP4>{dealNumber(0)}</SubP4>
+            <SubP4>{dealNumber(allowance)}</SubP4>
           </div>
         </SubHead>
       </Head>
 
-      <Graph>
-        <ResponsiveContainer width="100%" height={200}>
-          <LineChart
-            margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
-            data={[
-              {
-                name: 'a',
-                value: 110,
-              },
-              {
-                name: 'b',
-                value: 10,
-              },
-              {
-                name: 'c',
-                value: 70,
-              },
-              {
-                name: 'd',
-                value: -100,
-              },
-              {
-                name: 'e',
-                value: 110,
-              },
-              {
-                name: 'f',
-                value: 110,
-              },
-            ]}
-          >
-            <Line
-              type="monotoneX"
-              dataKey="value"
-              stroke="#0e83ef"
-              unit="%"
-              label={{ fill: 'black', fontSize: 14 }}
-            />
-            <CartesianGrid strokeDasharray="4 4" vertical={false} />
-            {/* <XAxis dataKey="name" /> */}
-            <YAxis
-              unit="%"
-              minTickGap={5}
-              interval="preserveStartEnd"
-              domain={['dataMin - 20', 'dataMax + 20']}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-        <p style={{ color: '#0e83ef' }}>七日年化收益率</p>
-      </Graph>
+      {!!summaries.size && (
+        <Graph>
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart
+              margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
+              data={[0, 1, 2, 3, 4, 5].map(num => ({
+                name: num,
+                value: summaries.getIn([num, 'rate']) || 0,
+              }))}
+            >
+              <Line
+                type="monotoneX"
+                dataKey="value"
+                stroke="#0e83ef"
+                unit="%"
+                label={{ fill: 'black', fontSize: 14 }}
+              />
+              <CartesianGrid strokeDasharray="4 4" vertical={false} />
+              {/* <XAxis dataKey="name" /> */}
+              <YAxis
+                unit="%"
+                minTickGap={5}
+                interval="preserveStartEnd"
+                domain={['dataMin', 'dataMax']}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+          <p style={{ color: '#0e83ef' }}>七日年化收益率</p>
+        </Graph>
+      )}
+
       <Tools>
         <Tool onClick={() => history.push('/mine/records')}>
           <img src={ImgBill} alt="" />
@@ -203,4 +188,5 @@ export default function HomeView({ user }) {
 
 HomeView.propTypes = {
   user: PropTypes.object.isRequired,
+  summaries: PropTypes.object.isRequired,
 };
