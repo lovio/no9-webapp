@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { hideModal } from 'actions/common';
+import { hideModal, hideToastItem } from 'actions/common';
 import ToastsView from 'components/common/toasts';
 import Modal from 'components/common/modal';
 
@@ -10,9 +10,10 @@ class Tips extends Component {
     toasts: PropTypes.object.isRequired,
     modal: PropTypes.object.isRequired,
     hideModal: PropTypes.func.isRequired,
+    hideToastItem: PropTypes.func.isRequired,
   };
 
-  renderToasts = toasts => <ToastsView toasts={toasts} />;
+  renderToasts = toasts => <ToastsView toasts={toasts} hideToastItem={this.props.hideToastItem} />;
 
   render() {
     const { modal, toasts } = this.props;
@@ -34,4 +35,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   hideModal,
+  hideToastItem,
 })(Tips);

@@ -46,11 +46,11 @@ const Toast = styled.div`
   }
 `;
 
-export default function Toasts({ toasts }) {
+export default function Toasts({ toasts, hideToastItem }) {
   return (
     <Container>
       {toasts.toList().map(toast => (
-        <Toast key={toast.get('id')}>
+        <Toast key={toast.get('id')} onClick={() => hideToastItem(toast.get('id'))}>
           <img src={toast.get('type') === 'error' ? imgError : imgSuccess} alt="error or success" />
           <p>{toast.get('msg')}</p>
         </Toast>
@@ -61,4 +61,5 @@ export default function Toasts({ toasts }) {
 
 Toasts.propTypes = {
   toasts: PropTypes.object.isRequired,
+  hideToastItem: PropTypes.func.isRequired,
 };

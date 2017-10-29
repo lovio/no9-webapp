@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Loading from 'ui/loading';
 import Empty from 'ui/empty';
-import addDays from 'date-fns/add_days';
-import format from 'date-fns/format';
 import { dealNumber } from 'helpers/string';
 import { ORDER_DONE, ORDER_INIT, PRODUCT_NAME } from 'constants/constants.json';
 
@@ -92,9 +90,7 @@ class OrderSuccessView extends Component {
           <StartTime>
             {order.get('status') === ORDER_INIT
               ? '最终支付结果可能会有一些延迟，请耐心等待'
-              : order.get('status') === ORDER_DONE
-                ? `恭喜您，${format(addDays(new Date(order.get('doneAt')), 7), 'YYYY年MM月DD')}开始获得收益。`
-                : '订单全部支付完成时开始获得收益。'}
+              : order.get('status') === ORDER_DONE ? '恭喜您，购买成功' : '订单全部支付完成时开始获得收益。'}
           </StartTime>
           <Block>
             <Intro isBold>
