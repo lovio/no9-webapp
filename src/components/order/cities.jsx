@@ -40,11 +40,7 @@ const CitySelector = ({ cities, cityId, chooseCity }) => (
   <Container>
     <Title>请选择省份</Title>
     {cities.map(city => (
-      <Choice
-        key={city.get('id')}
-        checked={city.get('id') === cityId}
-        onClick={() => chooseCity(city.get('id'))}
-      >
+      <Choice key={city.get('id')} checked={city.get('id') === cityId} onClick={() => chooseCity(city.get('id'))}>
         {city.get('name')}
       </Choice>
     ))}

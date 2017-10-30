@@ -21,55 +21,51 @@ function BindView(props) {
       </Helmet>
       <Desc>{desc}</Desc>
       <Form onSubmit={handleSubmit(submit(checkAccount))}>
-        {
-          isEMail ? (
-            <Field
-              name="email"
-              label="邮箱"
-              validate={[required('请输入邮箱地址'), isEmail('请输入正确的邮箱地址')]}
-              component={Input}
-              type="text"
-              placeholder="请输入您的邮箱"
-            />
-          ) : (
-            <Field
-              name="phone"
-              label="手机号"
-              validate={[required('请输入手机号'), isPhone('请输入正确的手机号码')]}
-              component={Input}
-              type="number"
-              placeholder="请输入手机号码"
-            />
-          )
-        }
+        {isEMail ? (
+          <Field
+            name="email"
+            label="邮箱"
+            validate={[required('请输入邮箱地址'), isEmail('请输入正确的邮箱地址')]}
+            component={Input}
+            type="text"
+            placeholder="请输入您的邮箱"
+          />
+        ) : (
+          <Field
+            name="phone"
+            label="手机号"
+            validate={[required('请输入手机号'), isPhone('请输入正确的手机号码')]}
+            component={Input}
+            type="number"
+            placeholder="请输入手机号码"
+          />
+        )}
         <BtnContainer>
-          <Button
-            type="submit"
-            disabled={pristine || submitting}
-          >提交</Button>
+          <Button type="submit" disabled={pristine || submitting}>
+            提交
+          </Button>
         </BtnContainer>
       </Form>
-      {
-        !isEMail && (
-          <Ways>
-            <WaysTitle>
-              <span />
-              <p>其他方式绑定</p>
-              <span />
-            </WaysTitle>
-            <div>
-              <BindAccount
-                onClick={() => {
-                  history.push({
-                    pathname: '/bind/account',
-                    search: history.location.search,
-                  });
-                }}
-              >已有账号绑定</BindAccount>
-            </div>
-          </Ways>
-        )
-      }
+      {!isEMail && (
+        <Ways>
+          <WaysTitle>
+            <span />
+            <p>其他方式绑定</p>
+            <span />
+          </WaysTitle>
+          <div>
+            <BindAccount
+              onClick={() => {
+                history.push({
+                  pathname: '/bind/account',
+                  search: history.location.search,
+                });
+              }}>
+              已有账号绑定
+            </BindAccount>
+          </div>
+        </Ways>
+      )}
     </Container>
   );
 }

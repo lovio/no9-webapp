@@ -89,10 +89,16 @@ const Tool = styled.div`
   }
 `;
 
-const Banner = styled.img`width: 100%;`;
+const Banner = styled.img`
+  width: 100%;
+`;
 
-const SubP1 = styled(P1)`margin-top: 0.12rem;`;
-const SubP4 = styled(P4)`margin-bottom: 0.1rem;`;
+const SubP1 = styled(P1)`
+  margin-top: 0.12rem;
+`;
+const SubP4 = styled(P4)`
+  margin-bottom: 0.1rem;
+`;
 
 const SubHead = styled.div`
   background: #0e83ef;
@@ -142,8 +148,7 @@ export default function HomeView({ user, summaries }) {
               data={[0, 1, 2, 3, 4, 5].map(num => ({
                 name: num,
                 value: data.getIn([num, 'rate']) || 0,
-              }))}
-            >
+              }))}>
               <Line
                 type="monotoneX"
                 dataKey="value"
@@ -153,12 +158,7 @@ export default function HomeView({ user, summaries }) {
               />
               <CartesianGrid strokeDasharray="4 4" vertical={false} />
               {/* <XAxis dataKey="name" /> */}
-              <YAxis
-                unit="%"
-                minTickGap={5}
-                interval="preserveStartEnd"
-                domain={['dataMin', 'dataMax']}
-              />
+              <YAxis unit="%" minTickGap={5} interval="preserveStartEnd" domain={['dataMin', 'dataMax']} />
             </LineChart>
           </ResponsiveContainer>
           <p style={{ color: '#0e83ef' }}>七日年化收益率</p>

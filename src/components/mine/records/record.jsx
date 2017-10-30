@@ -52,7 +52,9 @@ const Time = styled.span`
   color: #818b96;
 `;
 
-const Status = Time.extend`float: right;`;
+const Status = Time.extend`
+  float: right;
+`;
 
 const redTypes = ['allowance', 'fee', 'paid'];
 const minusTypes = ['debt', 'withdraw'];
@@ -70,9 +72,7 @@ const RecordItem = ({ record }) => (
     </Row1>
     <Row2>
       <Time>{format(new Date(record.get('createdAt')), 'YYYY-MM-DD HH:mm:ss')}</Time>
-      <Status>
-        {record.get('isFrozen') ? '被冻结' : RECORD_STATUS_MAPPING[record.get('status')]}
-      </Status>
+      <Status>{record.get('isFrozen') ? '被冻结' : RECORD_STATUS_MAPPING[record.get('status')]}</Status>
     </Row2>
   </Container>
 );

@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Immutable from 'immutable';
 import products from 'constants/products.json';
-import {
-  ORDER_STATUS_MAPPING,
-  ORDER_INIT,
-  ORDER_UNPAID,
-  ORDER_CANCEL,
-  PRODUCT_NAME,
-} from 'constants/constants.json';
+import { ORDER_STATUS_MAPPING, ORDER_INIT, ORDER_UNPAID, ORDER_CANCEL, PRODUCT_NAME } from 'constants/constants.json';
 import { dealNumber } from 'helpers/string';
-import find from 'lodash/find';
+import find from 'lodash-es/find';
 import includes from 'lodash-es/includes';
 import format from 'date-fns/format';
 import Button from 'ui/button';
@@ -41,7 +35,9 @@ const Status = styled.span`
   color: ${props => (props.isRed ? '#e01053' : '#0889FF')};
 `;
 
-const InfoBox = styled.div`padding-left: 0.2rem;`;
+const InfoBox = styled.div`
+  padding-left: 0.2rem;
+`;
 
 const Block = styled.div`
   padding: 0.05rem 0;
@@ -120,8 +116,7 @@ const OrderItem = ({ order, triggerWechatPay, cancel }) => {
                 triggerWechatPay({
                   orderId: order.get('id'),
                   amount: order.get('price') - order.get('paid'),
-                })}
-            >
+                })}>
               微信支付尾款
             </Button>
           )}
@@ -130,8 +125,7 @@ const OrderItem = ({ order, triggerWechatPay, cancel }) => {
               onClick={() =>
                 cancel({
                   orderId: order.get('id'),
-                })}
-            >
+                })}>
               取消订单
             </CancelButton>
           )}

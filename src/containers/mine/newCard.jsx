@@ -25,7 +25,7 @@ const initialValuesSelector = createSelector(
   state => state.getIn(['user', 'name']),
   name => ({
     name,
-  }),
+  })
 );
 
 function mapStateToProps(state) {

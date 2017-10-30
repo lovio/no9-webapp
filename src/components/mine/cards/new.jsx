@@ -26,7 +26,7 @@ const SubmitContainer = styled.div`
   }
 `;
 
-const AddNewCardView = (props) => {
+const AddNewCardView = props => {
   const { handleSubmit, submitting, pristine, addNewCard } = props;
   return (
     <div>

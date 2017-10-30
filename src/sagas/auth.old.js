@@ -14,11 +14,9 @@ import { showToastItem, showConfirm } from '../actions/common';
 import { getFormValuesByName } from './selector';
 import { fetchEntity, formRequest } from './utils';
 
-const requestWechatBindStatus =
-  fetchEntity.bind(null, actions.wechatBindStatus, apis.checkWechatBindStatus);
+const requestWechatBindStatus = fetchEntity.bind(null, actions.wechatBindStatus, apis.checkWechatBindStatus);
 
-const requestAccountUnbind =
-  fetchEntity.bind(null, actions.accountUnbind, apis.unbindAccount);
+const requestAccountUnbind = fetchEntity.bind(null, actions.accountUnbind, apis.unbindAccount);
 
 function* sendCaptcha({ payload }) {
   // 1 从表单中获取手机号
@@ -37,22 +35,29 @@ function* sendCaptcha({ payload }) {
     yield put(showToastItem(tip));
     reject();
   } else {
-    const values = type === 'phone' ? {
-      type: captchaType,
-      phone: value,
-      group: 'C',
-    } : {
-      type: captchaType,
-      group: 'C',
-      email: value,
-      emailType: 2,
-    };
-    yield call(formRequest, {
-      api: type === 'phone' ? apis.sendPhoneCaptcha : apis.sendEmailCaptcha,
-      actions: {
-        failure: actions.sendCaptchaError,
+    const values =
+      type === 'phone'
+        ? {
+            type: captchaType,
+            phone: value,
+            group: 'C',
+          }
+        : {
+            type: captchaType,
+            group: 'C',
+            email: value,
+            emailType: 2,
+          };
+    yield call(
+      formRequest,
+      {
+        api: type === 'phone' ? apis.sendPhoneCaptcha : apis.sendEmailCaptcha,
+        actions: {
+          failure: actions.sendCaptchaError,
+        },
       },
-    }, { payload: { values, resolve, reject } });
+      { payload: { values, resolve, reject } }
+    );
   }
 }
 
@@ -90,18 +95,22 @@ function* bindAccount({ payload }) {
     bindType = type;
   }
   yield put(actions.setBindInfo({ bindType }));
-  yield call(formRequest, {
-    api: apis.bindAccount,
-    actions: {
-      success: actions.bindAccountSuccess,
+  yield call(
+    formRequest,
+    {
+      api: apis.bindAccount,
+      actions: {
+        success: actions.bindAccountSuccess,
+      },
     },
-  }, {
-    payload: {
-      values: newValues,
-      resolve,
-      reject,
-    },
-  });
+    {
+      payload: {
+        values: newValues,
+        resolve,
+        reject,
+      },
+    }
+  );
 }
 
 export function* watchBindAccount() {
@@ -109,21 +118,23 @@ export function* watchBindAccount() {
 }
 
 export function* watchBindAccountSuccess() {
-  for (; ;) {
+  for (;;) {
     // const { payload } = yield take(actions.bindAccountSuccess);
     const bindType = yield select(state => state.getIn(['user', 'bind', 'bindType']));
     // yield call(saveCookie, payload);
     yield call(redirect, HOME_PATH, bindType !== 'account');
-    yield put(showToastItem({
-      type: 'success',
-      msg: '绑定成功',
-    }));
+    yield put(
+      showToastItem({
+        type: 'success',
+        msg: '绑定成功',
+      })
+    );
     yield put(userInfoLoaded());
   }
 }
 
 export function* watchBindAccountConflict() {
-  for (; ;) {
+  for (;;) {
     const { payload: { code, _error } } = yield take(actions.bindAccountConflict);
     const data = yield select(getFormValuesByName('bindAccount', 'account', 'password'));
     const msg = split(_error, ',');
@@ -164,7 +175,9 @@ export function* watchCheckWechatBindStatusSuccess() {
       yield put(initWechat({ type: 'share' }));
       yield put(initWechat({ type: 'image' }));
     } else {
-      yield put(transferCode({ type: 'userinfo', url: `${location.protocol}//${window.location.host}/#${getSafePath()}` }));
+      yield put(
+        transferCode({ type: 'userinfo', url: `${location.protocol}//${window.location.host}/#${getSafePath()}` })
+      );
     }
   }
 }
@@ -179,7 +192,7 @@ export function* watchCheckWechatBindStatusFailure() {
 }
 
 export function* watchSignOut() {
-  for (; ;) {
+  for (;;) {
     yield take(actions.signOut);
     // yield call(removeCookie);
     // yield call(setUserId);
@@ -191,7 +204,7 @@ export function* watchSignOut() {
 
 // checkAuth 要支持外地跳转进来的，以及跳转到oauth
 export function* watchCheckAuth() {
-  for (; ;) {
+  for (;;) {
     yield take(actions.checkAuth);
     const token = yield select(state => state.getIn(['user', 'info', 'token']));
     if (!token) {
@@ -213,7 +226,7 @@ export function* watchCheckAccount() {
 }
 
 export function* watchCheckAccountFailure() {
-  for (; ;) {
+  for (;;) {
     const { payload: { data } } = yield take(actions.checkAccountFailure);
     // code
     yield put(showConfirm(data));
@@ -221,7 +234,7 @@ export function* watchCheckAccountFailure() {
 }
 
 export function* watchCheckAccountSuccess() {
-  for (; ;) {
+  for (;;) {
     yield take(actions.checkAccountSuccess);
     history.push({
       pathname: '/bind/captcha',
@@ -231,7 +244,7 @@ export function* watchCheckAccountSuccess() {
 }
 
 export function* watchUnbindAccount() {
-  for (; ;) {
+  for (;;) {
     yield take(actions.unbindAccount);
     const unbindInfo = yield select(state => state.getIn(['user', 'unbind']));
     yield fork(requestAccountUnbind, {
@@ -242,7 +255,7 @@ export function* watchUnbindAccount() {
 }
 
 export function* watchRegisterToken() {
-  for (; ;) {
+  for (;;) {
     yield take(actions.registerToken);
     history.replace(getSafePath());
     yield put(loadUserInfo());

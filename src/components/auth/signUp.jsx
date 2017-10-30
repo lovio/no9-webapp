@@ -34,7 +34,7 @@ const SubmitContainer = styled.div`
   }
 `;
 
-const SignInView = (props) => {
+const SignInView = props => {
   const { handleSubmit, submitting, pristine, signUp, sendCaptcha, initialValues } = props;
   return (
     <div>

@@ -20,17 +20,17 @@ const cardSelector = createSelector(
       return c;
     }
     return Map();
-  },
+  }
 );
 
 const selector = formValueSelector('withdraw');
 
 const resetCashSelector = createSelector(
   state => +selector(state, 'amount'),
-  (amount) => {
+  amount => {
     const all = isNaN(amount) ? 0 : amount;
     return dealNumber(all / (1 + 0.06) * 100);
-  },
+  }
 );
 
 function mapStateToProps(state) {

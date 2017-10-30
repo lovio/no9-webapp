@@ -13,15 +13,15 @@ export const clearModalData = createAction('CLEAR_MODAL_DATA');
 let toastId = 1;
 
 // default toast is type: error
-export const showToastItem = createAction('SHOW_TOAST_ITEM', (payload) => {
+export const showToastItem = createAction('SHOW_TOAST_ITEM', payload => {
   const action = assign(
     { id: toastId },
     isString(payload)
       ? {
-        type: 'error',
-        msg: payload,
-      }
-      : payload,
+          type: 'error',
+          msg: payload,
+        }
+      : payload
   );
   toastId += 1;
   return action;

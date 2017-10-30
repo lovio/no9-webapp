@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 export const TabContainer = Container.extend`
-  ${(props) => {
+  ${props => {
     if (props.type === 'overflow') {
       return `
           overflow: auto;
@@ -40,7 +40,7 @@ const Link = styled.div`
   padding: 0.04rem 0.15rem;
   font-size: 0.14rem;
   line-height: 0.36rem;
-  color: ${(props) => {
+  color: ${props => {
     if (props.active) {
       return '#2E3236';
     }
@@ -48,7 +48,7 @@ const Link = styled.div`
   }};
   letter-spacing: 0;
   text-align: center;
-  ${(props) => {
+  ${props => {
     if (props.active) {
       return `
       background-image: url('${imgTabBar}');

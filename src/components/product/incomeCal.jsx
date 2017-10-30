@@ -34,7 +34,9 @@ const Cell = styled.p`
   flex: 1;
 `;
 
-const HeadCell = styled(Cell)`color: #ffffff;`;
+const HeadCell = styled(Cell)`
+  color: #ffffff;
+`;
 
 const Desc = () => (
   <Container>

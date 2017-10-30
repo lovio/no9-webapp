@@ -16,7 +16,9 @@ const Title = styled.div`
   border-bottom: 1px solid #dbdcdd;
 `;
 
-const Info = styled.div`padding: 0.15rem 0 0 0.26rem;`;
+const Info = styled.div`
+  padding: 0.15rem 0 0 0.26rem;
+`;
 
 const Item = styled.p`
   font-size: 0.14rem;

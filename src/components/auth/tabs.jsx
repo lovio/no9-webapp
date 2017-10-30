@@ -36,8 +36,7 @@ const Tabs = ({ pathname }) => (
         history.replace({
           pathname: '/signup',
           search: history.location.search,
-        })}
-    >
+        })}>
       <IconPhone />
       注册
     </Link>
@@ -47,8 +46,7 @@ const Tabs = ({ pathname }) => (
         history.replace({
           pathname: '/login',
           search: history.location.search,
-        })}
-    >
+        })}>
       <IconAccount />
       登陆
     </Link>

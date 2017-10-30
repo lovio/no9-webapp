@@ -12,11 +12,15 @@ const Container = styled.div`
   color: white;
 `;
 
-const Box = styled.div`padding: 0.2rem 0;`;
+const Box = styled.div`
+  padding: 0.2rem 0;
+`;
 
 const Title = styled.span``;
 
-const Count = styled.span`float: right;`;
+const Count = styled.span`
+  float: right;
+`;
 
 const BoxTitle = styled.p``;
 

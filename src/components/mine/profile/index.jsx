@@ -110,7 +110,7 @@ export default class Profile extends Component {
     }
   }
 
-  change = field => (e) => {
+  change = field => e => {
     if (!this.state.isChanging[field]) {
       const value = e.target.value;
       this.setState(() => ({
@@ -136,8 +136,8 @@ export default class Profile extends Component {
             },
             resolve,
             reject,
-          }),
-      ),
+          })
+      )
     )
       .then(() => {
         this.setState({
@@ -171,9 +171,7 @@ export default class Profile extends Component {
               />
             )}
             {!user.get('name') && (
-              <Save onClick={() => !this.state.isChanging.name && this.update({ field: 'name' })}>
-                保 存
-              </Save>
+              <Save onClick={() => !this.state.isChanging.name && this.update({ field: 'name' })}>保 存</Save>
             )}
           </Item>
           <Item>
@@ -190,12 +188,7 @@ export default class Profile extends Component {
               />
             )}
             {!user.get('IDCardNo') && (
-              <Save
-                onClick={() =>
-                  !this.state.isChanging.IDCardNo && this.update({ field: 'IDCardNo' })}
-              >
-                保 存
-              </Save>
+              <Save onClick={() => !this.state.isChanging.IDCardNo && this.update({ field: 'IDCardNo' })}>保 存</Save>
             )}
           </Item>
           <Item>
@@ -214,9 +207,7 @@ export default class Profile extends Component {
               onChange={this.change('email')}
               {...(this.state.isChanging.email ? { readOnly: 'readonly' } : {})}
             />
-            <Save onClick={() => !this.state.isChanging.email && this.update({ field: 'email' })}>
-              保 存
-            </Save>
+            <Save onClick={() => !this.state.isChanging.email && this.update({ field: 'email' })}>保 存</Save>
           </Item>
           <Item>
             <p>快递地址</p>
@@ -228,11 +219,7 @@ export default class Profile extends Component {
               onChange={this.change('address')}
               {...(this.state.isChanging.address ? { readOnly: 'readonly' } : {})}
             />
-            <Save
-              onClick={() => !this.state.isChanging.address && this.update({ field: 'address' })}
-            >
-              保 存
-            </Save>
+            <Save onClick={() => !this.state.isChanging.address && this.update({ field: 'address' })}>保 存</Save>
           </Item>
         </Container>
         <Help>联系客服获得帮助</Help>

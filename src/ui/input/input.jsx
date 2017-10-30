@@ -120,7 +120,7 @@ export default class Input extends Component {
 
   timer = () =>
     new Promise((resolve, reject) =>
-      this.setState({ isLoading: true }, () => this.props.sendCaptcha({ resolve, reject })),
+      this.setState({ isLoading: true }, () => this.props.sendCaptcha({ resolve, reject }))
     )
       .then(() => {
         clearInterval(intervalId);
@@ -158,8 +158,7 @@ export default class Input extends Component {
               if (!isLoading) {
                 this.timer();
               }
-            }}
-          >
+            }}>
             {counter <= 0 && (isSent ? '重新获取' : '获取验证码')}
             {counter > 0 && `${counter}秒后可重新获取`}
           </Button>
@@ -171,8 +170,7 @@ export default class Input extends Component {
             onClick={() =>
               this.setState(prevState => ({
                 showPasword: !prevState.showPasword,
-              }))}
-          >
+              }))}>
             <img src={showPasword ? imgInVisible : imgVisible} alt="" />
           </Tip>
         )}

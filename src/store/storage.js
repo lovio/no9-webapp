@@ -9,6 +9,5 @@ export default persistState(path, {
   serialize: subset => JSON.stringify(subset.toJS()),
   deserialize: subset => Immutable.Map(JSON.parse(subset)),
   // todo 这里的initialState是createStore传入的，需要处理
-  merge: (initialState = {}, persistedState) =>
-    Immutable.fromJS(initialState).mergeIn(path, persistedState),
+  merge: (initialState = {}, persistedState) => Immutable.fromJS(initialState).mergeIn(path, persistedState),
 });

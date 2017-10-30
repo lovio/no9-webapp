@@ -6,7 +6,9 @@ import AutoLoader from 'components/common/autoLoader';
 
 import RecordItem from './record';
 
-const Container = styled.div`width: 100%;`;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const Wrapper = styled.div`
   background-color: white;

@@ -11,14 +11,14 @@ export default combineReducers({
       [actions.loadCities]: () => Immutable.List(),
       [actions.cities.success]: (state, { payload }) => fromJS(payload),
     },
-    initialState.getIn(['extra', 'cities']),
+    initialState.getIn(['extra', 'cities'])
   ),
   zones: handleActions(
     {
       [actions.loadZones]: () => Immutable.List(),
       [actions.zones.success]: (state, { payload }) => fromJS(payload),
     },
-    initialState.getIn(['extra', 'zones']),
+    initialState.getIn(['extra', 'zones'])
   ),
   carports: combineReducers({
     data: handleActions(
@@ -26,7 +26,7 @@ export default combineReducers({
         [actions.loadCarports]: () => Immutable.List(),
         [actions.carports.success]: (state, { payload }) => fromJS(payload),
       },
-      initialState.getIn(['extra', 'carports', 'data']),
+      initialState.getIn(['extra', 'carports', 'data'])
     ),
     isLoading: handleActions(
       {
@@ -34,7 +34,7 @@ export default combineReducers({
         [actions.carports.success]: () => false,
         [actions.carports.failure]: () => false,
       },
-      initialState.getIn(['extra', 'carports', 'isLoading']),
+      initialState.getIn(['extra', 'carports', 'isLoading'])
     ),
   }),
 });

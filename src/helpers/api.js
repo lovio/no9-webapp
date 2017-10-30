@@ -24,10 +24,10 @@ function callApi(config) {
       error: error.response
         ? error.response
         : {
-          data: {
-            message: error.message,
+            data: {
+              message: error.message,
+            },
           },
-        },
     }));
 }
 

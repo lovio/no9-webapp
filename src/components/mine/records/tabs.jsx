@@ -20,7 +20,7 @@ const Container = styled.div`
 const Link = styled.p`
   text-align: center;
   width: 100%;
-  ${(props) => {
+  ${props => {
     if (props.isActive) {
       return 'font-size: 0.18rem; color: #3FC4E6;line-height: 0.5rem;border-bottom: 0.02rem solid #0889FF';
     }
@@ -38,8 +38,7 @@ const Tabs = ({ type }) => (
         if (includes(TYPES, type)) {
           history.replace('/mine/records');
         }
-      }}
-    >
+      }}>
       <span>全部</span>
     </Link>
     {map(TYPES, recordType => (
@@ -50,8 +49,7 @@ const Tabs = ({ type }) => (
           if (type !== recordType) {
             history.replace(`/mine/records?type=${recordType}`);
           }
-        }}
-      >
+        }}>
         <span>{RECORD_TYPE_MAPPINGS[recordType]}</span>
       </Link>
     ))}

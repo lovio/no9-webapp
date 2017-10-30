@@ -99,12 +99,9 @@ class ZoneView extends Component {
           carports.map(carport => (
             <Item
               key={carport.get('id')}
-              onClick={() =>
-                history.push(carport.get('status') === 'unpaid' ? '/mine/orders' : '/mine/certs')}
-            >
+              onClick={() => history.push(carport.get('status') === 'unpaid' ? '/mine/orders' : '/mine/certs')}>
               {carport.get('status') === 'unpaid' && '您还有车位尚未完成支付，请点击查看详情'}
-              {carport.get('status') === 'virtual' &&
-                `您已购买${carport.getIn(['city', 'name'])}车位，建设中`}
+              {carport.get('status') === 'virtual' && `您已购买${carport.getIn(['city', 'name'])}车位，建设中`}
               {carport.get('status') === 'real' && '小区车位已建成，点击查看车位详情'}
               <More>
                 <img src={imgMore} alt="" />

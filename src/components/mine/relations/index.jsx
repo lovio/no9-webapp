@@ -78,7 +78,7 @@ class RelationView extends Component {
     }
   }
 
-  loadRelations = (userId) => {
+  loadRelations = userId => {
     this.props.loadRelations(userId ? { userId } : {});
   };
 
@@ -115,8 +115,7 @@ class RelationView extends Component {
                   if (depth <= 3) {
                     history.push(`/mine/relations?userId=${u.get('id')}`);
                   }
-                }}
-              >
+                }}>
                 {maskName(u.get('name')) || maskPhone(u.get('phone'))}{' '}
                 <Money>累计{dealNumber(u.get('validPaid') * rate) || 0}元</Money>
               </Item>

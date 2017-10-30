@@ -23,7 +23,7 @@ render(
   <AppContainer>
     <App store={store} />
   </AppContainer>,
-  container,
+  container
 );
 
 if (module.hot) {
@@ -33,7 +33,7 @@ if (module.hot) {
       <AppContainer>
         <NewApp store={store} />
       </AppContainer>,
-      container,
+      container
     );
   });
 }

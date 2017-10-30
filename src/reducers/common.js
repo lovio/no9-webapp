@@ -19,20 +19,20 @@ export default combineReducers({
       },
       [actions.hideToastItem]: (state, { payload }) => state.delete(payload),
     },
-    initialState.getIn(['common', 'toasts']),
+    initialState.getIn(['common', 'toasts'])
   ),
   modal: handleActions(
     {
       [actions.showModal]: (state, { payload }) => Immutable.fromJS(payload),
       [actions.clearModalData]: () => Immutable.Map(),
     },
-    initialState.getIn(['common', 'modal']),
+    initialState.getIn(['common', 'modal'])
   ),
   confirm: handleActions(
     {
       [actions.showConfirm]: (state, { payload }) => Immutable.fromJS(payload),
       [actions.hideConfirm]: () => Immutable.Map(),
     },
-    initialState.getIn(['common', 'confirm']),
+    initialState.getIn(['common', 'confirm'])
   ),
 });

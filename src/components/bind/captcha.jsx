@@ -11,21 +11,16 @@ import { Button } from 'ui/button';
 import { Container, Desc, BtnContainer, Contact } from './components';
 
 function CaptchaView(props) {
-  const {
-    handleSubmit,
-    submitting,
-    pristine,
-    type,
-    value,
-    sendCaptcha,
-    bindAccount,
-  } = props;
+  const { handleSubmit, submitting, pristine, type, value, sendCaptcha, bindAccount } = props;
   return (
     <Container>
       <Helmet>
         <title>智课斩托福</title>
       </Helmet>
-      <Desc>亲，请输入{type === 'phone' ? '手机' : '邮箱'}{value}收到的验证码</Desc>
+      <Desc>
+        亲，请输入{type === 'phone' ? '手机' : '邮箱'}
+        {value}收到的验证码
+      </Desc>
       <Form onSubmit={handleSubmit(submit(bindAccount))}>
         <Field
           name="captcha"
@@ -38,15 +33,14 @@ function CaptchaView(props) {
           sendCaptcha={sendCaptcha}
         />
         <BtnContainer>
-          <Button
-            type="submit"
-            disabled={pristine || submitting}
-          >立即绑定</Button>
+          <Button type="submit" disabled={pristine || submitting}>
+            立即绑定
+          </Button>
         </BtnContainer>
       </Form>
       <Contact>
         如果您未收到验证码
-          <br />
+        <br />
         请咨询智课斩托福客服电话<a href="tel:400-011-9191">400-011-9191</a>
       </Contact>
     </Container>

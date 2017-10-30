@@ -11,15 +11,18 @@ import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(rootReducer, initialState, compose(
-    applyMiddleware(sagaMiddleware),
-    // applyMiddleware(sagaMiddleware, createLogger({ stateTransformer })),
-    // Add other middleware on this line...
-    persistState,
-    window.devToolsExtension ?
-    window.devToolsExtension() : f => f,
-    // add support for Redux dev tools
-  ));
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(sagaMiddleware),
+      // applyMiddleware(sagaMiddleware, createLogger({ stateTransformer })),
+      // Add other middleware on this line...
+      persistState,
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+      // add support for Redux dev tools
+    )
+  );
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

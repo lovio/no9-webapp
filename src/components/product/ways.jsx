@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from 'ui/button';
-import map from 'lodash/map';
+import map from 'lodash-es/map';
 import products from 'constants/products.json';
 import addDays from 'date-fns/add_days';
 import format from 'date-fns/format';
 
-const Container = styled.div`padding: 0.1rem 0.2rem;`;
+const Container = styled.div`
+  padding: 0.1rem 0.2rem;
+`;
 
 const Title = styled.p`
   line-height: 0.2rem;

@@ -74,7 +74,7 @@ export function chooseImage() {
       count: 1, // 默认9
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: (res) => {
+      success: res => {
         const localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
         return resolve(localIds[0]);
       },
@@ -89,7 +89,7 @@ export function uploadImage(localId) {
     window.wx.uploadImage({
       localId, // 需要上传的图片的本地ID，由chooseImage接口获得
       isShowProgressTips: 1, // 默认为1，显示进度提示
-      success: (res) => {
+      success: res => {
         const serverId = res.serverId; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
         return resolve(serverId);
       },

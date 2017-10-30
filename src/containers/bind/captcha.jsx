@@ -10,7 +10,7 @@ class Captcha extends Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-  }
+  };
 
   componentDidMount() {
     const { value, type } = this.props;
@@ -29,14 +29,14 @@ class Captcha extends Component {
 
 const bindInfoSelector = createSelector(
   state => state.getIn(['user', 'bind']),
-  (bindInfo) => {
+  bindInfo => {
     const type = bindInfo.has('phone') ? 'phone' : 'email';
     const value = bindInfo.get(type) || '';
     return {
       type,
       value,
     };
-  },
+  }
 );
 
 function mapStateToProps(state) {
@@ -50,11 +50,12 @@ function mergeProps(stateProps, dispatchProps) {
   return {
     ...stateProps.bindInfo,
     bindAccount: dispatchProps.bindAccount,
-    sendCaptcha: data => dispatchProps.sendCaptcha({
-      captchaType: 'new',
-      ...stateProps.bindInfo,
-      ...data,
-    }),
+    sendCaptcha: data =>
+      dispatchProps.sendCaptcha({
+        captchaType: 'new',
+        ...stateProps.bindInfo,
+        ...data,
+      }),
   };
 }
 

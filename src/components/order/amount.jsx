@@ -40,16 +40,13 @@ const AmountSelector = ({ product, amount, setAmount }) => (
   <Container>
     <Title>请选择支付金额</Title>
     <Choice checked={amount === 650000} onClick={() => setAmount(650000)}>
-        6500元
-      </Choice>
-    <Choice
-      checked={amount === product.get('cents')}
-      onClick={() => setAmount(product.get('cents'))}
-    >
+      6500元
+    </Choice>
+    <Choice checked={amount === product.get('cents')} onClick={() => setAmount(product.get('cents'))}>
       {product.get('price')}
     </Choice>
   </Container>
-  );
+);
 
 AmountSelector.propTypes = {
   product: PropTypes.object.isRequired,

@@ -57,8 +57,7 @@ export default class UnbindView extends Component {
                   pathname: '/bind/account',
                   search: history.location.search,
                 });
-              }}
-            >
+              }}>
               立即绑定
             </Button>
           </div>

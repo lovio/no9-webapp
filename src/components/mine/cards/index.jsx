@@ -9,7 +9,9 @@ import imgAdd from './add.png';
 import imgDel from './del.png';
 
 const BANK_IMG_PREFIX = 'https://apimg.alipay.com/combo.png?d=cashier&t=';
-const Container = styled.div`padding: 0.2rem;`;
+const Container = styled.div`
+  padding: 0.2rem;
+`;
 
 const AddCard = styled.div`
   text-align: center;
@@ -49,7 +51,9 @@ const BankIcon = styled.img`
   height: 0.5rem;
 `;
 
-const Toggle = styled.div`margin-top: 0.2rem;`;
+const Toggle = styled.div`
+  margin-top: 0.2rem;
+`;
 
 const Manage = styled.p`
   text-align: center;
@@ -88,7 +92,7 @@ class Cards extends Component {
         <Helmet>
           <title>{action === 'withdraw' ? '选择银行卡' : '提现账户'}</title>
         </Helmet>
-        {cards.map((card) => {
+        {cards.map(card => {
           const cardNo = card.get('cardNo');
           return (
             <Card
@@ -98,8 +102,7 @@ class Cards extends Component {
                   chooseCard(card.get('id'));
                   history.push('/mine/withdraw');
                 }
-              }}
-            >
+              }}>
               <BankIcon src={`${BANK_IMG_PREFIX}${card.get('bank')}`} alt="" />
               <p>
                 {card.get('name')} | 尾号{cardNo.substr(cardNo.length - 4)}
@@ -115,8 +118,7 @@ class Cards extends Component {
             history.push({
               pathname: '/mine/cards/new',
               search: history.location.search,
-            })}
-        >
+            })}>
           <img src={imgAdd} alt="" />
           添加银行卡
         </AddCard>

@@ -5,11 +5,7 @@ import persistState from './storage';
 
 export default function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(
-    rootReducer,
-    initialState,
-    compose(applyMiddleware(sagaMiddleware), persistState),
-  );
+  const store = createStore(rootReducer, initialState, compose(applyMiddleware(sagaMiddleware), persistState));
   store.runSaga = sagaMiddleware.run;
 
   store.close = () => store.dispatch(END);

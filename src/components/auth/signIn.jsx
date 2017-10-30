@@ -35,7 +35,7 @@ const ResetPwd = styled.span`
   color: #4ab3e2;
 `;
 
-const SignInView = (props) => {
+const SignInView = props => {
   const { handleSubmit, submitting, pristine, signIn } = props;
   return (
     <div>
@@ -74,8 +74,7 @@ const SignInView = (props) => {
               history.push({
                 pathname: '/resetpwd',
                 search: history.location.search,
-              })}
-          >
+              })}>
             忘记密码?
           </ResetPwd>
         </SubmitContainer>

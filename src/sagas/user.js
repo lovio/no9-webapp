@@ -8,13 +8,7 @@ import { formRequest, fetchEntity } from './utils';
 import { isEmail, isIDCard } from '../helpers/validators';
 
 const requestCards = fetchEntity.bind(null, actions.cards, apis.getCards);
-const requestDailySummaries = fetchEntity.bind(
-  null,
-  actions.dailySummaries,
-  apis.getDailySummaries,
-  {},
-  true,
-);
+const requestDailySummaries = fetchEntity.bind(null, actions.dailySummaries, apis.getDailySummaries, {}, true);
 const requestRemoveCard = fetchEntity.bind(null, actions.cardRemove, apis.removeCard);
 const requestRelations = fetchEntity.bind(null, actions.relations, apis.getDescendants);
 
@@ -68,7 +62,7 @@ function* withdraw({ payload }) {
     },
     {
       payload: { values, resolve, reject },
-    },
+    }
   );
 }
 
@@ -83,7 +77,7 @@ export function* watchWithdrawSuccess() {
       showToastItem({
         type: 'success',
         msg: '提现申请已提交',
-      }),
+      })
     );
     history.push('/mine/records?type=withdraw');
   }
@@ -108,7 +102,7 @@ function* addNewCard({ payload }) {
     },
     {
       payload: { values, resolve, reject },
-    },
+    }
   );
 }
 
@@ -123,7 +117,7 @@ export function* watchAddNewCardSuccess() {
       showToastItem({
         type: 'success',
         msg: '银行卡添加成功',
-      }),
+      })
     );
     history.push({
       pathname: '/mine/cards',
@@ -189,7 +183,7 @@ export function* watchUpdateProfile() {
           resolve,
           reject,
         },
-      },
+      }
     );
   }
 }

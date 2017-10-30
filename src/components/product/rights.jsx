@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`text-align: center;`;
+const Container = styled.div`
+  text-align: center;
+`;
 
 const Company = styled.p`
   margin: 0.3rem 0 0.2rem;

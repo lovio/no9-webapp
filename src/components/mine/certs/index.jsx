@@ -16,9 +16,7 @@ export default function CertsView({ carports, isLoading, user }) {
     return <Empty />;
   }
   return (
-    <Wrapper>
-      {carports.map(carport => <CertItem key={carport.get('id')} carport={carport} user={user} />)}
-    </Wrapper>
+    <Wrapper>{carports.map(carport => <CertItem key={carport.get('id')} carport={carport} user={user} />)}</Wrapper>
   );
 }
 

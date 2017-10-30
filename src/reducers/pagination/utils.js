@@ -17,7 +17,7 @@ export default (requestTypes, reducerField, pageCount) => {
       [requestTypes.success]: state => state + 1,
       [clearPagination]: () => 1,
     },
-    initialState.getIn(['pagination', reducerField, 'pageNo']),
+    initialState.getIn(['pagination', reducerField, 'pageNo'])
   );
 
   // const pageSize = handleActions(
@@ -37,7 +37,7 @@ export default (requestTypes, reducerField, pageCount) => {
         return state;
       },
     },
-    initialState.getIn(['pagination', reducerField, 'hasMore']),
+    initialState.getIn(['pagination', reducerField, 'hasMore'])
   );
 
   const isLoading = handleActions(
@@ -46,7 +46,7 @@ export default (requestTypes, reducerField, pageCount) => {
       [requestTypes.success]: () => false,
       [requestTypes.failure]: () => false,
     },
-    initialState.getIn(['pagination', reducerField, 'isLoading']),
+    initialState.getIn(['pagination', reducerField, 'isLoading'])
   );
 
   return combineReducers({ pageNo, hasMore, isLoading });

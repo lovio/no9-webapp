@@ -33,7 +33,7 @@ function* sendCaptcha({ payload }) {
           failure: actions.sendCaptchaError,
         },
       },
-      { payload: { values, resolve, reject } },
+      { payload: { values, resolve, reject } }
     );
   }
 }
@@ -67,7 +67,7 @@ function* signIn({ payload }) {
     },
     {
       payload: { values, resolve, reject },
-    },
+    }
   );
 }
 
@@ -93,7 +93,7 @@ function* signUp({ payload }) {
     },
     {
       payload: { values, resolve, reject },
-    },
+    }
   );
 }
 
@@ -119,7 +119,7 @@ function* resetPwd({ payload }) {
     },
     {
       payload: { values, resolve, reject },
-    },
+    }
   );
 }
 
@@ -134,7 +134,7 @@ export function* watchAuthSuccess() {
       showToastItem({
         type: 'success',
         msg: '登录成功！',
-      }),
+      })
     );
     if (payload) {
       // yield call(redirect, HOME_PATH);
@@ -150,7 +150,7 @@ export function* watchSignUpSuccess() {
       showToastItem({
         type: 'success',
         msg: '注册成功，请登录！',
-      }),
+      })
     );
     history.push({
       pathname: '/login',
@@ -173,7 +173,7 @@ export function* watchResetPwdSuccess() {
       showToastItem({
         type: 'success',
         msg: '密码重置成功，请重新登录！',
-      }),
+      })
     );
     history.push({
       pathname: '/login',
@@ -212,7 +212,7 @@ export function* watchGetUserInfoSuccess() {
         showConfirm({
           type: 'profileIncomplete',
           desc: ['实名信息未完善，请先完善实名信息'],
-        }),
+        })
       );
     }
   }

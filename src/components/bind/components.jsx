@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import imgEmailBind from './email-bind.png';
 import imgLogoBind from './logo-bind.png';
 
-export const Container = styled.div`height: 100%;`;
+export const Container = styled.div`
+  height: 100%;
+`;
 
 export const Desc = styled.div`
   text-align: center;

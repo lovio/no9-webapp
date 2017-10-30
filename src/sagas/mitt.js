@@ -6,32 +6,37 @@ import * as apis from 'helpers/api';
 
 import { fetchEntity } from './utils';
 
-const uploadShareStats =
-  fetchEntity.bind(null, userActions.shareStats, apis.uploadShareStats);
+const uploadShareStats = fetchEntity.bind(null, userActions.shareStats, apis.uploadShareStats);
 
-const uploadMeiqiaStats =
-  fetchEntity.bind(null, userActions.meiqiaStats, apis.uploadMeiqiaStats);
+const uploadMeiqiaStats = fetchEntity.bind(null, userActions.meiqiaStats, apis.uploadMeiqiaStats);
 
 function createWXChannel(emitter) {
-  return eventChannel((emit) => {
-    emitter.on('*', (type, event) => emit({
-      type, event,
-    }));
+  return eventChannel(emit => {
+    emitter.on('*', (type, event) =>
+      emit({
+        type,
+        event,
+      })
+    );
 
-    const unsubscribe = () => { };
+    const unsubscribe = () => {};
 
     return unsubscribe;
   });
 }
 export function* watchWXEvent() {
   const chan = yield call(createWXChannel, Mitt);
-  for (; ;) {
+  for (;;) {
     const { type, event } = yield take(chan);
     if (type === 'share') {
       if (event.result === 'success') {
-        yield fork(uploadShareStats, {
-          destination: event.type,
-        }, true);
+        yield fork(
+          uploadShareStats,
+          {
+            destination: event.type,
+          },
+          true
+        );
       }
     } else if (type === 'meiqia') {
       yield fork(uploadMeiqiaStats, {}, true);

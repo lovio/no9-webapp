@@ -1,13 +1,13 @@
 {
   "name": "no9-webapp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "webapp for no9",
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-build",
     "start": "npm-run-all --parallel open:src lint:watch",
-    "open:src": "babel-node tools/srcServer.js",
+    "open:src": "webpack-dashboard -- babel-node tools/srcServer.js",
     "lint": "esw webpack.config.* src tools server.js --color",
     "lint:watch": "npm run lint -- --watch",
     "clean-build": "npm run remove-build && mkdir build",
@@ -17,14 +17,18 @@
     "prebuild": "npm run clean-build",
     "build": "NODE_ENV=production webpack --progress --hide-modules --config tools/webpack.config.prod.babel.js",
     "postbuild": "rimraf ./dist && mv build dist",
+    "prettier": "prettier  --write '{src,tools}/**/*.{js,jsx,json}'",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.{js,jsx,json}": ["prettier --write", "git add"]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "jsxBracketSameLine": true
   },
   "author": "Qi Liu",
   "dependencies": {
@@ -74,6 +78,7 @@
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-react-display-name": "2.0.0",
+    "babel-plugin-recharts": "1.1.0",
     "babel-plugin-styled-components": "^1.2.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
@@ -101,6 +106,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.1.3",
     "npm-run-all": "^4.1.1",
+    "prettier": "1.7.4",
     "pug-loader": "2.3.0",
     "react-hot-loader": "^3.0.0",
     "rimraf": "^2.6.0",
@@ -109,6 +115,7 @@
     "svgo-loader": "^1.2.1",
     "webpack": "^3.5.6",
     "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dashboard": "1.0.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
     "webpack-node-externals": "^1.6.0"

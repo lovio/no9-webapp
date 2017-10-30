@@ -6,7 +6,7 @@ import { BasicButton } from 'ui/button';
 import { Wrapper } from 'components/common/wrapper';
 
 // import { dealNumber } from 'helpers/string';
-// import find from 'lodash/find';
+// import find from 'lodash-es/find';
 // import includes from 'lodash-es/includes';
 // import format from 'date-fns/format';
 // import Button from 'ui/button';
@@ -106,9 +106,7 @@ export default class CertItem extends Component {
       <Container>
         <Title>
           <IconCar />
-          {carport.get('status') === 'virtual'
-            ? carport.getIn(['city', 'name'])
-            : carport.getIn(['zone', 'name'])}
+          {carport.get('status') === 'virtual' ? carport.getIn(['city', 'name']) : carport.getIn(['zone', 'name'])}
           <Content>{carport.getIn(['zone', 'isInConstruction']) ? '已建成' : '正在建设中'}</Content>
         </Title>
         <Item>
@@ -149,9 +147,7 @@ export default class CertItem extends Component {
               </Item>
               <Item>
                 <Name>总车位数量</Name>
-                <Content>
-                  {carport.getIn(['zone', 'stock']) ? carport.getIn(['zone', 'stock']) / 20 : ''}
-                </Content>
+                <Content>{carport.getIn(['zone', 'stock']) ? carport.getIn(['zone', 'stock']) / 20 : ''}</Content>
               </Item>
               <Item>
                 <Name>所有车位编号</Name>
@@ -222,8 +218,7 @@ export default class CertItem extends Component {
           <CavityButton
             width="1.25rem"
             height="0.4rem"
-            onClick={() => this.setState(prevState => ({ show: !prevState.show }))}
-          >
+            onClick={() => this.setState(prevState => ({ show: !prevState.show }))}>
             查看{this.state.show ? '简要' : '全部'}信息
           </CavityButton>
           {/* <CavityButton width="1.25rem" height="0.4rem">

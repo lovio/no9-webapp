@@ -8,7 +8,7 @@ class Medal extends Component {
   static propTypes = {
     medal: PropTypes.object.isRequired,
     hideMedal: PropTypes.func.isRequired,
-  }
+  };
 
   hideMedal() {
     return () => {

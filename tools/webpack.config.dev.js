@@ -5,14 +5,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
 const svgoConfig = require('./svgo-config.json');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
   resolve: {
     modules: [path.join(__dirname, '../src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
-    alias: {
-      ui: path.join(__dirname, '../src/ui'),
-    },
   },
   devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   entry: [
@@ -52,6 +50,7 @@ module.exports = {
       threads: 4,
       loaders: ['babel-loader', 'eslint-loader'],
     }),
+    new DashboardPlugin(),
   ],
   module: {
     rules: [

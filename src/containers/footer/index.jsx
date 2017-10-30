@@ -6,7 +6,7 @@ import FooterView from 'components/footer';
 
 const footerPathList = ['/', '/products', '/zones', '/mine'];
 
-const componentName = (props) => {
+const componentName = props => {
   if (!includes(footerPathList, get(props, 'location.pathname'))) {
     return null;
   }

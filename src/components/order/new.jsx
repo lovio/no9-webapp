@@ -33,12 +33,8 @@ class OrderView extends Component {
     return (
       <div>
         <UserInfo user={user} />
-        {!!cities.size && (
-          <Cities cities={cities} cityId={this.state.cityId} chooseCity={this.chooseCity} />
-        )}
-        {product.get('id') !== 1 && (
-          <Amount product={product} setAmount={this.setAmount} amount={this.state.amount} />
-        )}
+        {!!cities.size && <Cities cities={cities} cityId={this.state.cityId} chooseCity={this.chooseCity} />}
+        {product.get('id') !== 1 && <Amount product={product} setAmount={this.setAmount} amount={this.state.amount} />}
         <Intro product={product} amount={this.state.amount} />
         <Payment
           product={product}

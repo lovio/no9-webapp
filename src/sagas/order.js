@@ -110,7 +110,7 @@ export function* watchCreateNewOrder() {
             showConfirm({
               type: 'unfinishedOrder',
               desc: ['您有未完成的订单，请先完成'],
-            }),
+            })
           );
         } else {
           yield put(showToastItem('获取支付凭证失败'));
@@ -123,7 +123,7 @@ export function* watchCreateNewOrder() {
         showConfirm({
           type: 'profileIncomplete',
           desc: ['实名信息未完善，请先完善实名信息'],
-        }),
+        })
       );
     }
   }

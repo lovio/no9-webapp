@@ -6,7 +6,9 @@ import Loading from 'ui/loading';
 
 import Waypoint from 'react-waypoint';
 
-const LoadMore = styled.div`text-align: center;`;
+const LoadMore = styled.div`
+  text-align: center;
+`;
 
 const Empty = styled.p`
   text-align: center;

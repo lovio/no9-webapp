@@ -73,7 +73,9 @@ const TitleContainer = styled.div`
   }
 `;
 
-const BaseP = styled.p`color: ${props => props.color};`;
+const BaseP = styled.p`
+  color: ${props => props.color};
+`;
 
 const Item = styled(BaseP)`
   margin-top: 0.05rem;

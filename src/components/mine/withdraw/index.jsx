@@ -66,7 +66,9 @@ const BankIcon = styled.img`
   height: 0.5rem;
 `;
 
-const TipBox = styled.div`padding: 0.1rem 0 0.1rem 0.25rem;`;
+const TipBox = styled.div`
+  padding: 0.1rem 0 0.1rem 0.25rem;
+`;
 
 const Tip = styled.p`
   line-height: 0.2rem;
@@ -139,10 +141,7 @@ class WithdrawView extends Component {
               validate={[
                 required('请输入取现金额'),
                 // 有车位的情况下最少取现1000元
-                checkWithdrawAmount(
-                  availableCash < 0 ? 0 : availableCash,
-                  user.get('asset') ? 100000 : 0,
-                ),
+                checkWithdrawAmount(availableCash < 0 ? 0 : availableCash, user.get('asset') ? 100000 : 0),
               ]}
               label="取现金额"
               id="amount"

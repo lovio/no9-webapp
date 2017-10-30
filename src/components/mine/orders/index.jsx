@@ -8,16 +8,12 @@ import { Wrapper } from 'components/common/wrapper';
 
 import OrderItem from './order';
 
-const Container = styled.div`width: 100%;`;
+const Container = styled.div`
+  width: 100%;
+`;
 
 // 不够通用
-export default function OrdersView({
-  orders,
-  pagination,
-  loadMoreOrders,
-  triggerWechatPay,
-  cancel,
-}) {
+export default function OrdersView({ orders, pagination, loadMoreOrders, triggerWechatPay, cancel }) {
   if (!pagination.get('isLoading') && !orders.size) {
     return <Empty />;
   }
@@ -27,12 +23,7 @@ export default function OrdersView({
         <AutoLoader pagination={pagination} loadMoreData={() => loadMoreOrders()}>
           <Wrapper>
             {orders.map(order => (
-              <OrderItem
-                key={order.get('id')}
-                order={order}
-                triggerWechatPay={triggerWechatPay}
-                cancel={cancel}
-              />
+              <OrderItem key={order.get('id')} order={order} triggerWechatPay={triggerWechatPay} cancel={cancel} />
             ))}
           </Wrapper>
         </AutoLoader>

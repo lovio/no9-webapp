@@ -26,7 +26,7 @@ const SubmitContainer = styled.div`
   }
 `;
 
-const ResetPwdView = (props) => {
+const ResetPwdView = props => {
   const { handleSubmit, submitting, pristine, resetPwd, sendCaptcha } = props;
   return (
     <div>

@@ -5,7 +5,6 @@ import replace from 'lodash-es/replace';
 import startsWith from 'lodash-es/startsWith';
 import qs from 'qs';
 
-
 const history = createHistory();
 
 // remove code, state, and token

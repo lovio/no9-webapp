@@ -22,5 +22,5 @@ export default handleActions(
     [wxActions.getOpenIDByCode]: state => state.set('openid', ''),
     [wxActions.openid.success]: (state, { payload }) => state.set('openid', get(payload, 'openid')),
   },
-  initialState.getIn(['user']),
+  initialState.getIn(['user'])
 );

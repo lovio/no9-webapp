@@ -46,7 +46,7 @@ export function* formRequest(params, action) {
         actions.failure({
           msg: errorMsg,
           data,
-        }),
+        })
       );
       return reject();
     }

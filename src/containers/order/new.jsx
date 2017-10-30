@@ -3,13 +3,13 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { getSearch } from 'helpers/history';
-import includes from 'lodash/includes';
+import includes from 'lodash-es/includes';
 import Immutable from 'immutable';
 // import { loadUserData, loadCapabilityTest, loadUserInfo } from 'actions/user';
 // import { authorizedRedirect } from 'actions/common';
 import { createNewOrder } from 'actions/order';
 import { loadCities } from 'actions/extra';
-import find from 'lodash/find';
+import find from 'lodash-es/find';
 import products from 'constants/products.json';
 import { DEFAULT_PRODUCT_ID } from 'constants/constants.json';
 
@@ -20,7 +20,7 @@ const productSelector = createSelector(
     const id = +getSearch(props.location.search).paymentId;
     return includes([1, 2, 3], id) ? id : DEFAULT_PRODUCT_ID;
   },
-  id => Immutable.fromJS(find(products, { id })),
+  id => Immutable.fromJS(find(products, { id }))
 );
 
 function mapStateToProps(state, props) {

@@ -11,31 +11,30 @@ export default combineReducers({
     {
       [actions.loadCards]: () => Immutable.List(),
       [actions.cards.success]: (state, { payload }) => fromJS(payload),
-      [actions.cardRemove.success]: (state, { meta: { id } }) =>
-        state.filterNot(item => item.get('id') === id),
+      [actions.cardRemove.success]: (state, { meta: { id } }) => state.filterNot(item => item.get('id') === id),
     },
-    initialState.getIn(['mine', 'cards']),
+    initialState.getIn(['mine', 'cards'])
   ),
   card: handleActions(
     {
       [actions.chooseCard]: (state, { payload }) => payload,
       [actions.withdrawSuccess]: () => initialState.getIn(['mine', 'card']),
     },
-    initialState.getIn(['mine', 'card']),
+    initialState.getIn(['mine', 'card'])
   ),
   records: handleActions(
     {
       [orderActions.loadRecords]: () => Immutable.List(),
       [orderActions.records.success]: (state, { payload }) => state.concat(fromJS(payload)),
     },
-    initialState.getIn(['mine', 'records']),
+    initialState.getIn(['mine', 'records'])
   ),
   orders: handleActions(
     {
       [orderActions.loadOrders]: () => Immutable.List(),
       [orderActions.orders.success]: (state, { payload }) => state.concat(fromJS(payload)),
     },
-    initialState.getIn(['mine', 'orders']),
+    initialState.getIn(['mine', 'orders'])
   ),
   levelups: combineReducers({
     data: handleActions(
@@ -43,7 +42,7 @@ export default combineReducers({
         [actions.loadLevelups]: () => Immutable.Map(),
         [actions.levelups.success]: (state, { payload }) => state.concat(fromJS(payload)),
       },
-      initialState.getIn(['mine', 'levelups', 'data']),
+      initialState.getIn(['mine', 'levelups', 'data'])
     ),
     isLoading: handleActions(
       {
@@ -51,7 +50,7 @@ export default combineReducers({
         [actions.levelups.success]: () => false,
         [actions.levelups.failure]: () => false,
       },
-      initialState.getIn(['mine', 'levelups', 'isLoading']),
+      initialState.getIn(['mine', 'levelups', 'isLoading'])
     ),
   }),
   summries: combineReducers({
@@ -60,7 +59,7 @@ export default combineReducers({
         [actions.loadDailySummaries]: () => Immutable.List(),
         [actions.dailySummaries.success]: (state, { payload }) => state.concat(fromJS(payload)),
       },
-      initialState.getIn(['mine', 'summries', 'data']),
+      initialState.getIn(['mine', 'summries', 'data'])
     ),
     isLoading: handleActions(
       {
@@ -68,7 +67,7 @@ export default combineReducers({
         [actions.dailySummaries.success]: () => false,
         [actions.dailySummaries.failure]: () => false,
       },
-      initialState.getIn(['mine', 'summries', 'isLoading']),
+      initialState.getIn(['mine', 'summries', 'isLoading'])
     ),
   }),
   relations: combineReducers({
@@ -77,7 +76,7 @@ export default combineReducers({
         [actions.loadRelations]: () => Immutable.Map(),
         [actions.relations.success]: (state, { payload }) => fromJS(payload),
       },
-      initialState.getIn(['mine', 'relations', 'data']),
+      initialState.getIn(['mine', 'relations', 'data'])
     ),
     isLoading: handleActions(
       {
@@ -85,7 +84,7 @@ export default combineReducers({
         [actions.relations.success]: () => false,
         [actions.relations.failure]: () => false,
       },
-      initialState.getIn(['mine', 'relations', 'isLoading']),
+      initialState.getIn(['mine', 'relations', 'isLoading'])
     ),
   }),
 });

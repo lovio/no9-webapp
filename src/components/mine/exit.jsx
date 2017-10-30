@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 import { CavityButton } from 'ui/button';
 
-const Container = styled.div`padding: 0.1rem 0.2rem 0.4rem;`;
+const Container = styled.div`
+  padding: 0.1rem 0.2rem 0.4rem;
+`;
 
 const Menu = ({ signOut }) => (
   <Container>

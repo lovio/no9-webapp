@@ -11,7 +11,7 @@ export default combineReducers({
       [actions.loadOrder]: () => Immutable.Map(),
       [actions.order.success]: (state, { payload }) => fromJS(payload),
     },
-    initialState.getIn(['order', 'data']),
+    initialState.getIn(['order', 'data'])
   ),
   isLoading: handleActions(
     {
@@ -19,6 +19,6 @@ export default combineReducers({
       [actions.order.success]: () => false,
       [actions.order.failure]: () => false,
     },
-    initialState.getIn(['order', 'isLoading']),
+    initialState.getIn(['order', 'isLoading'])
   ),
 });

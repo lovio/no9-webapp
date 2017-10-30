@@ -8,7 +8,7 @@ import SignInView from 'components/auth/signIn';
 import SignUpView from 'components/auth/signUp';
 import Tabs from 'components/auth/tabs';
 
-const Auth = (props) => {
+const Auth = props => {
   const { location: { pathname } } = props;
   return (
     <div>
@@ -29,7 +29,7 @@ const initialValuesSelector = createSelector(
   },
   referrerCode => ({
     referrerCode,
-  }),
+  })
 );
 
 function mapStateToProps(state, props) {

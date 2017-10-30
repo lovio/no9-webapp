@@ -55,13 +55,7 @@ export function* watchOpenIDFailure() {
 }
 
 const jsApiMapping = {
-  share: [
-    'onMenuShareTimeline',
-    'onMenuShareAppMessage',
-    'onMenuShareQQ',
-    'onMenuShareWeibo',
-    'onMenuShareQZone',
-  ],
+  share: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'],
   image: ['chooseImage', 'uploadImage', 'previewImage', 'downloadImage'],
 };
 
@@ -75,7 +69,7 @@ function* getWXData(payload) {
         imgUrl: `http:${STATIC_PREFIX}logo.jpg`,
         desc: '托福大杀器！备考黑科技！',
       },
-      pickBy(payload.data),
+      pickBy(payload.data)
     );
   }
   return {};

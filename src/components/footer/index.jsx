@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import history from 'helpers/history';
-import map from 'lodash/map';
+import map from 'lodash-es/map';
 
 import { Footer } from 'ui';
 import IconProperty from './property.svg';
@@ -56,7 +56,7 @@ const Tab = styled.div`
     margin: 0;
     letter-spacing: 0;
     /* 首页: */
-    color: ${(props) => {
+    color: ${props => {
       if (props.isActive) {
         return '#0889FF';
       }
@@ -80,8 +80,7 @@ export default function FooterView({ location: { pathname } }) {
             if (link.url !== history.location.pathname) {
               history.push(link.url);
             }
-          }}
-        >
+          }}>
           {link.Icon()}
           <p>{link.title}</p>
         </Tab>

@@ -12,6 +12,7 @@
     "react",
     "stage-0"
   ],
+  "plugins": ["recharts"],
   "env": {
     "development": {
       "plugins": [

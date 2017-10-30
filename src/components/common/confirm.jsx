@@ -30,7 +30,9 @@ const Title = styled.div`
   color: #4a4a4a;
 `;
 
-const DescList = styled.div`margin: 0.16rem 0 0.3rem;`;
+const DescList = styled.div`
+  margin: 0.16rem 0 0.3rem;
+`;
 
 const Desc = styled.div`
   line-height: 0.2rem;

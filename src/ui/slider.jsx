@@ -35,11 +35,10 @@ export default class Slider extends Component {
   render() {
     return (
       <Slick
-        ref={(slider) => {
+        ref={slider => {
           this.slider = slider;
         }}
-        {...settings}
-      >
+        {...settings}>
         {this.props.children}
       </Slick>
     );

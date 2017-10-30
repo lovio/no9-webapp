@@ -12,29 +12,22 @@ import { Button } from 'ui/button';
 import { Container, BtnContainer } from './components';
 
 function AccountView(props) {
-  const {
-    handleSubmit,
-    submitting,
-    pristine,
-    bindAccount,
-    bindAccountConflict,
-  } = props;
+  const { handleSubmit, submitting, pristine, bindAccount, bindAccountConflict } = props;
   return (
     <Container>
       <Helmet>
         <title>智课斩托福</title>
       </Helmet>
       <Form
-        onSubmit={
-          handleSubmit(submit(bindAccount, undefined, (errors) => {
+        onSubmit={handleSubmit(
+          submit(bindAccount, undefined, errors => {
             if (get(errors, 'code') === 10301) {
               bindAccountConflict(errors);
             } else {
               throw new SubmissionError(errors);
             }
-          }))
-        }
-      >
+          })
+        )}>
         <Field
           name="account"
           label="账号"
@@ -52,10 +45,9 @@ function AccountView(props) {
           placeholder="请输入密码"
         />
         <BtnContainer>
-          <Button
-            type="submit"
-            disabled={pristine || submitting}
-          >立即绑定</Button>
+          <Button type="submit" disabled={pristine || submitting}>
+            立即绑定
+          </Button>
         </BtnContainer>
       </Form>
     </Container>
