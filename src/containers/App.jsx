@@ -1,4 +1,3 @@
-/* eslint-disable import/default */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';

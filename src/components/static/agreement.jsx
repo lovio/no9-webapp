@@ -13,7 +13,6 @@ const P = styled.p`
   margin: 0.05rem 0;
 `;
 
-/* eslint-disable */
 const Agreement = () => (
   <Container>
     <h2>重要须知：</h2>

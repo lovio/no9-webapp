@@ -9,7 +9,6 @@ export function maskName(name) {
   return name ? [name[0], ...times(size(name) - 1, () => '*')].join('') : '';
 }
 
-/* eslint-disable */
 export function dealNumber(cents) {
   if (cents) {
     const money = String(cents / 100);

@@ -6,10 +6,8 @@
     "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-build",
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "open:src",
     "open:src": "webpack-dashboard -- babel-node tools/srcServer.js",
-    "lint": "esw webpack.config.* src tools server.js --color",
-    "lint:watch": "npm run lint -- --watch",
     "clean-build": "npm run remove-build && mkdir build",
     "remove-build": "rimraf ./build",
     "build:html": "babel-node tools/buildHtml.js",
@@ -66,7 +64,6 @@
     "redux-localstorage": "^0.4.1",
     "redux-saga": "^0.15.6",
     "reselect": "^3.0.1",
-    "serialize-javascript": "^1.4.0",
     "serve-favicon": "^2.4.3",
     "styled-components": "^2.1.2",
     "validator": "^8.1.0"
@@ -75,7 +72,6 @@
     "assets-webpack-plugin": "^3.5.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-react-display-name": "2.0.0",
     "babel-plugin-recharts": "1.1.0",
@@ -91,14 +87,6 @@
     "connect-history-api-fallback": "1.3.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.5",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "14.1.0",
-    "eslint-import-resolver-webpack": "^0.8.3",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
-    "eslint-watch": "^3.1.2",
     "file-loader": "^0.11.2",
     "glob": "^7.1.2",
     "happypack": "^4.0.0",
@@ -117,7 +105,6 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dashboard": "1.0.0",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.19.1",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-hot-middleware": "^2.19.1"
   }
 }

@@ -57,4 +57,3 @@ docker-compose部署：
 ## 关于编辑器
 
 不管使用什么编辑器atom/sublime/vscode或者其他的都是可以安装一些插件的
-比如linter-eslint/editorconfig来使用项目下的配置文件

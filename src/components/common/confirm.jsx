@@ -74,10 +74,7 @@ export default function Confirm({ hideConfirm, confirm, handleConfirm }) {
     <Container>
       <ConfirmBox>
         <Title>提示信息</Title>
-        <DescList>
-          {confirm.get('desc').map((desc, index) => <Desc key={index}>{desc}</Desc>) // eslint-disable-line
-          }
-        </DescList>
+        <DescList>{confirm.get('desc').map((desc, index) => <Desc key={index}>{desc}</Desc>)}</DescList>
         <Btns>
           <Button onClick={() => hideConfirm()}>取消</Button>
           <Button onClick={() => handleConfirm()}>确定</Button>

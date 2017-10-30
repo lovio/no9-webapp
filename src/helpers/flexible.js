@@ -14,7 +14,6 @@
 //   getInitStyle();
 //   window.addEventListener('resize', getInitStyle);
 // })();
-/* eslint-disable */
 
 !(function() {
   var a =

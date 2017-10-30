@@ -8,7 +8,6 @@ const DEFAULT_PAGINATION = {
   hasMore: true,
 };
 
-/* eslint-disable max-len */
 // 对于闪购或者搜索结果都是用products
 export default Immutable.fromJS({
   // 要改成其他名字，比如sesstion

@@ -35,7 +35,7 @@ export default {
       {
         test: /\.jsx?$/,
         include: path.join(__dirname, '../src'),
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader'],
       },
       {
         test: /\.(ico|jpe?g|png|gif|woff|eot|ttf)\??.*$/,

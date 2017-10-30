@@ -1,5 +1,3 @@
-// eslint-import-resolver 不能识别es6 modules
-
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -48,7 +46,7 @@ module.exports = {
     new HappyPack({
       id: 'jsx',
       threads: 4,
-      loaders: ['babel-loader', 'eslint-loader'],
+      loaders: ['babel-loader'],
     }),
     new DashboardPlugin(),
   ],

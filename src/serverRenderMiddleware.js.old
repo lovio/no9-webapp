@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
     history,
     routes: getRoutes(store),
     location: req.originalUrl,
-  }, (error, redirectLocation, renderProps) => { // eslint-disable-line
+  }, (error, redirectLocation, renderProps) => {
     if (error) {
       // 不作处理，转给客户端渲染
       return next();
@@ -43,7 +43,7 @@ module.exports = (req, res, next) => {
 
       // match saga done
       sagaTask.done.then(() => {
-        req.serverRenderData = { // eslint-disable-line
+        req.serverRenderData = {
           content: renderToString(rootComp),
           initialState: serialize(store.getState()),
         };

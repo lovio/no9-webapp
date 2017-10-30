@@ -5,7 +5,7 @@ import fs from 'fs';
 export function readFile(fp) {
   try {
     fs.accessSync(fp);
-    const config = require(fp); // eslint-disable-line
+    const config = require(fp);
     return config;
   } catch (err) {
     return undefined;
