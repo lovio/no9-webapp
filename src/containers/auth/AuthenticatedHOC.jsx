@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as authActions from 'actions/auth';
@@ -14,5 +15,5 @@ export default function requireAuthentication(Component) {
     checkAuth: PropTypes.func.isRequired,
   };
 
-  return connect(null, { checkAuth: authActions.checkAuth })(AuthenticatedComponent);
+  return withRouter(connect(null, { checkAuth: authActions.checkAuth })(AuthenticatedComponent));
 }
