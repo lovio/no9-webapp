@@ -42,7 +42,7 @@ const Bar = styled.div`
 
 const gradeMappings = {
   0: {
-    amount: 6500,
+    amount: 650000,
     count: 1,
   },
   1: {

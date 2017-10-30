@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 const path = ['user'];
 
 export default persistState(path, {
-  key: 'no9-0.1.0',
+  key: 'no9-0.1.1',
   slicer: paths => state => state.getIn(paths),
   serialize: subset => JSON.stringify(subset.toJS()),
   deserialize: subset => Immutable.Map(JSON.parse(subset)),
