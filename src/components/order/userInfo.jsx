@@ -38,13 +38,6 @@ const Tips = styled.div`
   color: #ff7249;
 `;
 
-const Change = styled.span`
-  margin-right: 0.2rem;
-  font-size: 0.12rem;
-  color: #0889ff;
-  float: right;
-`;
-
 const UserInfo = ({ user }) => (
   <Container>
     <Title>请确认归属人实名信息</Title>
@@ -61,9 +54,7 @@ const UserInfo = ({ user }) => (
         <span>联系电话</span>
         <span>{user.get('phone')}</span>
       </Item>
-      <Tips>
-        提示：购买后实名信息无法更改<Change>如何修改？</Change>
-      </Tips>
+      <Tips>提示：购买后实名信息无法更改</Tips>
     </Info>
   </Container>
 );
