@@ -59,14 +59,14 @@ export const checkPasswordSame = password => value => {
 };
 
 const MAX_WITHDRAW = 5000000;
-export const checkWithdrawAmount = (cents, min) => value => {
-  const yuan = value * 100;
+export const checkWithdrawAmount = (available, min) => value => {
+  const inputCents = value * 100;
   let tip;
-  if (isNaN(cents) || yuan * 100 <= min) {
+  if (isNaN(inputCents) || inputCents < min) {
     tip = '请输入正确的取现金额';
-  } else if (yuan >= MAX_WITHDRAW) {
+  } else if (inputCents > MAX_WITHDRAW) {
     tip = '最多取现5万元';
-  } else if (cents < yuan) {
+  } else if (available < inputCents) {
     tip = '可取现金额不足';
   }
   return tip;
