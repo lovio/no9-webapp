@@ -64,7 +64,7 @@ export const checkWithdrawAmount = (cents, min) => value => {
   let tip;
   if (isNaN(cents) || yuan * 100 <= min) {
     tip = '请输入正确的取现金额';
-  } else if (cents >= MAX_WITHDRAW) {
+  } else if (yuan >= MAX_WITHDRAW) {
     tip = '最多取现5万元';
   } else if (cents < yuan) {
     tip = '可取现金额不足';
