@@ -2,6 +2,7 @@ import { put, select } from 'redux-saga/effects';
 import history, { getSearch } from 'helpers/history';
 import { inWechat } from 'helpers/ua';
 import { transferCode, getOpenIDByCode } from 'actions/wx';
+import isArray from 'lodash-es/isArray';
 // import { checkWechatBindStatus, registerToken } from 'actions/auth';
 // import includes from 'lodash-es/includes';
 
@@ -15,7 +16,7 @@ export function* wechatOauth() {
     if (!code) {
       yield put(transferCode());
     } else {
-      yield put(getOpenIDByCode({ code }));
+      yield put(getOpenIDByCode({ code: isArray(code) ? code.pop() : code }));
     }
   }
   // } else if (inWechat && !includes(pathname, 'share')) {
