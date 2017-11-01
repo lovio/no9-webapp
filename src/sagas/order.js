@@ -97,7 +97,7 @@ export function* watchCreateNewOrder() {
       const openid = yield select(state => state.getIn(['user', 'openid']));
       const token = yield select(state => state.getIn(['user', 'token']));
       const { response, error } = yield call(apis.postNewOrders, {
-        openid: openid || '123',
+        openid,
         cityId,
         amount,
         productId: product.get('id'),
@@ -135,7 +135,7 @@ export function* watchTriggerWechatPay() {
     const openid = yield select(state => state.getIn(['user', 'openid']));
     const token = yield select(state => state.getIn(['user', 'token']));
     const { response, error } = yield call(apis.getPaymentPkg, {
-      openid: openid || '123',
+      openid,
       orderId,
       token,
       amount,
