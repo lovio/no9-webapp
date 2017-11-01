@@ -48,7 +48,7 @@ const Tabs = ({ pathname }) => (
           search: history.location.search,
         })}>
       <IconAccount />
-      登陆
+      登录
     </Link>
   </Container>
 );
