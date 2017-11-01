@@ -1,5 +1,5 @@
 import { put, select } from 'redux-saga/effects';
-import history, { getSearch } from 'helpers/history';
+import { getSearch } from 'helpers/history';
 import { inWechat } from 'helpers/ua';
 import { transferCode, getOpenIDByCode } from 'actions/wx';
 import isArray from 'lodash-es/isArray';
@@ -11,7 +11,7 @@ export function* wechatOauth() {
   // const { pathname } = history.location;
   const openid = yield select(state => state.getIn(['user', 'openid']));
   if (inWechat && !openid) {
-    const search = getSearch(history.location.search);
+    const search = getSearch(window.location.href.split('?').pop());
     const code = search.code;
     if (!code) {
       yield put(transferCode());
