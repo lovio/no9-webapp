@@ -1,4 +1,5 @@
 import { take, call, fork, select, put, takeEvery } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import qs from 'qs';
 import history, { getSafePath } from 'helpers/history';
 import { inWechat } from 'helpers/ua';
@@ -23,6 +24,7 @@ export function* watchCode() {
   for (;;) {
     const { payload } = yield take(actions.transferCode);
     if (inWechat) {
+      yield call(delay, 500);
       yield fork(wxHelper.transferCode, payload || {});
     }
   }
