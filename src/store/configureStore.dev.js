@@ -18,7 +18,7 @@ export default function configureStore(initialState) {
       applyMiddleware(sagaMiddleware),
       // applyMiddleware(sagaMiddleware, createLogger({ stateTransformer })),
       // Add other middleware on this line...
-      // persistState,
+      persistState,
       window.devToolsExtension ? window.devToolsExtension() : f => f
       // add support for Redux dev tools
     )
