@@ -14,12 +14,10 @@ export const Artboard = styled.div`
 `;
 
 export const Container = styled.div`
-  position: relative;
   display: flex;
   height: 100%;
   flex-direction: column;
   ${bgColor};
-  transform: translate3d(0, 0, 0);
 `;
 
 export const Overflow = styled.div`
