@@ -22,8 +22,11 @@ export const Container = styled.div`
 
 export const Overflow = styled.div`
   flex: 1;
-  overflow: auto;
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
+  z-index: 100;
+  transform: translate3d(0, 0, 0);
+}
 `;
 
 // export const OverflowContainer = styled(BasicOverflowContainer)`
