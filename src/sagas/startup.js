@@ -9,8 +9,9 @@ import isArray from 'lodash-es/isArray';
 // 包含share的都走验证流程
 export function* wechatOauth() {
   // const { pathname } = history.location;
-  const openid = yield select(state => state.getIn(['user', 'openid']));
-  if (inWechat && !openid) {
+  // TODO: 需要重构自动登录
+  // const openid = yield select(state => state.getIn(['user', 'openid']));
+  if (inWechat) {
     const search = getSearch(window.location.href.split('?').pop());
     const code = search.code;
     if (!code) {
@@ -19,10 +20,4 @@ export function* wechatOauth() {
       yield put(getOpenIDByCode({ code: isArray(code) ? code.pop() : code }));
     }
   }
-  // } else if (inWechat && !includes(pathname, 'share')) {
-  //   } else {
-  // yield put(initWechat({ type: 'image' }));
-  // yield put(initWechat({ type: 'share' }));
-  // }
-  // }
 }
