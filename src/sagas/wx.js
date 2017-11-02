@@ -25,7 +25,7 @@ export function* watchCode() {
     const { payload } = yield take(actions.transferCode);
     if (inWechat) {
       yield call(delay, 500);
-      yield fork(wxHelper.transferCode, payload || {});
+      yield call(wxHelper.transferCode, payload || {});
     }
   }
 }
