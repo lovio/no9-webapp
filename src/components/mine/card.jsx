@@ -98,7 +98,7 @@ const No = styled(Item)`
 `;
 
 const Card = ({ user, levelups }) => {
-  const grade = user.get('grade');
+  const grade = user.get('grade') || 0;
   const style = gradeStyles[grade];
 
   return (
