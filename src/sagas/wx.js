@@ -68,7 +68,7 @@ function* getWXData(payload) {
       {
         link: `${site.zhanToefl}/#/share?${qs.stringify({ userId })}`,
         title: '智课斩托福',
-        imgUrl: `http:${STATIC_PREFIX}logo.jpg`,
+        imgUrl: `https:${STATIC_PREFIX}logo.jpg`,
         desc: '托福大杀器！备考黑科技！',
       },
       pickBy(payload.data)
