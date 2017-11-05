@@ -61,6 +61,7 @@ const Info = styled.div`
 
 const TitleContainer = styled.div`
   position: relative;
+  transform: translate3d(0, 0, 0);
   div {
     position: absolute;
     top: -0.25rem;

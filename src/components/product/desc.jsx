@@ -88,6 +88,7 @@ const Card = styled.div`
 
 const CardImage = styled.div`
   position: relative;
+  transform: translate3d(0, 0, 0);
   img {
     width: 1.15rem;
     height: 1.56rem;
