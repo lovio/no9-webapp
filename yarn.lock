@@ -1697,8 +1697,8 @@ create-react-class@^15.5.2:
     object-assign "^4.1.1"
 
 cross-env@^5.0.5:
-  version "5.1.0"
-  resolved "http://registry.npm.taobao.org/cross-env/download/cross-env-5.1.0.tgz#1f12d6b3777d5847dcf9cf39fbee3c6a76dd5058"
+  version "5.1.1"
+  resolved "http://registry.npm.taobao.org/cross-env/download/cross-env-5.1.1.tgz#b6d8ab97f304c0f71dae7277b75fe424c08dfa74"
   dependencies:
     cross-spawn "^5.1.0"
     is-windows "^1.0.0"
@@ -5646,8 +5646,8 @@ strip-json-comments@~2.0.1:
   resolved "http://registry.npm.taobao.org/strip-json-comments/download/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
 styled-components@^2.1.2:
-  version "2.2.2"
-  resolved "http://registry.npm.taobao.org/styled-components/download/styled-components-2.2.2.tgz#a00c4b7a432ff77e5fb962ec1fbc030248d27171"
+  version "2.2.3"
+  resolved "http://registry.npm.taobao.org/styled-components/download/styled-components-2.2.3.tgz#154575c269880c840f903f580287dab155cf684c"
   dependencies:
     buffer "^5.0.3"
     css-to-react-native "^2.0.3"
