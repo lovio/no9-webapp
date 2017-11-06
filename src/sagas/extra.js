@@ -9,9 +9,9 @@ import * as apis from 'helpers/api';
 // import { showToastItem } from '../actions/common';
 import { fetchEntity } from './utils';
 
-const requestZones = fetchEntity.bind(null, actions.zones, apis.getZones);
+const requestZones = fetchEntity.bind(null, actions.zones, apis.getZones, {});
 
-const requestCities = fetchEntity.bind(null, actions.cities, apis.getCities);
+const requestCities = fetchEntity.bind(null, actions.cities, apis.getCities, {});
 const requestCarports = fetchEntity.bind(null, actions.carports, apis.getCarports, {}, true);
 
 export function* watchLoadZones() {
