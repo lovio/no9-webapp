@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { hideModal, hideToastItem } from 'actions/common';
 import ToastsView from 'components/common/toasts';
 import Modal from 'components/common/modal';
+import { Wrapper } from 'components/common/wrapper';
 
 class Tips extends Component {
   static propTypes = {
@@ -18,10 +19,10 @@ class Tips extends Component {
   render() {
     const { modal, toasts } = this.props;
     return (
-      <div>
+      <Wrapper>
         {this.renderToasts(toasts)}
         {modal.has('type') && <Modal modal={modal} hideModal={this.props.hideModal} />}
-      </div>
+      </Wrapper>
     );
   }
 }
