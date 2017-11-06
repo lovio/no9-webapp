@@ -1,5 +1,6 @@
 import { take, call, select, put, fork } from 'redux-saga/effects';
 import history from 'helpers/history';
+import { inWechat } from 'helpers/ua';
 
 // import { HOME_PATH } from 'constants/constants.json';
 import * as actions from 'actions/order';
@@ -80,10 +81,15 @@ export function* watchLoadMoreRecords() {
 }
 
 function* pay(charge, orderId) {
-  const { status } = yield call(createPayment, charge);
-  if (status === 'fail') {
-    yield put(showToastItem('支付失败'));
-  } else if (status === 'success') {
+  if (!inWechat) {
+    yield put(showToastItem('请在微信中发起支付'));
+  }
+  const { result, err } = yield call(createPayment, charge);
+  if (result === 'cancel') {
+    yield put(showToastItem('支付已取消'));
+  } else if (result === 'fail') {
+    yield put(showToastItem(`支付失败：${get(err, 'msg')} ${err.extra}`));
+  } else if (result === 'success') {
     yield put(showToastItem({ type: 'success', msg: '支付成功' }));
     history.push(`/mine/orders/${orderId}`);
   }
@@ -97,6 +103,7 @@ export function* watchCreateNewOrder() {
       const openid = yield select(state => state.getIn(['user', 'openid']));
       const token = yield select(state => state.getIn(['user', 'token']));
       const { response, error } = yield call(apis.postNewOrders, {
+        // openid: 'ot_Xf1a-CR0AiWsJqygQwiiQR0e4',
         openid,
         cityId,
         amount,
@@ -116,6 +123,9 @@ export function* watchCreateNewOrder() {
           yield put(showToastItem('获取支付凭证失败'));
         }
       } else {
+        if (!response.credential) {
+          yield put(showToastItem('获取支付凭证失败'));
+        }
         yield call(pay, response.credential, response.id);
       }
     } else {
@@ -143,7 +153,7 @@ export function* watchTriggerWechatPay() {
     if (error) {
       yield put(showToastItem('获取支付凭证失败'));
     } else {
-      yield fork(pay, response, orderId);
+      yield call(pay, response, orderId);
     }
   }
 }
