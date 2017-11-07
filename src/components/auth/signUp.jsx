@@ -76,6 +76,7 @@ const SignInView = props => {
           />
           <Field
             name="referrerCode"
+            validate={[required('请输入邀请码')]}
             label="邀请码"
             id="captchaPhone"
             inputType="referrerCode"
