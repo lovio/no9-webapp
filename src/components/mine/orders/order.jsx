@@ -110,7 +110,7 @@ const OrderItem = ({ order, triggerWechatPay, cancel }) => {
           </Intro>
         </Block>
         <BtnGroups>
-          {includes([ORDER_INIT, ORDER_UNPAID], order.get('status')) && (
+          {/* {includes([ORDER_INIT, ORDER_UNPAID], order.get('status')) && (
             <Button
               onClick={() =>
                 triggerWechatPay({
@@ -119,7 +119,7 @@ const OrderItem = ({ order, triggerWechatPay, cancel }) => {
                 })}>
               微信支付尾款
             </Button>
-          )}
+          )} */}
           {order.get('status') === ORDER_INIT && (
             <CancelButton
               onClick={() =>
