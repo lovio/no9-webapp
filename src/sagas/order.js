@@ -87,11 +87,11 @@ function* pay(charge, orderId) {
   const { result, err } = yield call(createPayment, charge);
   if (result === 'cancel') {
     yield put(showToastItem('支付已取消'));
-  } else if (result === 'fail') {
-    yield put(showToastItem(`支付失败：${get(err, 'msg')} ${err.extra}`));
   } else if (result === 'success') {
     yield put(showToastItem({ type: 'success', msg: '支付成功' }));
     history.push(`/mine/orders/${orderId}`);
+  } else {
+    yield put(showToastItem(`支付失败 ${get(err, 'msg')} ${err.extra}`));
   }
 }
 
