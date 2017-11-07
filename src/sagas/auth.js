@@ -138,7 +138,7 @@ export function* watchAuthSuccess() {
     );
     if (payload) {
       // yield call(redirect, HOME_PATH);
-      history.push('/zones');
+      history.push('/');
     }
   }
 }
