@@ -170,7 +170,8 @@ export default class Input extends Component {
             onClick={() =>
               this.setState(prevState => ({
                 showPasword: !prevState.showPasword,
-              }))}>
+              }))
+            }>
             <img src={showPasword ? imgInVisible : imgVisible} alt="" />
           </Tip>
         )}

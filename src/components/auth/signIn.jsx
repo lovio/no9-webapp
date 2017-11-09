@@ -74,7 +74,8 @@ const SignInView = props => {
               history.push({
                 pathname: '/resetpwd',
                 search: history.location.search,
-              })}>
+              })
+            }>
             忘记密码?
           </ResetPwd>
         </SubmitContainer>

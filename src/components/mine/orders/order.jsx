@@ -125,7 +125,8 @@ const OrderItem = ({ order, triggerWechatPay, cancel }) => {
               onClick={() =>
                 cancel({
                   orderId: order.get('id'),
-                })}>
+                })
+              }>
               取消订单
             </CancelButton>
           )}

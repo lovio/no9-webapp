@@ -118,7 +118,8 @@ class Cards extends Component {
             history.push({
               pathname: '/mine/cards/new',
               search: history.location.search,
-            })}>
+            })
+          }>
           <img src={imgAdd} alt="" />
           添加银行卡
         </AddCard>

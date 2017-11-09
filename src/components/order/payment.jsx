@@ -52,7 +52,8 @@ class Payment extends Component {
           onClick={() =>
             this.setState(prevState => ({
               checked: !prevState.checked,
-            }))}>
+            }))
+          }>
           我同意<Link to="/agreement2">《停车设施委托建设及委托管理协议》</Link>
         </Agreement>
         <Button
@@ -62,7 +63,8 @@ class Payment extends Component {
               product,
               cityId,
               amount,
-            })}>
+            })
+          }>
           微信支付
         </Button>
       </Container>
