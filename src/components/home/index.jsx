@@ -5,7 +5,7 @@ import { ResponsiveContainer, LineChart, Line, CartesianGrid, YAxis } from 'rech
 import styled from 'styled-components';
 import { dealNumber } from 'helpers/string';
 
-import imgBanner from './banner.jpg';
+import imgBanner from '../product/slide-profit.jpg';
 import ImgBill from './bill.png';
 import ImgRelation from './relation.png';
 import ImgTransfer from './transfer.png';
