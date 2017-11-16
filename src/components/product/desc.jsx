@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import IncomeCal from './incomeCal';
 
-import imgProfits from './profits.jpg';
+import imgProfits from './profits.png';
 import imgBJ1 from './bj1.jpg';
 import imgXM1 from './xm1.jpg';
 import imgSH1 from './sh1.jpg';

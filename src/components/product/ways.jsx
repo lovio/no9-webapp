@@ -61,12 +61,15 @@ const PaymentDesc = styled.span`
 `;
 
 const Time = styled.p`
-  margin: 0.05rem 0 0.2rem;
+  margin: 0.05rem 0 0;
   font-size: 0.12rem;
   line-height: 0.18rem;
   color: #4a4a4a;
   span {
     color: #9b9b9b;
+  }
+  &:last-of-type {
+    margin-bottom: 0.2rem;
   }
 `;
 
@@ -84,6 +87,9 @@ const Intro = () => (
           {product.desc}
           <Time>
             <span>开始收益时间</span> {format(addDays(new Date(), 7), 'YYYY年MM月DD')}
+          </Time>
+          <Time>
+            <span>停车费年化收益</span> {product.ratio}
           </Time>
           <Link to={`/orders/new?paymentId=${product.id}`}>
             <Button>确认购买</Button>
