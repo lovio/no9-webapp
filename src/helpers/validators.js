@@ -15,7 +15,7 @@ export const required = tip => value => {
 export const isPhone = tip => value => {
   if (value) {
     const phone = String(value).replace(/(^\s+)|(\s+$)/g, '');
-    if (/^0?1[3|4|5|7|8][0-9]\d{8}$/.test(phone)) {
+    if (/^0?1[0|3|4|5|7|8][0-9]\d{8}$/.test(phone)) {
       return undefined;
     }
   }
