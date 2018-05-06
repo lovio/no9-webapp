@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Slider from 'ui/slider';
+// import Slider from 'ui/slider';
 import { GRADE_MAPPING } from '../../constants/constants.json';
 
-import LevelUp from './levelup';
+// import LevelUp from './levelup';
 
 import imgCrown1 from './crown1.png';
 import imgCrown2 from './crown2.png';
@@ -67,6 +67,7 @@ const TitleContainer = styled.div`
     top: -0.25rem;
     left: 0;
     right: 0;
+    text-align: center;
     img {
       margin: 0 auto;
       width: 0.5rem;
@@ -103,23 +104,18 @@ const Card = ({ user, levelups }) => {
   const style = gradeStyles[grade];
 
   return (
-    <Slider disableAutoPlay>
-      <Container>
-        <Info bg={style.bg}>
-          <TitleContainer>
-            <div>
-              <img src={crownMapping[grade]} alt="" />
-            </div>
-          </TitleContainer>
-          <Name color={style.color}>{GRADE_MAPPING[grade]}</Name>
-          <Item color={style.color}>{user.get('name') || ' '}</Item>
-          <No color={style.color}>账号编号：{user.get('phone')}</No>
-        </Info>
-      </Container>
-      <Container>
-        <LevelUp levelups={levelups} />
-      </Container>
-    </Slider>
+    <Container>
+      <Info bg={style.bg}>
+        <TitleContainer>
+          <div>
+            <img src={crownMapping[grade]} alt="" />
+          </div>
+        </TitleContainer>
+        <Name color={style.color}>{GRADE_MAPPING[grade]}</Name>
+        <Item color={style.color}>{user.get('name') || ' '}</Item>
+        <No color={style.color}>账号编号：{user.get('phone')}</No>
+      </Info>
+    </Container>
   );
 };
 

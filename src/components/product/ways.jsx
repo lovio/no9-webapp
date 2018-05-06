@@ -88,9 +88,6 @@ const Intro = () => (
           <Time>
             <span>开始收益时间</span> {format(addDays(new Date(), 7), 'YYYY年MM月DD')}
           </Time>
-          <Time>
-            <span>停车费年化收益</span> {product.ratio}
-          </Time>
           <Link to={`/orders/new?paymentId=${product.id}`}>
             <Button>确认购买</Button>
           </Link>
