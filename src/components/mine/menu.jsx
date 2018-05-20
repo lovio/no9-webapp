@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import history from 'helpers/history';
 import styled from 'styled-components';
 
@@ -41,7 +42,7 @@ const Icon = styled.span`
   }
 `;
 
-const Menu = () => (
+const Menu = ({ user }) => (
   <div>
     <Container>
       <Item onClick={() => history.push('/mine/orders')}>
@@ -74,12 +75,14 @@ const Menu = () => (
         </Icon>
         我的客户关系
       </Item>
-      <Item onClick={() => history.push('/mine/invite')}>
-        <Icon>
-          <IconShare />
-        </Icon>
-        生成我的邀请码
-      </Item>
+      {user.get('grade') === 5 && (
+        <Item onClick={() => history.push('/mine/invite')}>
+          <Icon>
+            <IconShare />
+          </Icon>
+          生成我的邀请码
+        </Item>
+      )}
     </Container>
 
     <Container>
@@ -112,5 +115,8 @@ const Menu = () => (
     </Container>
   </div>
 );
+Menu.propTypes = {
+  user: PropTypes.object.isRequired,
+};
 
 export default Menu;

@@ -13,7 +13,7 @@ export default function MineView({ user, levelups, signOut }) {
         <title>账户</title>
       </Helmet>
       <Card user={user} levelups={levelups} />
-      <Menu />
+      <Menu user={user} />
       <Exit signOut={signOut} />
     </div>
   );
