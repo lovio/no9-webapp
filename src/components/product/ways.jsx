@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from 'ui/button';
 import map from 'lodash-es/map';
+import filter from 'lodash-es/filter';
 import products from 'constants/products.json';
 import addDays from 'date-fns/add_days';
 import format from 'date-fns/format';
+
+const showProducts = filter(products, { id: 3 });
 
 const Container = styled.div`
   padding: 0.1rem 0.2rem;
@@ -76,7 +79,7 @@ const Time = styled.p`
 const Intro = () => (
   <Container>
     <Title>订购方式</Title>
-    {map(products, product => (
+    {map(showProducts, product => (
       <Card key={product.id}>
         <Head>
           <Right>{product.right}</Right>
