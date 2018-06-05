@@ -178,7 +178,7 @@ export default function HomeView({ user, summaries }) {
         </Tool>
         <Tool onClick={() => history.push('/grade')}>
           <img src={ImgRelation} alt="" />
-          <p>客户关系</p>
+          <p>验证身份</p>
         </Tool>
       </Tools>
       <Banner src={imgBanner} alt="" />
