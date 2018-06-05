@@ -5,7 +5,7 @@ import { ResponsiveContainer, LineChart, Line, CartesianGrid, YAxis } from 'rech
 import styled from 'styled-components';
 import { dealNumber } from 'helpers/string';
 
-import imgBanner from '../product/slide-profit.jpg';
+import imgBanner from './banner.jpg';
 import ImgBill from './bill.png';
 import ImgRelation from './relation.png';
 import ImgTransfer from './transfer.png';
@@ -21,7 +21,8 @@ const Head = styled.div`
   color: white;
 
   /* Rectangle: */
-  background-image: linear-gradient(0deg, #3db4ff 0%, #0889ff 100%);
+  /* background-image: linear-gradient(0deg, #3db4ff 0%, #0889ff 100%); */
+  background-color: #ff5429;
 `;
 
 const P1 = styled.p`
@@ -101,7 +102,7 @@ const SubP4 = styled(P4)`
 `;
 
 const SubHead = styled.div`
-  background: #0e83ef;
+  background: #ff5e32;
   display: flex;
 
   font-size: 0.14rem;
@@ -175,7 +176,7 @@ export default function HomeView({ user, summaries }) {
 
           <p>提现</p>
         </Tool>
-        <Tool onClick={() => history.push('/mine/relations')}>
+        <Tool onClick={() => history.push('/grade')}>
           <img src={ImgRelation} alt="" />
           <p>客户关系</p>
         </Tool>

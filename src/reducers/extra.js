@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux-immutable';
 import Immutable, { fromJS } from 'immutable';
 import { handleActions } from 'redux-actions';
+import get from 'lodash-es/get';
 
 import * as actions from 'actions/extra';
+import * as userActions from 'actions/user';
 import initialState from './initialState';
 
 export default combineReducers({
@@ -19,6 +21,16 @@ export default combineReducers({
       [actions.zones.success]: (state, { payload }) => fromJS(payload),
     },
     initialState.getIn(['extra', 'zones'])
+  ),
+  grade: handleActions(
+    {
+      [userActions.loadGrade]: () => '',
+      [userActions.loadGradeSuccess]: (state, { payload }) => {
+        console.log(payload);
+        return get(payload, 'response.grade') || '？？';
+      },
+    },
+    initialState.getIn(['extra', 'grade'])
   ),
   carports: combineReducers({
     data: handleActions(

@@ -142,7 +142,9 @@ const fieldMappings = {
 
 export function* watchUpdateProfile() {
   for (;;) {
-    const { payload: { values, resolve, reject } } = yield take(actions.updateProfile);
+    const {
+      payload: { values, resolve, reject },
+    } = yield take(actions.updateProfile);
     const { field, value } = values;
     if (!value) {
       yield put(showToastItem({ type: 'error', msg: `${fieldMappings[field]}不能为空` }));
@@ -200,4 +202,27 @@ export function* watchUpdateProfileFailure() {
     const { payload } = yield take(actions.updateProfileFailure);
     yield put(showToastItem({ type: 'error', msg: `${payload.msg}` }));
   }
+}
+
+function* loadGrade({ payload }) {
+  const { resolve, reject } = payload;
+  const values = {
+    ...payload.values,
+  };
+  yield call(
+    formRequest,
+    {
+      api: apis.getGrade,
+      actions: {
+        success: actions.loadGradeSuccess,
+      },
+    },
+    {
+      payload: { values, resolve, reject },
+    }
+  );
+}
+
+export function* watchLoadGrade() {
+  yield takeEvery(actions.loadGrade, loadGrade);
 }

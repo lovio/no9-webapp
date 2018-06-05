@@ -131,6 +131,8 @@ export const getDailySummaries = data => get('/daily/summaries', data);
 
 export const getLevelups = data => get('/levelups', data);
 
+export const getGrade = data => get('/users/grade', data);
+
 // ****************************************************************************************8
 
 // weixin related

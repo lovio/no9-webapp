@@ -27,3 +27,6 @@ export const dailySummaries = createFetchActions('DAILY_SUMMARIES');
 
 export const loadLevelups = createAction('LOAD_LEVELUPS');
 export const levelups = createFetchActions('LEVELUPS');
+
+export const loadGrade = createAction('LOAD_GRADE');
+export const loadGradeSuccess = createAction('LOAD_GRADE_SUCCESS');

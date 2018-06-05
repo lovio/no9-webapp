@@ -12,6 +12,7 @@ import Confirm from './common/confirm';
 import Tips from './common/tips';
 import Home from './home';
 import Auth from './auth';
+import Check from './check';
 import ResetPwd from './auth/ResetPwd';
 import Mine from './mine';
 import Invite from './mine/invite';
@@ -41,6 +42,8 @@ export default function Routes() {
             <Route exact path="/" component={AuthenticatedHOC(Home)} />
             <Route exact path="/login" component={Auth} />
             <Route exact path="/signup" component={Auth} />
+            <Route exact path="/grade" component={Check} />
+            <Route exact path="/grade/name" component={Check} />
             <Route exact path="/resetpwd" component={ResetPwd} />
             <Route exact path="/mine" component={AuthenticatedHOC(Mine)} />
             <Route exact path="/mine/invite" component={AuthenticatedHOC(Invite)} />
