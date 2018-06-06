@@ -3,7 +3,7 @@ import Slider from 'ui/slider';
 import styled from 'styled-components';
 
 import imgSlide1 from './slide-product.jpg';
-import imgSlide2 from './slide-profit.jpg';
+import imgSlide2 from '../home/banner.jpg';
 
 const Container = styled.div`
   img {
