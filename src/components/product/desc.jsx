@@ -272,10 +272,10 @@ const Desc = () => (
       <BlueSpan />
       <FeatureTitle>代理销售收入</FeatureTitle>
       <Content>
-        <ContentImage>
-          <img src={imgProfits} alt="carport" />
-        </ContentImage>
-        <IncomeCal />
+        {/* <ContentImage> */}
+        <img src={imgProfits} width="100%" alt="carport" />
+        {/* </ContentImage> */}
+        {/* <IncomeCal /> */}
       </Content>
     </Feature>
     <Feature>
